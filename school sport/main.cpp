@@ -1,6 +1,6 @@
 #include<iostream>
 
 void main() {
-	printf("hellow world!!!\n");
+	printf("hellow world!!!123\n");
 	system("pause");
 }
