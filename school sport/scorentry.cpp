@@ -3,7 +3,7 @@
 #include"scorentry.h"
 #include"method.h"
 
-void scorentry() {
+bool scorentry() {
 
 	char entry;
 	system("CLS");
@@ -12,18 +12,20 @@ void scorentry() {
 	printf("2.运动项目\n");
 	printf("3.成绩排名\n");
 	printf("4.分数\n");
+	printf("5.返回\n");
 
 	entry = getchar();
 	rewind(stdin);
 
-	int swi = entrycheck(entry, 1, 3);
-
+	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: scorentry(); break;
+	case 0: if (scorentry()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;
 	case 4: break;
+	case 5: return true; break;
 	}
+	return false;
 	
 }

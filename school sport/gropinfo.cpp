@@ -3,7 +3,7 @@
 #include"method.h"
 #include"basicinfo.h"
 
-void groupinfo() {
+bool groupinfo() {
 	char entry;
 	system("CLS");
 	printf("单位信息\n");
@@ -11,17 +11,18 @@ void groupinfo() {
 	printf("2.修改\n");
 	printf("3.删除\n");
 	printf("4.查询\n");
-
+	printf("5.返回\n");
 	entry = getchar();
 	rewind(stdin);
 
-	int swi = entrycheck(entry, 1, 4);
+	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: groupinfo(); break;
+	case 0: if (groupinfo()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;
 	case 4: break;
-
+	case 5: return true; break;
 	}
+	return false;
 }

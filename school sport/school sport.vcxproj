@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="add.cpp" />
     <ClCompile Include="basicinfo.cpp" />
     <ClCompile Include="countquery.cpp" />
+    <ClCompile Include="delete.cpp" />
     <ClCompile Include="grouprank.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
@@ -28,6 +30,8 @@
     <ClCompile Include="playinfo.cpp" />
     <ClCompile Include="projetinfo.cpp" />
     <ClCompile Include="projetrank.cpp" />
+    <ClCompile Include="query.cpp" />
+    <ClCompile Include="revise.cpp" />
     <ClCompile Include="scorentry.cpp" />
     <ClCompile Include="scorerank.cpp" />
   </ItemGroup>

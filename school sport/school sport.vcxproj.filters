@@ -22,6 +22,15 @@
     <Filter Include="源文件\basicinfo">
       <UniqueIdentifier>{d956fc7f-f25f-4485-b11c-dd7564307d4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\basicinfo\activity">
+      <UniqueIdentifier>{c49ba4d7-6dbf-4266-92c2-4930ff4ce74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\countquery\activity">
+      <UniqueIdentifier>{dc278ce2-4b79-47d3-b86d-fc977fc45d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\scorentry\activity">
+      <UniqueIdentifier>{c4beef3e-37bf-4793-a8e0-4f3df8552ccb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,9 +42,6 @@
     <ClCompile Include="scorentry.cpp">
       <Filter>源文件\scorentry</Filter>
     </ClCompile>
-    <ClCompile Include="grouprank.cpp">
-      <Filter>源文件\countquery</Filter>
-    </ClCompile>
     <ClCompile Include="gropinfo.cpp">
       <Filter>源文件\basicinfo</Filter>
     </ClCompile>
@@ -45,17 +51,32 @@
     <ClCompile Include="projetinfo.cpp">
       <Filter>源文件\basicinfo</Filter>
     </ClCompile>
-    <ClCompile Include="projetrank.cpp">
-      <Filter>源文件\countquery</Filter>
-    </ClCompile>
-    <ClCompile Include="scorerank.cpp">
-      <Filter>源文件\countquery</Filter>
-    </ClCompile>
     <ClCompile Include="countquery.cpp">
       <Filter>源文件\countquery</Filter>
     </ClCompile>
     <ClCompile Include="basicinfo.cpp">
       <Filter>源文件\basicinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="add.cpp">
+      <Filter>源文件\basicinfo\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="delete.cpp">
+      <Filter>源文件\basicinfo\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="query.cpp">
+      <Filter>源文件\basicinfo\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="revise.cpp">
+      <Filter>源文件\basicinfo\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="grouprank.cpp">
+      <Filter>源文件\countquery\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="projetrank.cpp">
+      <Filter>源文件\countquery\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="scorerank.cpp">
+      <Filter>源文件\countquery\activity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

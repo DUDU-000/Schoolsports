@@ -3,7 +3,7 @@
 #include"countquery.h"
 #include"method.h"
 
-void countquery() {
+bool countquery() {
 
 	char entry;
 	system("CLS");
@@ -11,19 +11,17 @@ void countquery() {
 	printf("1.运动员\n");
 	printf("2.运动项目\n");
 	printf("3.成绩排名\n");
-
-
+	printf("4.返回\n");
 	entry = getchar();
 	rewind(stdin);
 
-	int swi = entrycheck(entry, 1, 3);
-
+	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
-	case 0: countquery(); break;
+	case 0: if (countquery()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;
-	case 4: break;
+	case 4: return true; break;
 	}
-
+	return false;
 }
