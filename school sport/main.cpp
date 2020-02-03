@@ -1,36 +1,30 @@
 #include<iostream>
 #include<stdio.h>
-
-void esinforma() {
-	int a;
-	system("CLS");
-	printf("1.单位信息\n");
-	printf("2.运动员信息\n");
-	printf("3.项目信息\n");
-
-	scanf_s("%d", &a);
-
-	switch (a) {
-	case 1: break;
-	case 2: break;
-	case 3: break;
-	}
-}
+#include"scorentry.h"
+#include"method.h"
+#include"basicinfo.h"
+#include"countquery.h"
 
 void main() {
-	int a;
+	char entry;
 	system("CLS");
+	printf("主菜单\n");
 	printf("1.基本信息管理\n");
 	printf("2.成绩录入管理\n");
-	printf("3.冬季查询管理\n");
+	printf("3.统计查询管理\n");
 
-	scanf_s("%d", &a);
+	entry = getchar();
+	rewind(stdin);
 
-	switch (a) {
-	case 1: esinforma(); break;
-	case 2: break;
-	case 3: break;
+	int swi = entrycheck(entry, 1, 3);
+	switch (swi) {
+	case 0: main();  break;
+	case 1: basicinfo(); break;
+	case 2: scorentry(); break;
+	case 3: countquery(); break;
+
 	}
+
 }
 
 

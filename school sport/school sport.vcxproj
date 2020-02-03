@@ -19,7 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="basicinfo.cpp" />
+    <ClCompile Include="countquery.cpp" />
+    <ClCompile Include="grouprank.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="method.cpp" />
+    <ClCompile Include="gropinfo.cpp" />
+    <ClCompile Include="playinfo.cpp" />
+    <ClCompile Include="projetinfo.cpp" />
+    <ClCompile Include="projetrank.cpp" />
+    <ClCompile Include="scorentry.cpp" />
+    <ClCompile Include="scorerank.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basicinfo.h" />
+    <ClInclude Include="countquery.h" />
+    <ClInclude Include="method.h" />
+    <ClInclude Include="scorentry.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

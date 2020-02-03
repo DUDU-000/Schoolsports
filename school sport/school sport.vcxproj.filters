@@ -13,10 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\scorentry">
+      <UniqueIdentifier>{4e02bb62-135e-4af7-96d5-3c19f579150d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\countquery">
+      <UniqueIdentifier>{2c08d12f-ba3d-4049-a67f-a6c73ba816ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\basicinfo">
+      <UniqueIdentifier>{d956fc7f-f25f-4485-b11c-dd7564307d4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="method.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scorentry.cpp">
+      <Filter>源文件\scorentry</Filter>
+    </ClCompile>
+    <ClCompile Include="grouprank.cpp">
+      <Filter>源文件\countquery</Filter>
+    </ClCompile>
+    <ClCompile Include="gropinfo.cpp">
+      <Filter>源文件\basicinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="playinfo.cpp">
+      <Filter>源文件\basicinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="projetinfo.cpp">
+      <Filter>源文件\basicinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="projetrank.cpp">
+      <Filter>源文件\countquery</Filter>
+    </ClCompile>
+    <ClCompile Include="scorerank.cpp">
+      <Filter>源文件\countquery</Filter>
+    </ClCompile>
+    <ClCompile Include="countquery.cpp">
+      <Filter>源文件\countquery</Filter>
+    </ClCompile>
+    <ClCompile Include="basicinfo.cpp">
+      <Filter>源文件\basicinfo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="scorentry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="method.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="basicinfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="countquery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
