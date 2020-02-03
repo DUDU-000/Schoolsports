@@ -24,7 +24,6 @@
     <ClCompile Include="countquery.cpp" />
     <ClCompile Include="delete.cpp" />
     <ClCompile Include="grouprank.cpp" />
-    <ClCompile Include="linklist.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
     <ClCompile Include="gropinfo.cpp" />
@@ -39,7 +38,6 @@
   <ItemGroup>
     <ClInclude Include="basicinfo.h" />
     <ClInclude Include="countquery.h" />
-    <ClInclude Include="linklist.h" />
     <ClInclude Include="method.h" />
     <ClInclude Include="scorentry.h" />
   </ItemGroup>
