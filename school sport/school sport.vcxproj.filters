@@ -31,12 +31,12 @@
     <Filter Include="源文件\scorentry\activity">
       <UniqueIdentifier>{c4beef3e-37bf-4793-a8e0-4f3df8552ccb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\method">
+      <UniqueIdentifier>{84d6cd84-22f1-472c-a9f3-4d36bc02b735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="method.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="scorentry.cpp">
@@ -78,6 +78,12 @@
     <ClCompile Include="scorerank.cpp">
       <Filter>源文件\countquery\activity</Filter>
     </ClCompile>
+    <ClCompile Include="method.cpp">
+      <Filter>源文件\method</Filter>
+    </ClCompile>
+    <ClCompile Include="linklist.cpp">
+      <Filter>源文件\method</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scorentry.h">
@@ -90,6 +96,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="countquery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="linklist.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
