@@ -1,12 +1,12 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-#include"basicinfo.h"
+#include"basic_info.h"
 
-bool groupinfo() {
+bool game_info() {
 	char entry;
 	system("CLS");
-	printf("单位信息\n");
+	printf("项目信息\n");
 	printf("1.增加\n");
 	printf("2.修改\n");
 	printf("3.删除\n");
@@ -17,7 +17,7 @@ bool groupinfo() {
 
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: if (groupinfo()) return true; break;
+	case 0: if (game_info()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;

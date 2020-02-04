@@ -1,25 +1,23 @@
-#include<stdio.h>
 #include<iostream>
-#include"scorentry.h"
+#include<stdio.h>
 #include"method.h"
+#include"basic_info.h"
 
-bool scorentry() {
-
+bool group_info() {
 	char entry;
 	system("CLS");
-	printf("成绩录入管理\n");
-	printf("1.运动员\n");
-	printf("2.运动项目\n");
-	printf("3.成绩排名\n");
-	printf("4.分数\n");
+	printf("单位信息\n");
+	printf("1.增加\n");
+	printf("2.修改\n");
+	printf("3.删除\n");
+	printf("4.查询\n");
 	printf("5.返回\n");
-
 	entry = getchar();
 	rewind(stdin);
 
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: if (scorentry()) return true; break;
+	case 0: if (group_info()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;
@@ -27,5 +25,4 @@ bool scorentry() {
 	case 5: return true; break;
 	}
 	return false;
-	
 }

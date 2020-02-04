@@ -1,9 +1,9 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-#include"basicinfo.h"
+#include"basic_info.h"
 
-bool playinfo() {
+bool player_info() {
 	char entry;
 	system("CLS");
 	printf("运动员信息\n");
@@ -17,7 +17,7 @@ bool playinfo() {
 
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: if (playinfo()) return true; break;
+	case 0: if (player_info()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;

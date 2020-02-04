@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<iostream>
-#include"countquery.h"
+#include"count_query.h"
 #include"method.h"
 
-bool countquery() {
+bool count_query() {
 
 	char entry;
 	system("CLS");
@@ -17,7 +17,7 @@ bool countquery() {
 
 	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
-	case 0: if (countquery()) return true; break;
+	case 0: if (count_query()) return true; break;
 	case 1: break;
 	case 2: break;
 	case 3: break;

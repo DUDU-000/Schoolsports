@@ -1,9 +1,9 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-#include"basicinfo.h"
+#include"basic_info.h"
 
-bool basicinfo() {
+bool basic_info() {
 	char entry;
 	system("CLS");
 	printf("基本信息管理\n");
@@ -17,10 +17,10 @@ bool basicinfo() {
 
 	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
-	case 0: if (basicinfo()) return true; break;
-	case 1: if (groupinfo()) if(basicinfo()) return true; break;
-	case 2: if (playinfo()) if (basicinfo()) return true; break;
-	case 3: if (projetinfo()) if (basicinfo()) return true; break;
+	case 0: if (basic_info()) return true; break;
+	case 1: if (group_info()) if(basic_info()) return true; break;
+	case 2: if (player_info()) if (basic_info()) return true; break;
+	case 3: if (game_info()) if (basic_info()) return true; break;
 	case 4: return true; break;
 	}
 	return false;

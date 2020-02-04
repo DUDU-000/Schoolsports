@@ -1,9 +1,9 @@
 #include<iostream>
 #include<stdio.h>
-#include"scorentry.h"
+#include"score_entry.h"
 #include"method.h"
-#include"basicinfo.h"
-#include"countquery.h"
+#include"basic_info.h"
+#include"count_query.h"
 
 int main() {
 	char entry;
@@ -20,9 +20,9 @@ int main() {
 	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
 	case 0: main();  break;
-	case 1: if(basicinfo()) main(); break;
-	case 2: if (scorentry()) main();  break;
-	case 3: if (countquery()) main();  break;
+	case 1: if(basic_info()) main(); break;
+	case 2: if (score_entry()) main();  break;
+	case 3: if (count_query()) main();  break;
 	case 4: break;
 	}
 	system("pause");

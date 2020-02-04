@@ -13,92 +13,92 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\scorentry">
-      <UniqueIdentifier>{4e02bb62-135e-4af7-96d5-3c19f579150d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\countquery">
-      <UniqueIdentifier>{2c08d12f-ba3d-4049-a67f-a6c73ba816ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\basicinfo">
-      <UniqueIdentifier>{d956fc7f-f25f-4485-b11c-dd7564307d4c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\basicinfo\activity">
-      <UniqueIdentifier>{c49ba4d7-6dbf-4266-92c2-4930ff4ce74b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\countquery\activity">
-      <UniqueIdentifier>{dc278ce2-4b79-47d3-b86d-fc977fc45d99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\scorentry\activity">
-      <UniqueIdentifier>{c4beef3e-37bf-4793-a8e0-4f3df8552ccb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\method">
       <UniqueIdentifier>{84d6cd84-22f1-472c-a9f3-4d36bc02b735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\basic_info">
+      <UniqueIdentifier>{d956fc7f-f25f-4485-b11c-dd7564307d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\basic_info\activity">
+      <UniqueIdentifier>{c49ba4d7-6dbf-4266-92c2-4930ff4ce74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\count_query">
+      <UniqueIdentifier>{2c08d12f-ba3d-4049-a67f-a6c73ba816ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\count_query\activity">
+      <UniqueIdentifier>{dc278ce2-4b79-47d3-b86d-fc977fc45d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\score_entry">
+      <UniqueIdentifier>{4e02bb62-135e-4af7-96d5-3c19f579150d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\score_entry\activity">
+      <UniqueIdentifier>{c4beef3e-37bf-4793-a8e0-4f3df8552ccb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="scorentry.cpp">
-      <Filter>源文件\scorentry</Filter>
-    </ClCompile>
-    <ClCompile Include="gropinfo.cpp">
-      <Filter>源文件\basicinfo</Filter>
-    </ClCompile>
-    <ClCompile Include="playinfo.cpp">
-      <Filter>源文件\basicinfo</Filter>
-    </ClCompile>
-    <ClCompile Include="projetinfo.cpp">
-      <Filter>源文件\basicinfo</Filter>
-    </ClCompile>
-    <ClCompile Include="countquery.cpp">
-      <Filter>源文件\countquery</Filter>
-    </ClCompile>
-    <ClCompile Include="basicinfo.cpp">
-      <Filter>源文件\basicinfo</Filter>
-    </ClCompile>
     <ClCompile Include="add.cpp">
-      <Filter>源文件\basicinfo\activity</Filter>
+      <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
     <ClCompile Include="delete.cpp">
-      <Filter>源文件\basicinfo\activity</Filter>
+      <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
     <ClCompile Include="query.cpp">
-      <Filter>源文件\basicinfo\activity</Filter>
+      <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
     <ClCompile Include="revise.cpp">
-      <Filter>源文件\basicinfo\activity</Filter>
+      <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
     <ClCompile Include="grouprank.cpp">
-      <Filter>源文件\countquery\activity</Filter>
+      <Filter>源文件\count_query\activity</Filter>
     </ClCompile>
     <ClCompile Include="projetrank.cpp">
-      <Filter>源文件\countquery\activity</Filter>
+      <Filter>源文件\count_query\activity</Filter>
     </ClCompile>
     <ClCompile Include="scorerank.cpp">
-      <Filter>源文件\countquery\activity</Filter>
+      <Filter>源文件\count_query\activity</Filter>
     </ClCompile>
     <ClCompile Include="method.cpp">
       <Filter>源文件\method</Filter>
     </ClCompile>
-    <ClCompile Include="linklist.cpp">
+    <ClCompile Include="basic_info.cpp">
+      <Filter>源文件\basic_info</Filter>
+    </ClCompile>
+    <ClCompile Include="group_info.cpp">
+      <Filter>源文件\basic_info</Filter>
+    </ClCompile>
+    <ClCompile Include="player_info.cpp">
+      <Filter>源文件\basic_info</Filter>
+    </ClCompile>
+    <ClCompile Include="game_info.cpp">
+      <Filter>源文件\basic_info</Filter>
+    </ClCompile>
+    <ClCompile Include="count_query.cpp">
+      <Filter>源文件\count_query</Filter>
+    </ClCompile>
+    <ClCompile Include="linked_list.cpp">
       <Filter>源文件\method</Filter>
+    </ClCompile>
+    <ClCompile Include="score_entry.cpp">
+      <Filter>源文件\score_entry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scorentry.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="method.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="basicinfo.h">
+    <ClInclude Include="linked_list.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="countquery.h">
+    <ClInclude Include="count_query.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="structure.h">
+    <ClInclude Include="basic_info.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="score_entry.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

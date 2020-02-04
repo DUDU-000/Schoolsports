@@ -1,7 +1,9 @@
 #pragma once
+
+
 enum Gender//性别
 {
-	男,女
+	男, 女
 };
 enum Type//项目类型 田赛或竞赛
 {
@@ -41,7 +43,7 @@ struct Group//单位
 	Name name;//名称及ID
 	BriefGame score[99];//单位内某项比赛的成绩及得分
 	int memberid[99];//成员id
-	
+
 };
 struct Game//比赛项目
 {
@@ -63,6 +65,9 @@ struct Player//运动员
 };
 
 
+
+//链表的节点
+
 struct GameListNode {//比赛的链表节点
 	Game game;
 	GameListNode* next;
@@ -72,7 +77,37 @@ struct PlayerListNode {//运动员的链表节点
 	Player player;
 	PlayerListNode* next;
 };
+
 struct GroupListNode {//组的链表节点
 	Group group;
 	GroupListNode* next;
 };
+
+
+//链表的函数声明
+
+GameListNode * createpHead(Game game);
+
+void addNode(GameListNode * pHead, Game game);
+
+void insertNode(GameListNode * p, Game game);
+
+void deleteNode(GameListNode * p);
+
+
+PlayerListNode * createpHead(Player player);
+
+void addNode(PlayerListNode * pHead, Player player);
+
+void insertNode(PlayerListNode * p, Player player);
+
+void deleteNode(PlayerListNode * p);
+
+
+GroupListNode * createpHead(Group group);
+
+void addNode(GroupListNode * pHead, Group group);
+
+void insertNode(GroupListNode * p, Group group);
+
+void deleteNode(GroupListNode * p);

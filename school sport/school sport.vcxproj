@@ -20,28 +20,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="add.cpp" />
-    <ClCompile Include="basicinfo.cpp" />
-    <ClCompile Include="countquery.cpp" />
+    <ClCompile Include="basic_info.cpp" />
+    <ClCompile Include="count_query.cpp" />
     <ClCompile Include="delete.cpp" />
     <ClCompile Include="grouprank.cpp" />
-    <ClCompile Include="linklist.cpp" />
+    <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
-    <ClCompile Include="gropinfo.cpp" />
-    <ClCompile Include="playinfo.cpp" />
-    <ClCompile Include="projetinfo.cpp" />
+    <ClCompile Include="group_info.cpp" />
+    <ClCompile Include="player_info.cpp" />
+    <ClCompile Include="game_info.cpp" />
     <ClCompile Include="projetrank.cpp" />
     <ClCompile Include="query.cpp" />
     <ClCompile Include="revise.cpp" />
-    <ClCompile Include="scorentry.cpp" />
+    <ClCompile Include="score_entry.cpp" />
     <ClCompile Include="scorerank.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basicinfo.h" />
-    <ClInclude Include="countquery.h" />
+    <ClInclude Include="basic_info.h" />
+    <ClInclude Include="count_query.h" />
+    <ClInclude Include="linked_list.h" />
     <ClInclude Include="method.h" />
-    <ClInclude Include="scorentry.h" />
-    <ClInclude Include="structure.h" />
+    <ClInclude Include="score_entry.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

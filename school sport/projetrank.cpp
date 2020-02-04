@@ -1,4 +1,4 @@
 #include<stdio.h>
 #include<iostream>
-#include"countquery.h"
+#include"count_query.h"
 #include"method.h"
