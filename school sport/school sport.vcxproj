@@ -19,22 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="add.cpp" />
+    <ClCompile Include="add_info.cpp" />
     <ClCompile Include="basic_info.cpp" />
     <ClCompile Include="count_query.cpp" />
-    <ClCompile Include="delete.cpp" />
-    <ClCompile Include="grouprank.cpp" />
+    <ClCompile Include="delete_info.cpp" />
+    <ClCompile Include="group_rank.cpp" />
     <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
     <ClCompile Include="group_info.cpp" />
     <ClCompile Include="player_info.cpp" />
     <ClCompile Include="game_info.cpp" />
-    <ClCompile Include="projetrank.cpp" />
-    <ClCompile Include="query.cpp" />
-    <ClCompile Include="revise.cpp" />
+    <ClCompile Include="game_rank.cpp" />
+    <ClCompile Include="query_info.cpp" />
+    <ClCompile Include="revise_info.cpp" />
     <ClCompile Include="score_entry.cpp" />
-    <ClCompile Include="scorerank.cpp" />
+    <ClCompile Include="score_rank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basic_info.h" />

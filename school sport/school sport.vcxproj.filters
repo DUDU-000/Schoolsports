@@ -39,27 +39,6 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="add.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="delete.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="query.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="revise.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="grouprank.cpp">
-      <Filter>源文件\count_query\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="projetrank.cpp">
-      <Filter>源文件\count_query\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="scorerank.cpp">
-      <Filter>源文件\count_query\activity</Filter>
-    </ClCompile>
     <ClCompile Include="method.cpp">
       <Filter>源文件\method</Filter>
     </ClCompile>
@@ -83,6 +62,27 @@
     </ClCompile>
     <ClCompile Include="score_entry.cpp">
       <Filter>源文件\score_entry</Filter>
+    </ClCompile>
+    <ClCompile Include="group_rank.cpp">
+      <Filter>源文件\count_query\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="game_rank.cpp">
+      <Filter>源文件\count_query\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="score_rank.cpp">
+      <Filter>源文件\count_query\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="add_info.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="delete_info.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="query_info.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="revise_info.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
