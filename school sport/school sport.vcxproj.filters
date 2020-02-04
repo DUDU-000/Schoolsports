@@ -81,6 +81,9 @@
     <ClCompile Include="method.cpp">
       <Filter>源文件\method</Filter>
     </ClCompile>
+    <ClCompile Include="linklist.cpp">
+      <Filter>源文件\method</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scorentry.h">
