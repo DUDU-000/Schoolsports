@@ -54,25 +54,26 @@ int longNode(GameListNode *pHead) {
 GameListNode* readGamelist() {
 	FILE *fp;//文件指针
 	GameListNode* pHead;
-	int line_long=0;
+	int line_long;
 	Game game;
 	/*文件的打开*/
-	fp = fopen("/game.txt", "r");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
-	fscanf_s(fp, "%d\n", &line_long);
-	if (fp == NULL||line_long==0) {//判断如果文件指针为空
-		fclose(fp);
+	fp = fopen("game.txt", "r");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
+	
+	if (fp == NULL) {//判断如果文件指针为空
 		return NULL;
 	}
+
+	fscanf_s(fp, "项目数量:%d\n", &line_long);
 	for (int i = 0; i < line_long; i++) {
-		fscanf_s(fp, "%d\n", &game.name.id);//id
-		fscanf_s(fp, "%s\n", &game.name.name,99);//名称
-		fscanf_s(fp, "%s\n", &game.type,5);//类型
-		fscanf_s(fp, "%s\n", &game.place,7);//地点
-		fscanf_s(fp, "%d\n", &game.number);//人数
-		fscanf_s(fp, "%d,%d,%d,%d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//开始时间
-		fscanf_s(fp, "%d,%d,%d,%d\n", &game.endtime.month, &game.endtime.date, &game.endtime.hour, &game.endtime.minute);//结束时时间
+		fscanf_s(fp, "ID:%d\n", &game.name.id);//id
+		fscanf_s(fp, "名称:%s\n", &game.name.name,99);//名称
+		fscanf_s(fp, "类型:%s\n", &game.type,5);//类型
+		fscanf_s(fp, "地点:%s\n", &game.place,7);//地点
+		fscanf_s(fp, "人数:%d\n", &game.number);//人数
+		fscanf_s(fp, "开始时间:%d,%d,%d,%d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//开始时间
+		fscanf_s(fp, "结束时间:%d,%d,%d,%d\n", &game.endtime.month, &game.endtime.date, &game.endtime.hour, &game.endtime.minute);//结束时时间
 		for (int j = 0; j < game.number; j++)
-			fscanf_s(fp, "%d\n", &game.playerid[j]);//报名人员id
+			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j]);//报名人员id
 		if (i == 0) pHead = createpHead(game);
 		else addNode(pHead, game);
 	}
@@ -88,18 +89,18 @@ void saveGamelist(GameListNode* pHead) {
 	GameListNode* p = pHead;
 	Game game;
 
-	fprintf(fp, "%d", line_long);//储存有多少个节点
-	for (int i = 0; i < line_long; i++) {
+	fprintf(fp, "项目数量:%d\n", line_long);//储存有多少个节点
+	for (int i = 0; i < line_long; i++,p=p->next) {
 		game = p->game;
-		fprintf(fp, "%d\n", game.name.id/*id*/);
-		fprintf(fp, "%s\n", game.name.name/*名称*/);
-		fprintf(fp, "%s\n", game.type/*类型*/);
-		fprintf(fp, "%s\n", game.place/*地点*/);
-		fprintf(fp, "%d\n", game.number/*报名人数*/);
-		fprintf(fp, "%d,%d,%d,%d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/);
-		fprintf(fp, "%d,%d,%d,%d\n", game.endtime.month, game.endtime.date, game.endtime.hour, game.endtime.minute/*结束时间*/);
+		fprintf(fp, "ID:%d\n", game.name.id/*id*/);
+		fprintf(fp, "名称:%s\n", game.name.name/*名称*/);
+		fprintf(fp, "类型:%s\n", game.type/*类型*/);
+		fprintf(fp, "地点:%s\n", game.place/*地点*/);
+		fprintf(fp, "人数:%d\n", game.number/*报名人数*/);
+		fprintf(fp, "开始时间:%d,%d,%d,%d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/);
+		fprintf(fp, "结束时间:%d,%d,%d,%d\n", game.endtime.month, game.endtime.date, game.endtime.hour, game.endtime.minute/*结束时间*/);
 		for (int j = 0; j < game.number; j++)//储存报名人员id
-			fprintf(fp, "%d\n", game.playerid[j]);
+			fprintf(fp, "报名人员ID:%d\n", game.playerid[j]);
 	}
 	fclose(fp);
 }
