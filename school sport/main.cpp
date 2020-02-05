@@ -23,9 +23,8 @@ int main() {
 	case 1: if(basic_info()) main(); break;
 	case 2: if (score_entry()) main();  break;
 	case 3: if (count_query()) main();  break;
-	case 4: break;
+	case 4: system("pause"); break;
 	}
-	system("pause");
 	return 0;
 }
 

@@ -1,4 +1,3 @@
-#define  _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include <stdio.h>
 #include<string.h>
@@ -7,45 +6,36 @@
 #include"linked_list.h"
 
 
-char Runway[7] = " ÅÜµÀ ";
-char Football[7] = "×ãÇò³¡";
-char ShotPut[7] = "±êÇ¹Çø";
-char LongJump[7] = "ÌøÔ¶Çø";
-char Discus[7] = "Ç¦ÇòÇø";
-char HighJump[7] = "Ìø¸ßÇø";
 
-const char* kind[] = { "ÌïÈü","¾ºÈü" };
 
 void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦ÈıÖÖÇé¿ö
-	FILE* file = fopen("game.txt", "r");
-	int test = 0;//ÓĞÎŞÊı¾İÎÄ¼şµÄ±êÖ¾¼´ÅĞ¶ÏĞè²»ĞèÒª´´½¨Í·½ÚµãµÄ±êÖ¾£¨0ĞèÒª|1²»ĞèÒª£©
-	if (file==NULL)//µ±Ã»ÓĞÕâ¸öÎÄ¼şµÄÊ±ºò·µ»ØÖµÊÇNULL
-	{
-		file = fopen("game.txt", "w");
-		test = 1;
-		
-	}
+	
 	switch (type) {
 	case type_game: //Ôö¼ÓÒ»¸ö±ÈÈüÏîÄ¿
 		Game newGame;
-		int place_selection;
+		GameListNode* pHead;
+		int place_selection,type_selection;
+
+		//ÌîĞ´newGameµÄÊı¾İ
+		system("CLS");
 		printf("ÏîÄ¿Ãû³Æ£º");
 		scanf_s("%s", &newGame.name.name,99);
 
 		printf("±ÈÈüÀàĞÍ(1.ÌïÈü  2.¾ºÈü)£º");
-		scanf_s("%d", &newGame.type);//ÕâÊÇÎÒÍøÉÏËÑµ½µÄÃ¶¾ÙÀàĞÍÊäÈë·½Ê½
-		newGame.type =(Type)( newGame.type - 1);
+		scanf_s("%d", &type_selection);//ÕâÊÇÎÒÍøÉÏËÑµ½µÄÃ¶¾ÙÀàĞÍÊäÈë·½Ê½
+		if(type_selection==1) strcpy(newGame.type, Tian);
+		else strcpy(newGame.type, Jing);
 
 		printf("±ÈÈüµØµã(1.ÅÜµÀ  2.×ãÇò³¡  3.±êÇ¹Çø  4.ÌøÔ¶Çø  5.Ç¦ÇòÇø  6.Ìø¸ßÇø)£º");
 		scanf_s("%d", &place_selection);
 		switch (place_selection)
 		{
-		case 1:strcpy(Runway,newGame.place);break;
-		case 2:strcpy(Football,newGame.place); break;
-		case 3:strcpy(ShotPut,newGame.place); break;
-		case 4:strcpy(LongJump,newGame.place); break;
-		case 5:strcpy(Discus,newGame.place); break;
-		case 6:strcpy(HighJump,newGame.place); break;
+		case 1:strcpy(newGame.place, Runway); break;
+		case 2:strcpy(newGame.place, Football); break;
+		case 3:strcpy(newGame.place, ShotPut); break;
+		case 4:strcpy(newGame.place, LongJump); break;
+		case 5:strcpy(newGame.place, Discus); break;
+		case 6:strcpy(newGame.place, HighJump); break;
 		}
 
 		printf("¿ªÊ¼Ê±¼ä£º\n");
@@ -67,24 +57,22 @@ void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦È
 		scanf_s("%d", &newGame.endtime.hour);
 		printf("¼¸·Ö£º");
 		scanf_s("%d", &newGame.endtime.minute);
-		
 		newGame.number = 0;
-		//Ç°ÃæÊÇÊäÈëĞÂÁ´±í	
 
 
 
-		
-		if (test == 1) {//Ã»ÓĞÊı¾İÎÄ¼ş
-			file = fopen("game.txt", "a");
-			newGame.name.id = 0001;
-			fprintf(file, "%d\n%s\n%s\n%s\n¿ªÊ¼Ê±¼ä:%dÔÂ%dÈÕ %d:%d\n±¨Ãû½ØÖ¹Ê±¼ä:%dÔÂ%dÈÕ %d:%d\n±¨ÃûÈËÊı:%d\n", newGame.name.id/*id*/, newGame.name.name/*Ãû³Æ*/, kind[(int)(newGame.type)]/*ÀàĞÍ*/, newGame.place/*µØµã*/, newGame.starttime.month, newGame.starttime.date, newGame.starttime.hour, newGame.starttime.minute/*¿ªÊ¼Ê±¼ä*/, newGame.endtime.month, newGame.endtime.date, newGame.endtime.hour, newGame.endtime.minute/*±¨Ãû½ØÖ¹Ê±¼ä*/,newGame.number/*±¨ÃûÈËÊı*/);
-			fclose(file);
+
+	
+		pHead = readGamelist();	//¶ÁÈ¡ÎÄ¼şÖĞµÄÁ´±íµ½pHead
+		if (pHead == NULL) { //ÈôÎÄ¼şÖĞÎŞÊı¾İ,ÔòĞÂ½¨Ò»¸öÁ´±í
+			newGame.name.id = 1;
+			pHead = createpHead(newGame);
 		}
-		
-		//´ıĞ´ ´ÓÎÄ¼şÖĞ¶ÁÈ¡ÒÑ´¢´æµÄÁ´±í,ÈôÊÇÃ»ÓĞÊı¾İ,Ôò´´½¨Í·½Úµã,ÈôÒÑÓĞ,½ÓÈëÒ»¸ö½Úµã
-
-		
-
+		else { //ÈôÓĞÊı¾İ,ÔòÔÚpHeadÁ´±í×îºóĞÂÔöÒ»¸ö½Úµã
+			newGame.name.id = longNode(pHead) + 1;//Éèid,idÎªÁ´±íµÄË³Ğò
+			addNode(pHead, newGame);
+		}
+		saveGamelist(pHead);//´¢´æÁ´±í
 
 		break;
 
@@ -99,4 +87,6 @@ void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦È
 		break;
 
 	}
+	printf("\n\nĞÂÔöÍê³É\n");
+	system("pause");
 }

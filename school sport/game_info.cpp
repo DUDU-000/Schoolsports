@@ -14,11 +14,10 @@ bool game_info() {
 	printf("5.·µ»Ø\n");
 	entry = getchar();
 	rewind(stdin);
-
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
 	case 0: if (game_info()) return true; break;
-	case 1:add_info(3); break;
+	case 1:add_info(type_game); if (game_info()) return true; break;
 	case 2: break;
 	case 3: break;
 	case 4: break;

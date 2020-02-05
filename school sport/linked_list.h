@@ -1,23 +1,20 @@
 #pragma once
 //
-/*
-char Runway[7]= " 跑道 ";
-char Football[7] = "足球场";
-char ShotPut[7] = "标枪区";
-char LongJump[7] = "跳远区";
-char Discus[7] = "铅球区";
-char HighJump[7] = "跳高区";
 
-const char* kind[] = { "田赛","竞赛" };*/
+const char Runway[]= "跑道";
+const char Football[] = "足球场";
+const char ShotPut[] = "标枪区";
+const char LongJump[] = "跳远区";
+const char Discus[] = "铅球区";
+const char HighJump[] = "跳高区";
+const char Tian[] = "田赛";
+const char Jing[] = "竞赛";
+
 
 //基本的结构体
 enum Gender//性别
 {
 	男, 女
-};
-enum Type//项目类型 田赛或竞赛
-{
-	田赛, 竞赛
 };
 struct Name//称呼加ID
 {
@@ -60,7 +57,7 @@ struct Game//比赛项目
 	Name name;//名称
 	StartTime starttime;//开始时间
 	EndTime endtime;//结束时间
-	Type type;//比赛类型 田赛或竞赛
+	char type[5];//比赛类型 田赛或竞赛
 	char place[7];//比赛地点
 	int number;//报名人数
 	int playerid[99];//报名运动员id
@@ -103,6 +100,12 @@ void addNode(GameListNode * pHead, Game game);
 void insertNode(GameListNode * p, Game game);
 
 void deleteNode(GameListNode * p);
+
+int longNode(GameListNode * pHead);
+
+GameListNode * readGamelist();
+
+void saveGamelist(GameListNode * pHead);
 
 
 PlayerListNode * createpHead(Player player);
