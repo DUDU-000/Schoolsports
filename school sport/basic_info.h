@@ -9,3 +9,4 @@ bool basic_info();
 bool group_info();
 bool player_info();
 bool game_info();
+void add_info(int type);

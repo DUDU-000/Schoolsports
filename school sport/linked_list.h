@@ -1,13 +1,14 @@
 #pragma once
 //
+/*
+char Runway[7]= " 跑道 ";
+char Football[7] = "足球场";
+char ShotPut[7] = "标枪区";
+char LongJump[7] = "跳远区";
+char Discus[7] = "铅球区";
+char HighJump[7] = "跳高区";
 
-const char Runway[7] = " 跑道 ";
-const char Football[7] = "足球场";
-const char ShotPut[7] = "标枪区";
-const char LongJump[7] = "跳远区";
-const char Discus[7] = "铅球区";
-const char HighJump[7] = "跳高区";
-
+const char* kind[] = { "田赛","竞赛" };*/
 
 //基本的结构体
 enum Gender//性别
