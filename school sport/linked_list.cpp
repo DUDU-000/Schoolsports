@@ -104,6 +104,23 @@ void saveGamelist(GameListNode* pHead) {
 	}
 	fclose(fp);
 }
+//打印链表
+void printGamelist(GameListNode* pHead)
+{
+	int line_long = longNode(pHead);
+	GameListNode* p = pHead;
+	Game game;
+	for (int i = 0; i < line_long; i++, p = p->next)
+	{
+		game = p->game;
+		printf("%d.", i + 1/*序号*/);
+		printf("名称:%s", game.name.name/*名称*/);
+		printf("人数:%s",game.number /*人数*/);
+		printf("开始时间:%d月%d日%d : %d - %d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute, game.endtime.hour, game.endtime.minute/*时间*/);
+	}
+}
+
+
 
 //运动员的链表函数
 
