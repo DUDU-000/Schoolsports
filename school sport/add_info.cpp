@@ -48,11 +48,7 @@ void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦È
 		printf("¼¸·Ö£º");
 		scanf_s("%d", &newGame.starttime.minute);
 
-		printf("±¨Ãû½ØÖ¹Ê±¼ä£º\n");
-		printf("ÔÂ·İ£º");
-		scanf_s("%d", &newGame.endtime.month);
-		printf("ÈÕÆÚ£º");
-		scanf_s("%d", &newGame.endtime.date);
+		printf("½áÊøÊ±¼ä£º\n");
 		printf("¼¸µã£º");
 		scanf_s("%d", &newGame.endtime.hour);
 		printf("¼¸·Ö£º");

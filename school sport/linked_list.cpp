@@ -70,8 +70,8 @@ GameListNode* readGamelist() {
 		fscanf_s(fp, "类型:%s\n", &game.type,5);//类型
 		fscanf_s(fp, "地点:%s\n", &game.place,7);//地点
 		fscanf_s(fp, "人数:%d\n", &game.number);//人数
-		fscanf_s(fp, "开始时间:%d,%d,%d,%d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//开始时间
-		fscanf_s(fp, "结束时间:%d,%d,%d,%d\n", &game.endtime.month, &game.endtime.date, &game.endtime.hour, &game.endtime.minute);//结束时时间
+		fscanf_s(fp, "开始时间:%d月%d日%d : %d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//开始时间
+		fscanf_s(fp, "结束时间:%d : %d\n", &game.endtime.hour, &game.endtime.minute);//结束时时间
 		for (int j = 0; j < game.number; j++)
 			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j]);//报名人员id
 		if (i == 0) pHead = createpHead(game);
@@ -97,8 +97,8 @@ void saveGamelist(GameListNode* pHead) {
 		fprintf(fp, "类型:%s\n", game.type/*类型*/);
 		fprintf(fp, "地点:%s\n", game.place/*地点*/);
 		fprintf(fp, "人数:%d\n", game.number/*报名人数*/);
-		fprintf(fp, "开始时间:%d,%d,%d,%d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/);
-		fprintf(fp, "结束时间:%d,%d,%d,%d\n", game.endtime.month, game.endtime.date, game.endtime.hour, game.endtime.minute/*结束时间*/);
+		fprintf(fp, "开始时间:%d月%d日%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/);
+		fprintf(fp, "结束时间:%d : %d\n",  game.endtime.hour, game.endtime.minute/*结束时间*/);
 		for (int j = 0; j < game.number; j++)//储存报名人员id
 			fprintf(fp, "报名人员ID:%d\n", game.playerid[j]);
 	}

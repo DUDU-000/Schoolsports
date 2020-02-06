@@ -29,10 +29,9 @@ struct StartTime//时间（xx年xx月xx日 xx : xx ）
 	int minute;//几分
 };
 
-struct EndTime//时间（xx年xx月xx日 xx : xx ）
+struct EndTime//时间（ xx : xx ）
 {
-	int date;//日
-	int month;//月
+	
 	int hour;//几点
 	int minute;//几分
 };
