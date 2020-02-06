@@ -8,7 +8,7 @@ void searchGamelist_type(GameListNode* pHead)
 {
 	printf("请选择比赛类型(1.田赛 2.竞赛):");
 	int x;
-	scanf("%d", &x);
+	scanf_s("%d", &x);
 	int list_long = longNode(pHead);
 	GameListNode* p = pHead;
 	Game game;

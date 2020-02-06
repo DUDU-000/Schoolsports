@@ -108,6 +108,8 @@ void printGamelist(GameListNode * pHead);
 
 void saveGamelist(GameListNode * pHead);
 
+void searchGamelist_type(GameListNode* pHead);
+
 
 PlayerListNode * createpHead(Player player);
 
