@@ -75,13 +75,7 @@
     <ClCompile Include="add_info.cpp">
       <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
-    <ClCompile Include="delete_info.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
     <ClCompile Include="query_info.cpp">
-      <Filter>源文件\basic_info\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="revise_info.cpp">
       <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
     <ClCompile Include="search_type.cpp">

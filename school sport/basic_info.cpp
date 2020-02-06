@@ -18,7 +18,7 @@ bool basic_info() {
 	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
 	case 0: if (basic_info()) return true; break;
-	case 1: if (group_info()) if(basic_info()) return true; break;
+	case 1: if (group_info()) if (basic_info()) return true; break;
 	case 2: if (player_info()) if (basic_info()) return true; break;
 	case 3: if (game_info()) if (basic_info()) return true; break;
 	case 4: return true; break;
