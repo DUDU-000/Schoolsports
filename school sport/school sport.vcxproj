@@ -35,6 +35,7 @@
     <ClCompile Include="revise_info.cpp" />
     <ClCompile Include="score_entry.cpp" />
     <ClCompile Include="score_rank.cpp" />
+    <ClCompile Include="search_type.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basic_info.h" />

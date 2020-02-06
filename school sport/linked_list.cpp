@@ -115,13 +115,10 @@ void printGamelist(GameListNode* pHead)
 		game = p->game;
 		printf("%d.", i + 1/*序号*/);
 		printf("名称:%s", game.name.name/*名称*/);
-		printf("人数:%d",game.number /*人数*/);
-		printf("开始时间:%d月%d日%d : %d - %d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute, game.endtime.hour, game.endtime.minute/*时间*/);
+		printf(" 人数:%d",game.number /*人数*/);
+		printf(" 开始时间:%d月%d日%d : %d - %d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute, game.endtime.hour, game.endtime.minute/*时间*/);
 	}
 }
-
-
-
 //运动员的链表函数
 
 //创建一个链表的头节点,函数返回值为该节点指针
