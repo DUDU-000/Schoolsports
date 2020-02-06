@@ -103,6 +103,7 @@ void deleteNode(GameListNode * p);
 int longNode(GameListNode * pHead);
 
 GameListNode * readGamelist();
+GameListNode* printGameList();
 
 void saveGamelist(GameListNode * pHead);
 
