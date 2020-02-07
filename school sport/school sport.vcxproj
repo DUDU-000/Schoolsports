@@ -23,6 +23,7 @@
     <ClCompile Include="basic_info.cpp" />
     <ClCompile Include="count_query.cpp" />
     <ClCompile Include="group_rank.cpp" />
+    <ClCompile Include="information.cpp" />
     <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
@@ -33,8 +34,6 @@
     <ClCompile Include="query_info.cpp" />
     <ClCompile Include="score_entry.cpp" />
     <ClCompile Include="score_rank.cpp" />
-    <ClCompile Include="search_name.cpp" />
-    <ClCompile Include="search_type.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basic_info.h" />
