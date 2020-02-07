@@ -3,8 +3,8 @@
 #include"method.h"
 #include"basic_info.h"
 
-bool basic_info() {
-	char entry;
+void basic_info() {
+	char entry[99];
 	system("CLS");
 	printf("基本信息管理\n");
 	printf("1.单位信息\n");
@@ -12,16 +12,15 @@ bool basic_info() {
 	printf("3.项目信息\n");
 	printf("4.返回\n");
 
-	entry = getchar();
+	gets_s(entry, 99);
 	rewind(stdin);
-
 	int swi = entrycheck(entry, 1, 4);
+
 	switch (swi) {
-	case 0: if (basic_info()) return true; break;
-	case 1: if (group_info()) if (basic_info()) return true; break;
-	case 2: if (player_info()) if (basic_info()) return true; break;
-	case 3: if (game_info()) if (basic_info()) return true; break;
-	case 4: return true; break;
+	case 0: basic_info(); break;
+	case 1: group_info(); basic_info(); break;
+	case 2: player_info(); basic_info(); break;
+	case 3: game_info(); basic_info(); break;
+	case 4: break;
 	}
-	return false;
 }

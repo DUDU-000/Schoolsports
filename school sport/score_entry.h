@@ -1,4 +1,4 @@
 #pragma once
 
-bool score_entry();
+void score_entry();
 

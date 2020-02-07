@@ -1,6 +1,4 @@
 #pragma once
 
 
-int entrycheck(char entry, int mix, int max);
-
-
+int entrycheck(char entry[], int mix, int max);

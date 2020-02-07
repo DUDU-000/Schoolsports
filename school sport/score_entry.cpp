@@ -3,9 +3,9 @@
 #include"score_entry.h"
 #include"method.h"
 
-bool score_entry() {
+void score_entry() {
 
-	char entry;
+	char entry[99];
 	system("CLS");
 	printf("成绩录入管理\n");
 	printf("1.运动员\n");
@@ -14,18 +14,15 @@ bool score_entry() {
 	printf("4.分数\n");
 	printf("5.返回\n");
 
-	entry = getchar();
+	gets_s(entry, 99);
 	rewind(stdin);
-
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: if (score_entry()) return true; break;
+	case 0: score_entry(); break;
 	case 1: break;
 	case 2: break;
 	case 3: break;
 	case 4: break;
-	case 5: return true; break;
+	case 5: break;
 	}
-	return false;
-	
 }

@@ -5,72 +5,139 @@
 #include"basic_info.h"
 #include"linked_list.h"
 
-
-
-
 void add_info(int type) {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情况
-	
+
 	switch (type) {
 	case type_game: //增加一个比赛项目
+	{
 		Game newGame;
-		GameListNode* pHead;
-		int place_selection,type_selection;
+		GameListNode* pHead, *p;
+		int entry_int = 0;
+		char entry_s[99];
+
 
 		//填写newGame的数据
 		system("CLS");
 		printf("项目名称：");
-		scanf_s("%s", &newGame.name.name,99);
+		scanf_s("%s", &newGame.name.name, 99);
 
 		printf("比赛类型(1.田赛  2.竞赛)：");
-		scanf_s("%d", &type_selection);//这是我网上搜到的枚举类型输入方式
-		if(type_selection==1) strcpy(newGame.type, Tian);
-		else strcpy(newGame.type, Jing);
-
-		printf("比赛地点(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：");
-		scanf_s("%d", &place_selection);
-		switch (place_selection)
+		entry_int = 0;
+		while (entry_int == 0)
 		{
-		case 1:strcpy(newGame.place, Runway); break;
-		case 2:strcpy(newGame.place, Football); break;
-		case 3:strcpy(newGame.place, ShotPut); break;
-		case 4:strcpy(newGame.place, LongJump); break;
-		case 5:strcpy(newGame.place, Discus); break;
-		case 6:strcpy(newGame.place, HighJump); break;
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 2);
+			if (entry_int == 1) strcpy(newGame.type, Tian);
+			if (entry_int == 2) strcpy(newGame.type, Jing);
+			if (entry_int == 0)printf("输入有误,请重新输入:");
 		}
 
-		printf("开始时间：\n");
+		printf("比赛地点(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：");
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 6);
+			switch (entry_int)
+			{
+			case 0:printf("输入有误,请重新输入:"); break;
+			case 1:strcpy(newGame.place, Runway); break;
+			case 2:strcpy(newGame.place, Football); break;
+			case 3:strcpy(newGame.place, ShotPut); break;
+			case 4:strcpy(newGame.place, LongJump); break;
+			case 5:strcpy(newGame.place, Discus); break;
+			case 6:strcpy(newGame.place, HighJump); break;
+			}
+		}
+
 		printf("月份：");
-		scanf_s("%d", &newGame.starttime.month);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 12);
+			newGame.starttime.month = entry_int;
+			if(entry_int == 0)printf("输入有误,请重新输入:");
+		}
+
 		printf("日期：");
-		scanf_s("%d", &newGame.starttime.date);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 31);
+			newGame.starttime.date = entry_int;
+			if (entry_int == 0)printf("输入有误,请重新输入:");
+		}
+
+
+		printf("开始时间：\n");
 		printf("几点：");
-		scanf_s("%d", &newGame.starttime.hour);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 0, 24);
+			newGame.starttime.hour = entry_int;
+			if (entry_int == 0)printf("输入有误,请重新输入:");
+		}
+
 		printf("几分：");
-		scanf_s("%d", &newGame.starttime.minute);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 0, 60);
+			newGame.starttime.minute = entry_int;
+			if (entry_int == 0)printf("输入有误,请重新输入:");
+		}
 
 		printf("结束时间：\n");
 		printf("几点：");
-		scanf_s("%d", &newGame.endtime.hour);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 0, 24);
+			newGame.endtime.hour = entry_int;
+			if (entry_int == 0)printf("输入有误,请重新输入:");
+		}
 		printf("几分：");
-		scanf_s("%d", &newGame.endtime.minute);
+		entry_int = 0;
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 0, 60);
+			newGame.endtime.hour = entry_int;
+			if (entry_int == 0)printf("输入有误,请重新输入:");
+		}
 		newGame.number = 0;
 
-
-
-
-	
 		pHead = readGamelist();	//读取文件中的链表到pHead
+		p = pHead;
 		if (pHead == NULL) { //若文件中无数据,则新建一个链表
 			newGame.name.id = 1;
 			pHead = createpHead(newGame);
 		}
 		else { //若有数据,则在pHead链表最后新增一个节点
-			newGame.name.id = longNode(pHead) + 1;//设id,id为链表的顺序
+			while (p->next != NULL) {//找到最后的节点指针
+				p = p->next;
+			}
+			newGame.name.id = p->game.name.id + 1;//设id,id为链表的顺序
 			addNode(pHead, newGame);
 		}
 		saveGamelist(pHead);//储存链表
 
-		break;
+
+	}break;//结束该case
 
 	case type_group: //增加一个组
 		system("CLS");

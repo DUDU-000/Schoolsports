@@ -1,2 +1,2 @@
 #pragma once
-bool count_query();
+void count_query();
