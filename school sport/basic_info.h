@@ -13,3 +13,4 @@ void game_info();
 void addGameNode();
 void searchGamelist_type();
 void searchGamelist_name();
+void searchGamelist_time();

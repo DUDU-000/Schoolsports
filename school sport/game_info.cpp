@@ -30,7 +30,10 @@ void query_game_menu() {
 		searchGamelist_type();
 		system("pause");
 	}break;
-	case 3: break;
+	case 3: {
+		searchGamelist_time();
+		system("pause");
+	}break;
 	case 4:{
 		system("CLS");
 		printf("所有项目\n\n");

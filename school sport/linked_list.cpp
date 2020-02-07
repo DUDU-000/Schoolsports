@@ -7,21 +7,27 @@
 //创建一个链表的头节点,函数返回值为该节点指针
 GameListNode* createpHead(Game game) {
 	GameListNode* pHeadNode = new GameListNode;//创建一个新的指针节点并分配空间
+	if (pHeadNode == NULL) {
+		printf("创建链表失败");
+		exit(0);
+	}
 	pHeadNode->game = game;//将gmae赋值进改节点中
 	pHeadNode->next = NULL;//该节点的next指向NULL
 	return pHeadNode;
 }
 //在链表最后面新增一个节点,新增节点的数据为player,pHead为该链表中任一指针节点.
-void addNode(GameListNode* pHead ,Game game) {
+void addNode(GameListNode* pHead, Game game) {
+
 	GameListNode* p = pHead;
-	while (p->next != NULL) {//找到最后的节点指针
-		p = p->next;
-	}
 	GameListNode* pNewNode = new GameListNode;//创建一个新的指针节点并分配空间
 	pNewNode->game = game;//将gmae赋值进改节点中
 	pNewNode->next = NULL;//该节点的next指向NULL
-	p->next = pNewNode;//将最后的节点指针指向新的节点
-}
+	while (p->next != NULL) {//找到最后的节点指针
+		p = p->next;
+	}
+		p->next = pNewNode;//将最后的节点指针指向新的节点
+	}
+
 //p节点后插入值为player的节点
 void insertNode(GameListNode *p, Game game) {
 	GameListNode* pNewNode = new GameListNode;//创建一个新的指针节点并分配空间
@@ -53,7 +59,7 @@ int longNode(GameListNode *pHead) {
 //从文件中读取链表
 GameListNode* readGamelist() {
 	FILE *fp;//文件指针
-	GameListNode* pHead;
+	GameListNode* pHead=NULL;
 	int line_long;
 	Game game;
 	/*文件的打开*/
