@@ -10,6 +10,6 @@ void basic_info();
 void group_info();
 void player_info();
 void game_info();
-void add_info(int type);
+void addGameNode();
 void searchGamelist_type();
 void searchGamelist_name();
