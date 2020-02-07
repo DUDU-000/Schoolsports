@@ -33,6 +33,7 @@
     <ClCompile Include="query_info.cpp" />
     <ClCompile Include="score_entry.cpp" />
     <ClCompile Include="score_rank.cpp" />
+    <ClCompile Include="search_name.cpp" />
     <ClCompile Include="search_type.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,6 @@
 #include"basic_info.h"
 #include"linked_list.h"
 
-
 void query_info(int type) {
 	switch (type) {
 	case type_game:

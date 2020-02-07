@@ -1,13 +1,16 @@
+#include<iostream>
 #include <stdio.h>
 #include <string.h>
 #include "basic_info.h"
 #include"linked_list.h"
 #include"method.h"
 
-void searchGamelist_type(GameListNode* pHead)
+void searchGamelist_type()
 {
-	printf("请选择比赛类型(1.田赛 2.竞赛):");
+	system("CLS");
+	GameListNode* pHead = readGamelist();
 
+	printf("请选择比赛类型(1.田赛 2.竞赛):");
 	int x;
 	char entry_s[99];
 	x = 0;

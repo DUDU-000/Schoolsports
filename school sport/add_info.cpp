@@ -20,18 +20,23 @@ void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦È
 		system("CLS");
 		printf("ÏîÄ¿Ãû³Æ£º");
 		scanf_s("%s", &newGame.name.name, 99);
+		rewind(stdin);
 
 		printf("±ÈÈüÀàĞÍ(1.ÌïÈü  2.¾ºÈü)£º");
-		entry_int = 0;
+
+		entry_int = 0;//¿ªÊ¼ÊäÈë¼ì²âÊÇ·ñÊÇÊı×Ö,ÎÒ¸ÄÁËÒ»ÏÂentrycheck,²ÎÊıÊÇÒ»¸öcharÊı×é
 		while (entry_int == 0)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
-			entry_int = entrycheck(entry_s, 1, 2);
-			if (entry_int == 1) strcpy(newGame.type, Tian);
-			if (entry_int == 2) strcpy(newGame.type, Jing);
-			if (entry_int == 0)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+			entry_int = entrycheck(entry_s, 1, 2);//ÈôÊÇÒ»¸öÊı×Ö,Ôò·µ»Øint,·ñÔò,·µ»Ø0
+			switch (entry_int)
+			{
+			case 0:printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:"); break;
+			case 1:strcpy(newGame.type, Tian); break;
+			case 2:strcpy(newGame.type, Jing); break;
+			}
+		}//½áÊø¼ì²â
 
 		printf("±ÈÈüµØµã(1.ÅÜµÀ  2.×ãÇò³¡  3.±êÇ¹Çø  4.ÌøÔ¶Çø  5.Ç¦ÇòÇø  6.Ìø¸ßÇø)£º");
 		entry_int = 0;
@@ -116,7 +121,7 @@ void add_info(int type) {//typeÓĞÈıÖÖÀàĞÍ,·Ö±ğÊÇÈı¸öÔÚbasic_info.hÀïµÄ³£Êı,¶ÔÓ¦È
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			entry_int = entrycheck(entry_s, 0, 60);
-			newGame.endtime.hour = entry_int;
+			newGame.endtime.minute = entry_int;
 			if (entry_int == 0)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
 		newGame.number = 0;

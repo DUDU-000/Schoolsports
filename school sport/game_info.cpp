@@ -4,6 +4,7 @@
 #include"basic_info.h"
 #include"linked_list.h"
 
+
 void query_game_menu() {
 	char entry[99];
 	system("CLS");
@@ -22,23 +23,17 @@ void query_game_menu() {
 	case 0: query_game_menu(); break;
 
 	case 1: {
-
-
-
-	
-	}break;
-
-	case 2: {
-		system("CLS");
-		GameListNode* pHead = readGamelist();
-		searchGamelist_type(pHead);
+		searchGamelist_name();
 		system("pause");
 	}break;
-
+	case 2: {
+		searchGamelist_type();
+		system("pause");
+	}break;
 	case 3: break;
 	case 4:{
 		system("CLS");
-		printf("所有项目");
+		printf("所有项目\n\n");
 		GameListNode* pHead = readGamelist();
 		printGamelist(pHead);
 		system("pause");
