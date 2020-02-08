@@ -18,30 +18,12 @@ void query_game_menu() {
 	gets_s(entry, 99);
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 5);
-
 	switch (swi) {
 	case 0: query_game_menu(); break;
-
-	case 1: {
-		searchGamelist_name();
-		system("pause");
-	}break;
-	case 2: {
-		searchGamelist_type();
-		system("pause");
-	}break;
-	case 3: {
-		searchGamelist_time();
-		system("pause");
-	}break;
-	case 4:{
-		system("CLS");
-		printf("所有项目\n\n");
-		GameListNode* pHead = readGamelist();
-		printGamelist(pHead);
-		system("pause");
-	}break;
-
+	case 1: searchGamelist_name(); break;
+	case 2: searchGamelist_type(); break;
+	case 3: searchGamelist_time(); break;
+	case 4: searchGamelist_all(); break;
 	case 5: break;
 	}
 }

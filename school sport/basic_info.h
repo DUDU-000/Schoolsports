@@ -14,3 +14,5 @@ void addGameNode();
 void searchGamelist_type();
 void searchGamelist_name();
 void searchGamelist_time();
+void searchGamelist_all();
+void information_game(GameListNode* pHead, int situation);
