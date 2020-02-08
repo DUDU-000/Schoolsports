@@ -98,7 +98,7 @@ void addNode(GameListNode * pHead, Game game);
 
 void insertNode(GameListNode * p, Game game);
 
-void deleteNode(GameListNode * p);
+GameListNode * deleteNode(GameListNode * pHead, GameListNode * p);
 
 int longNode(GameListNode * pHead);
 

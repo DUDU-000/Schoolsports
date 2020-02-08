@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 #include "linked_list.h"
-
+#include"method.h"
 //比赛项目的链表函数
 
 //创建一个链表的头节点,函数返回值为该节点指针
@@ -35,14 +35,30 @@ void insertNode(GameListNode *p, Game game) {
 	pNewNode->next = p->next;//该新节点的next指向p的下一个节点
 	p->next = pNewNode;//将最后的节点指针指向新的节点
 }
-//删除节点p
-void deleteNode(GameListNode *p) {
-	p->game = p->next->game;//将下一个节点的内容放入p中
-	GameListNode *p_next = p->next;//记录指针
-	p->next = p->next->next;//将下一个节点的next放入p中,
-	//相当于丢失了将p下一个节点复制到p中,并丢失了p下一个节点
-	free(p_next);//释放无用内存
-	p_next = NULL;
+//删除节点p,pHead是头节点,返回头节点,如果全删除了返回NULL;
+GameListNode* deleteNode(GameListNode *pHead, GameListNode *p) {
+	if (p->next != NULL) {
+		p->game = p->next->game;//将下一个节点的内容放入p中
+		GameListNode *p_next = p->next;//记录指针
+		p->next = p->next->next;//将下一个节点的next放入p中,
+								//相当于丢失了将p下一个节点复制到p中,并丢失了p下一个节点
+		free(p_next);//释放无用内存
+		p_next = NULL;
+		return pHead;
+	}
+	else if (longNode(pHead) == 1) {//如果只有一个节点
+		free(p);
+		return NULL;
+	}
+	else {//p是最后一个节点
+		GameListNode *newp = pHead;
+		while (newp->next->next != NULL) {
+			newp = newp->next;
+		}
+		newp->next = NULL;
+		free(p);
+		return pHead;
+	}
 }
 //传入头节点,返回有多少个节点
 int longNode(GameListNode *pHead) {
@@ -65,7 +81,8 @@ GameListNode* readGamelist() {
 	/*文件的打开*/
 	fp = fopen("game.txt", "r");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
 	
-	if (fp == NULL) {//判断如果文件指针为空
+	std::string file_path = "game.txt";
+	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空
 		return NULL;
 	}
 

@@ -17,3 +17,16 @@ int entrycheck(char entry[] , int mix,int max) {
 	}
 	return result;
 }
+
+bool file_is_empty(std::string &file_path) {//参数是文件路径
+	struct stat buf;
+
+	stat(file_path.c_str(), &buf);
+
+	size_t size = buf.st_size;
+
+	if (size == 0)//若文件为空 ,返回true
+		return true;
+	else
+		return false;
+}

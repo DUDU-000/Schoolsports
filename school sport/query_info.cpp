@@ -159,7 +159,7 @@ void searchGamelist_all(){
 	GameListNode* input = readGamelist();
 
 	if (input == NULL) {
-		printf("\n\n\n找不到该项目\n");
+		printf("找不到项目\n");
 		system("pause");
 	}
 	else {

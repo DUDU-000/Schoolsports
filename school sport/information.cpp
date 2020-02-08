@@ -6,9 +6,9 @@
 #include"method.h"
 
 
-void information_game(GameListNode* pHead,int situation) {//输入头节点和对应的位置(第几个)
+void information_game(GameListNode* pnewHead,int situation) {//输入头节点和对应的位置(第几个)
 	int i = 1;
-	GameListNode* p=pHead;
+	GameListNode* p=pnewHead;
 	Game game;
 	char entry[99];
 
@@ -44,7 +44,19 @@ void information_game(GameListNode* pHead,int situation) {//输入头节点和对应的位
 	switch (x)
 	{
 	case 1:break;//修改
-	case 2:break;//删除
+	case 2:
+	{
+		GameListNode* pHead = readGamelist();
+		p = pHead;
+		while (p->game.name.id!=game.name.id) {//找到所选择的节点,这个代码你可以在修改那里用;
+			p = p->next;
+		}
+		pHead = deleteNode(pHead, p);
+		saveGamelist(pHead);
+		printf("\n\n删除完成\n");
+		system("pause");
+	}
+		break;//删除
 	case 3:break;//返回
 	}
 }
