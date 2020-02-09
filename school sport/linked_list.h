@@ -66,7 +66,9 @@ struct Player//运动员
 	Name name;//名称
 	int year;//年龄
 	char gender[3];//性别
+	int group_id;
 	int fullscore;//总得分
+	int game_number;
 	BriefGame score[3];//某项比赛得分
 };
 
@@ -117,8 +119,15 @@ void addNode(PlayerListNode * pHead, Player player);
 
 void insertNode(PlayerListNode * p, Player player);
 
-void deleteNode(PlayerListNode * p);
+PlayerListNode * deleteNode(PlayerListNode * pHead, PlayerListNode * p);
 
+int longNode(PlayerListNode * pHead);
+
+PlayerListNode* readPlayerlist();
+
+void savePlayerlist(PlayerListNode* pHead);
+
+void printGamelist(PlayerListNode* pHead);
 
 GroupListNode * createpHead(Group group);
 

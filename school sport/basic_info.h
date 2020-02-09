@@ -17,4 +17,6 @@ void searchGamelist_name();
 void searchGamelist_time();
 void searchGamelist_all();
 void information_game(GameListNode* pHead, int situation);
-void revise_info(GameListNode* p, Game game);
+void reviseGame(Game game);
+
+void addPlayerNode();

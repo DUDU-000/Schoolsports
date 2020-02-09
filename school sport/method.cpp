@@ -8,14 +8,11 @@ int entrycheck(char entry[] , int mix,int max) {
 	int result=0;
 	int byte = strlen(entry);
 	for (int i = 0; i < strlen(entry); i++) {
-		if (48 + mix / pow(10, byte - 1) <= entry[i] && entry[i] <= 48 + max / pow(10, byte - 1))
-		{
-			result = result * 10 + entry[i] - 48;
-			byte--;
-		}
+		if ('0' <= entry[i] && entry[i] <= '9') result = result * 10 + entry[i] - 48;
 		else return 0;
 	}
-	return result;
+	if(mix<=result&&result<=max) return result;
+	else return 0;
 }
 
 bool file_is_empty(std::string &file_path) {//参数是文件路径

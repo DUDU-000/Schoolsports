@@ -48,9 +48,6 @@
     <ClCompile Include="group_info.cpp">
       <Filter>源文件\basic_info</Filter>
     </ClCompile>
-    <ClCompile Include="player_info.cpp">
-      <Filter>源文件\basic_info</Filter>
-    </ClCompile>
     <ClCompile Include="game_info.cpp">
       <Filter>源文件\basic_info</Filter>
     </ClCompile>
@@ -83,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="revise_info.cpp">
       <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
+    <ClCompile Include="player_info.cpp">
+      <Filter>源文件\basic_info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

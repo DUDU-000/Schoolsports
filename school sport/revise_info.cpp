@@ -5,10 +5,10 @@
 #include"linked_list.h"
 #include"method.h"
 
-void revise_info(GameListNode* p,Game game) {
+void reviseGame(Game game) {
 	system("CLS");
 	GameListNode* pHead = readGamelist();
-	p = pHead;
+	GameListNode* p = pHead;
 	while (p->game.name.id != game.name.id) {
 		p = p->next;
 	}
