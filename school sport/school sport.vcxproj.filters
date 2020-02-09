@@ -81,6 +81,9 @@
     <ClCompile Include="information.cpp">
       <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
+    <ClCompile Include="revise_info.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="method.h">

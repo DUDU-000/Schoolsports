@@ -17,7 +17,6 @@ GameListNode* createpHead(Game game) {
 }
 //在链表最后面新增一个节点,新增节点的数据为player,pHead为该链表中任一指针节点.
 void addNode(GameListNode* pHead, Game game) {
-
 	GameListNode* p = pHead;
 	GameListNode* pNewNode = new GameListNode;//创建一个新的指针节点并分配空间
 	pNewNode->game = game;//将gmae赋值进改节点中
@@ -79,7 +78,7 @@ GameListNode* readGamelist() {
 	int line_long;
 	Game game;
 	/*文件的打开*/
-	fp = fopen("game.txt", "r");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
+	fp = fopen("game.txt", "rt+");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
 	
 	std::string file_path = "game.txt";
 	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空

@@ -43,7 +43,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	}
 	switch (x)
 	{
-	case 1:break;//ĞŞ¸Ä
+	case 1: revise_info(p, game); break;//ĞŞ¸Ä
 	case 2:
 	{
 		GameListNode* pHead = readGamelist();

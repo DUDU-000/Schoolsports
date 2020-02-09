@@ -10,10 +10,10 @@ void searchGamelist_name() {//我修缮了下功能,有输入检测和能打开页面了和返回了 , 
 	GameListNode* pHead = readGamelist();
 	GameListNode* input = NULL;
 	int line_long = longNode(pHead);
-	char entry_s[99];
+	char entry_s[99] = {0};
 	system("CLS");
 	printf("请输入关键字：");
-	scanf_s("%s", entry_s, 99);
+	gets_s(entry_s, 99);
 	rewind(stdin);
 	GameListNode* p = pHead;
 	for (int i = 0; i < line_long; i++, p = p->next) {
