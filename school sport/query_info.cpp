@@ -18,7 +18,7 @@ void searchGamelist_name() {//我修缮了下功能,有输入检测和能打开页面了和返回了 , 
 	GameListNode* p = pHead;
 	for (int i = 0; i < line_long; i++, p = p->next) {
 		if (strstr(p->game.name.name, entry_s)) {//strstr能判断在前一个字符串中是否有后一个字符串
-			if (i == 0) input = createpHead(p->game);
+			if (i == 0||input==NULL) input = createpHead(p->game);
 			else addNode(input, p->game);
 		}
 	}
@@ -71,9 +71,9 @@ void searchGamelist_type()
 	Game newGame;//新的结构体
 	for (int i = 0; i < list_long; i++, p = p->next) {
 		game = p->game;
-		if ((strcmp(game.type, "田赛") == 0 && x == 1) || (strcmp(game.type, "竞赛") == 0 && x == 0)) {
+		if ((strcmp(game.type, "田赛") == 0 && x == 1) || (strcmp(game.type, "竞赛") == 0 && x == 2)) {
 			newGame = game;
-			if (i == 0)input = createpHead(newGame);
+			if (i == 0||input==NULL)input = createpHead(newGame);
 			else addNode(input, newGame);
 		}
 	}
@@ -125,7 +125,7 @@ void searchGamelist_time() {
 		game = p->game;
 		if (x == game.starttime.date) {
 			newGame = game;
-			if (i == 0)input = createpHead(newGame);
+			if (i == 0||input==NULL)input = createpHead(newGame);
 			else addNode(input, newGame);
 		}
 	}
