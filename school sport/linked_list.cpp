@@ -325,7 +325,7 @@ void deleteNode(GroupListNode *p) {
 //传入头节点，返回有多少个节点
 int longNode(GroupListNode* pHead) {
 	GroupListNode* p = pHead; 
-	int x;
+	int x=0;
 	if (p == NULL) return 0;
 	else x++;
 	while (p->next != NULL) {
@@ -349,18 +349,18 @@ GroupListNode* readGrouplist() {
 
 	fscanf_s(fp, "单位数量:%d\n", &line_long);
 	for (int i = 0; i < line_long; i++) {
-		fscanf(fp, "单位ID:%d\n",& group.name.id);/*id*/
-		fscanf(fp, "单位名称:%s\n",& group.name.name);/*名称*/
-		fscanf(fp, "比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
-		fscanf(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
-		fscanf(fp, "单位人数:%d\n", &group.member_number);/*人数*/
+		fscanf_s(fp, "单位ID:%d\n",& group.name.id);/*id*/
+		fscanf_s(fp, "单位名称:%s\n",& group.name.name);/*名称*/
+		fscanf_s(fp, "比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
+		fscanf_s(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
+		fscanf_s(fp, "单位人数:%d\n", &group.member_number);/*人数*/
 		for (int n = 0; n < group.member_number; n++) {/*成员ID*/
-			fscanf(fp, "运动员ID:%d\n", &group.memberid[n]);
+			fscanf_s(fp, "运动员ID:%d\n", &group.memberid[n]);
 		}
 		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
-			fscanf(fp, "比赛名称:%s\n", &group.score->name);
-			fscanf(fp, "该比赛所得积分:%d\n", &group.score->point);
-			fscanf(fp, "该比赛最佳成绩:%f\n", &group.score->score);
+			fscanf_s(fp, "比赛名称:%s\n", group.score->name);
+			fscanf_s(fp, "该比赛所得积分:%d\n", &group.score->point);
+			fscanf_s(fp, "该比赛最佳成绩:%f\n", &group.score->score);
 		}
 		if (i == 0) pHead = createpHead(group);
 		else addNode(pHead, group);
