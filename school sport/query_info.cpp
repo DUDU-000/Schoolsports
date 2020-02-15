@@ -181,3 +181,122 @@ void searchGamelist_all(){
 		}
 	}
 }
+
+void searchPlayerlist_name() {
+	PlayerListNode* pHead = readPlayerlist();
+	PlayerListNode* input = NULL;
+	int line_long = longNode(pHead);
+	char entry_s[99] = { 0 };
+	system("CLS");
+	printf("请输入名称：");
+	gets_s(entry_s, 99);
+	rewind(stdin);
+	PlayerListNode* p = pHead;
+	for (int i = 0; i < line_long; i++, p = p->next) {
+		if (strstr(p->player.name.name, entry_s)) {//strstr能判断在前一个字符串中是否有后一个字符串
+			if (i == 0 || input == NULL) input = createpHead(p->player);
+			else addNode(input, p->player);
+		}
+	}
+
+	if (input == NULL) {
+		printf("\n\n\n找不到该项目\n");
+		system("pause");
+	}
+	else {//主要是这里,
+		int input_long = longNode(input);
+		printf("\n\n\n查得以下项目:\n");
+		printPlayerlist(input);
+		printf("%d.返回\n", input_long + 1);//增加返回选项
+		int swi = 0;
+		char entry_s[99];
+		while (swi == 0)//输入检测
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_s, 1, input_long + 1);
+			if (swi == 0)printf("输入有误,请重新输入:");
+		}
+		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
+			information_player(input, swi);
+		}
+	}
+}
+
+void searchPlayerlist_group() {
+	PlayerListNode* pHead = readPlayerlist();
+	PlayerListNode* input = NULL;
+	int line_long = longNode(pHead);
+	char entry_s[99] = { 0 };
+	system("CLS");
+	printf("请输入小组ID：");
+	
+	int entry_int = 0;
+	while (entry_int == 0)
+	{
+		gets_s(entry_s, 99);
+		rewind(stdin);
+		entry_int = entrycheck(entry_s, 1, 99);//小组id范围
+		if (entry_int == 0) printf("输入有误,请重新输入:");
+	}//结束检测
+
+	PlayerListNode* p = pHead;
+	for (int i = 0; i < line_long; i++, p = p->next) {//检测
+		if (entry_int==p->player.group_id) {//如果id相同.则放入新链表中
+			if (i == 0 || input == NULL) input = createpHead(p->player);
+			else addNode(input, p->player);
+		}
+	}
+	
+	if (input == NULL) {
+		printf("\n\n\n找不到该项目\n");
+		system("pause");
+	}
+	else {//主要是这里,
+		int input_long = longNode(input);
+		printf("\n\n\n查得以下项目:\n");
+		printPlayerlist(input);
+		printf("%d.返回\n", input_long + 1);//增加返回选项
+		int swi = 0;
+		char entry_s[99];
+		while (swi == 0)//输入检测
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_s, 1, input_long + 1);
+			if (swi == 0)printf("输入有误,请重新输入:");
+		}
+		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
+			information_player(input, swi);
+		}
+	}
+
+}
+
+void searchPlayer_all() {
+	system("CLS");
+	PlayerListNode* input = readPlayerlist();
+
+	if (input == NULL) {
+		printf("找不到项目\n");
+		system("pause");
+	}
+	else {
+		int input_long = longNode(input);
+		printf("所有项目:\n");
+		printPlayerlist(input);
+		printf("%d.返回\n", input_long + 1);
+		int swi = 0;
+		char entry_s[99];
+		while (swi == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_s, 1, input_long + 1);
+			if (swi == 0)printf("输入有误,请重新输入:");
+		}
+		if (swi != input_long + 1) {
+			information_player(input, swi);
+		}
+	}
+}

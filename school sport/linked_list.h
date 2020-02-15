@@ -129,7 +129,8 @@ PlayerListNode* readPlayerlist();
 
 void savePlayerlist(PlayerListNode* pHead);
 
-void printGamelist(PlayerListNode* pHead);
+void printPlayerlist(PlayerListNode * pHead);
+
 
 GroupListNode * createpHead(Group group);
 

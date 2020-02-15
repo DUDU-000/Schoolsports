@@ -10,13 +10,28 @@ void basic_info();
 void group_info();
 void player_info();
 void game_info();
-void addGameNode();
+
 void query_game_menu();
+void query_group_menu();
+void query_player_menu();
+
 void searchGamelist_type();
 void searchGamelist_name();
 void searchGamelist_time();
 void searchGamelist_all();
-void information_game(GameListNode* pHead, int situation);
-void reviseGame(Game game);
+void searchPlayerlist_name();
+void searchPlayerlist_group();
+void searchPlayer_all();
 
+
+
+void information_game(GameListNode* pHead, int situation);
+void information_player(PlayerListNode * pnewHead, int situation);
+
+
+void reviseGame(Game game);
+void revisePlayer(Player player);
+
+
+void addGameNode();
 void addPlayerNode();

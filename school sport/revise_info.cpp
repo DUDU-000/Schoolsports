@@ -9,9 +9,23 @@ void reviseGame(Game game) {
 	system("CLS");
 	GameListNode* pHead = readGamelist();
 	GameListNode* p = pHead;
+
 	while (p->game.name.id != game.name.id) {
 		p = p->next;
 	}
+
+	printf("项目信息:\n");//打印项目基本信息
+	printf("名称:%s\n", game.name.name/*名称*/);
+	printf("类型:%s\n", game.type/*类型*/);
+	printf("地点:%s\n", game.place/*地点*/);
+	printf("人数:%d\n", game.number/*报名人数*/);
+	printf("时间:%d月%d日%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/, game.endtime.hour, game.endtime.minute/*结束时间*/);
+	printf("报名人员ID:");
+	if (game.playerid[0] == NULL || game.playerid[0] <= 0) printf("无");
+	else for (int j = 0; j < game.number; j++) printf("%d   ", game.playerid[j]);//报名人员id
+	printf("\n\n\n");
+
+	printf("修改内容:\n");
 	printf("1.名称\n");
 	printf("2.类型\n");
 	printf("3.地点\n");
@@ -162,5 +176,124 @@ void reviseGame(Game game) {
 	}break;
 	case 6: query_game_menu(); break;
 	}
+
+}
+
+void revisePlayer(Player player) {
+	system("CLS");
+	PlayerListNode* pHead = readPlayerlist();
+	PlayerListNode* p = pHead;
+
+	while (p->player.name.id != player.name.id) {
+		p = p->next;
+	}
+
+	printf("运动员信息:\n");//打印项目基本信息
+	printf("ID:%d\n", player.name.id);//id
+	printf("名称:%s\n", player.name.name);//名称
+	printf("性别:%s\n", player.gender);//性别
+	printf("年龄:%d\n", player.year);//id
+	printf("小组ID:%d\n", player.group_id);//小组ID
+	printf("总分数:%d\n", player.fullscore);//总分数
+	printf("比赛数:%d\n", player.game_number);//比赛数
+
+	printf("比赛项目:\n", player.game_number);//比赛数
+	if (player.game_number == 0) printf("无\n");
+	else
+		for (int j = 0; j < player.game_number; j++) {
+			printf("项目名称:%s ", player.score->name.name);//项目名称
+			printf("项目成绩:%f ", player.score->score);//项目成绩
+			printf("项目得分:%d \n", player.score->point);//项目成绩
+		}
+	printf("\n\n\n");
+
+	printf("修改内容:\n");
+	printf("1.名称\n");
+	printf("2.性别\n");
+	printf("3.年龄\n");
+	printf("4.小组\n");
+	printf("5.返回\n");
+
+	int x = 0;
+	char entry_s[99];
+	while (x == 0) {
+		gets_s(entry_s, 99);
+		rewind(stdin);
+		x = entrycheck(entry_s, 1, 6);
+		if (x == 0)printf("输入有误,请重新输入:");
+	}
+	switch (x)
+	{
+	case 1: {//修改名称
+		system("CLS");
+		printf("当前前选定运动员的名称为：%s\n", p->player.name.name);
+		printf("姓名:");
+		gets_s(p->player.name.name, 99);
+		printf("修改成功！修改名称为：%s\n", p->player.name.name);
+		system("pause");
+	}break;
+	case 2: {
+		system("CLS");
+		printf("当前前选定运动员的性别为：%s\n", p->player.gender);
+
+		printf("性别(1.男  2.女)：");//性别
+		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 2);//若是一个数字,则返回int,否则,返回0
+			switch (entry_int)
+			{
+			case 0:printf("输入有误,请重新输入:"); break;
+			case 1:strcpy(p->player.gender, "男"); break;
+			case 2:strcpy(p->player.gender, "女"); break;
+			}
+		}//结束检测
+		
+		printf("修改成功！修改性别为：%s\n", p->player.gender);
+		system("pause");
+	}break;
+	case 3: {
+		system("CLS");
+		printf("当前前选定运动员的年龄为：%d\n", p->player.year);
+
+		printf("年龄:");
+		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
+			if (entry_int == 0) printf("输入有误,请重新输入:");
+			else p->player.year = entry_int;
+
+		}//结束检测
+
+		printf("修改成功！修改年龄为：%d\n", p->player.year);
+		system("pause");
+	}break;
+	case 4: {
+		system("CLS");
+		printf("当前前选定运动员的小组ID为：%d\n", p->player.group_id);
+
+		printf("小组ID:");
+		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
+			if (entry_int == 0) printf("输入有误,请重新输入:");
+			else p->player.year = entry_int;
+
+		}//结束检测
+
+		printf("修改成功！修改年龄为：%d\n", p->player.group_id);
+		system("pause");
+	}break;
+	case 5: query_player_menu(); break;
+	}
+	savePlayerlist(pHead);
 
 }

@@ -206,6 +206,7 @@ int longNode(PlayerListNode *pHead) {
 	}
 	return i;
 }
+
 PlayerListNode* readPlayerlist() {
 	FILE *fp;//文件指针
 	PlayerListNode* pHead = NULL;
@@ -279,11 +280,12 @@ void printPlayerlist(PlayerListNode* pHead)
 		printf("%d.", i + 1/*序号*/);
 		printf("名称:%s ", player.name.name/*名称*/);
 		printf(" 性别:%s ", &player.gender);
-		printf(" 年龄:%d \n", player.year);
+		printf(" 年龄:%d ", player.year);
 		printf(" 参加项目:");
 		if (player.game_number == 0) printf("无");
 		else for (int j = 0; j < player.game_number; j++) printf("%s ", &player.score->name.name);//项目名称
 	}
+	printf("\n");
 }
 
 //组的链表函数

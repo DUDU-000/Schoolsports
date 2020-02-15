@@ -8,19 +8,18 @@ void query_player_menu() {
 	system("CLS");
 	printf("运动员查询\n");
 	printf("1.名称查询\n");
-	printf("3.小组查询\n");
-	printf("4.所有运动员\n");
-	printf("5.返回\n");
+	printf("2.小组查询\n");
+	printf("3.所有运动员\n");
+	printf("4.返回\n");
 	gets_s(entry, 99);
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
 	case 0: query_player_menu(); break;
-	case 1: break;
-	case 2: break;
-	case 3: break;
+	case 1: searchPlayerlist_name(); break;
+	case 2: searchPlayerlist_group(); break;
+	case 3: searchPlayer_all(); break;
 	case 4: break;
-	case 5: break;
 	}
 }
 

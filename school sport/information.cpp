@@ -29,6 +29,8 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	if (game.playerid[0] == NULL|| game.playerid[0]<=0) printf("ÎŞ");
 	else for (int j = 0; j < game.number; j++) printf("%d   ", game.playerid[j]);//±¨ÃûÈËÔ±id
 	printf("\n\n\n");
+
+
 	printf("²Ù×÷:\n");//²Ù×÷
 	printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.·µ»Ø\n");//Ñ¡Ïî
 
@@ -57,6 +59,71 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		system("pause");
 	}
 		break;//É¾³ı
+	case 3:break;//·µ»Ø
+	}
+}
+
+void information_player(PlayerListNode* pnewHead, int situation) {
+	int i = 1;
+	PlayerListNode* p = pnewHead;
+	Player player;
+	char entry[99];
+
+	while (i != situation) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã
+		p = p->next;
+		i++;
+	}
+
+	system("CLS");
+	player = p->player;
+	printf("ÔË¶¯Ô±ĞÅÏ¢:\n");//´òÓ¡ÏîÄ¿»ù±¾ĞÅÏ¢
+	printf("ID:%d\n", player.name.id);//id
+	printf("Ãû³Æ:%s\n", player.name.name);//Ãû³Æ
+	printf("ĞÔ±ğ:%s\n", player.gender);//ĞÔ±ğ
+	printf("ÄêÁä:%d\n", player.year);//id
+	printf("Ğ¡×éID:%d\n", player.group_id);//Ğ¡×éID
+	printf("×Ü·ÖÊı:%d\n", player.fullscore);//×Ü·ÖÊı
+	printf("±ÈÈüÊı:%d\n", player.game_number);//±ÈÈüÊı
+
+	printf("±ÈÈüÏîÄ¿:\n", player.game_number);//±ÈÈüÊı
+	if (player.game_number == 0) printf("ÎŞ\n");
+	else 
+	for (int j = 0; j < player.game_number; j++) {
+		printf("ÏîÄ¿Ãû³Æ:%s ", player.score->name.name);//ÏîÄ¿Ãû³Æ
+		printf("ÏîÄ¿³É¼¨:%f ", player.score->score);//ÏîÄ¿³É¼¨
+		printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
+	}
+
+
+	printf("\n\n\n");
+	printf("²Ù×÷:\n");//²Ù×÷
+	printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.·µ»Ø\n");//Ñ¡Ïî
+
+	int x = 0;
+	char entry_s[99];
+	while (x == 0)//ÊäÈë¼ì²â
+	{
+		gets_s(entry_s, 99);
+		rewind(stdin);
+		x = entrycheck(entry_s, 1, 3);
+		if (x == 0)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+	}
+	switch (x)
+	{
+	case 1: revisePlayer(player); break;//ĞŞ¸Ä
+	case 2:
+	{
+		PlayerListNode* pHead = readPlayerlist();
+		p = pHead;
+		while (p->player.name.id != player.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+			p = p->next;
+		}
+		pHead = deleteNode(pHead, p);
+		savePlayerlist(pHead);
+		printf("\n\nÉ¾³ıÍê³É\n");
+		system("pause");
+	}//É¾³ı
+	break;
 	case 3:break;//·µ»Ø
 	}
 }
