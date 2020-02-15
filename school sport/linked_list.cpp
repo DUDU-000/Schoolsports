@@ -350,7 +350,7 @@ GroupListNode* readGrouplist() {
 	fscanf_s(fp, "单位数量:%d\n", &line_long);
 	for (int i = 0; i < line_long; i++) {
 		fscanf_s(fp, "单位ID:%d\n",& group.name.id);/*id*/
-		fscanf_s(fp, "单位名称:%s\n",& group.name.name);/*名称*/
+		fscanf_s(fp, "单位名称:%s\n",& group.name.name,99);/*名称*/
 		fscanf_s(fp, "比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
 		fscanf_s(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
 		fscanf_s(fp, "单位人数:%d\n", &group.member_number);/*人数*/
@@ -358,7 +358,8 @@ GroupListNode* readGrouplist() {
 			fscanf_s(fp, "运动员ID:%d\n", &group.memberid[n]);
 		}
 		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
-			fscanf_s(fp, "比赛名称:%s\n", group.score->name);
+			fscanf_s(fp, "比赛ID:%d\n", &group.score->name.id);
+			fscanf_s(fp, "比赛名称:%s\n", &group.score->name,99);
 			fscanf_s(fp, "该比赛所得积分:%d\n", &group.score->point);
 			fscanf_s(fp, "该比赛最佳成绩:%f\n", &group.score->score);
 		}
@@ -388,9 +389,10 @@ void saveGrouplist(GroupListNode* pHead) {
 			fprintf(fp, "运动员ID:%d\n", group.memberid[j]);
 		}
 		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
-			fprintf(fp, "比赛名称:%s\n", group.score->name);
+			fprintf(fp, "比赛ID:%d\n", group.score->name.id);
+			fprintf(fp, "比赛名称:%s\n", group.score->name.name);
 			fprintf(fp, "该比赛所得积分:%d\n", group.score->point);
-			fscanf(fp, "该比赛最佳成绩:%f\n", group.score->score);
+			fprintf(fp, "该比赛最佳成绩:%f\n", group.score->score);
 		}
 
 
