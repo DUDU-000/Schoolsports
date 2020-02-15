@@ -359,7 +359,7 @@ GroupListNode* readGrouplist() {
 		}
 		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
 			fscanf_s(fp, "比赛ID:%d\n", &group.score->name.id);
-			fscanf_s(fp, "比赛名称:%s\n", &group.score->name,99);
+			fscanf_s(fp, "比赛名称:%s\n", &group.score->name.name,99);
 			fscanf_s(fp, "该比赛所得积分:%d\n", &group.score->point);
 			fscanf_s(fp, "该比赛最佳成绩:%f\n", &group.score->score);
 		}
