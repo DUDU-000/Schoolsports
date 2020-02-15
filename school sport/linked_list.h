@@ -46,6 +46,8 @@ struct BriefGame//简略版记录
 struct Group//单位
 {
 	int fullscore;//总得分
+	int member_number;//人数
+	int game_number;//比赛报名数
 	Name name;//名称及ID
 	BriefGame score[99];//单位内某项比赛的成绩及得分
 	int memberid[99];//成员id

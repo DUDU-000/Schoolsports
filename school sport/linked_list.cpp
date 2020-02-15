@@ -232,7 +232,7 @@ PlayerListNode* readPlayerlist() {
 		for (int j = 0; j < player.game_number; j++) {
 			fscanf_s(fp, "项目ID:%d\n", &player.score->name.id);//项目id
 			fscanf_s(fp, "项目名称:%s\n", &player.score->name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%d\n", &player.score->score);//项目成绩
+			fscanf_s(fp, "项目成绩:%f\n", &player.score->score);//项目成绩
 			fscanf_s(fp, "项目得分:%d\n", &player.score->point);//项目成绩
 		}
 		if (i == 0) pHead = createpHead(player);
@@ -262,14 +262,14 @@ void savePlayerlist(PlayerListNode* pHead) {
 		for (int j = 0; j < player.game_number; j++) {
 			fprintf(fp, "项目ID:%d\n", player.score->name.id);//项目id
 			fprintf(fp, "项目名称:%s\n", player.score->name.name);//项目名称
-			fprintf(fp, "项目成绩:%d\n", player.score->score);//项目成绩
+			fprintf(fp, "项目成绩:%f\n", player.score->score);//项目成绩
 			fprintf(fp, "项目得分:%d\n", player.score->point);//项目成绩
 		}
 	}
 	fclose(fp);
 }
 //打印链表
-void printGamelist(PlayerListNode* pHead)
+void printPlayerlist(PlayerListNode* pHead)
 {
 	int line_long = longNode(pHead);
 	PlayerListNode* p = pHead;
@@ -277,9 +277,9 @@ void printGamelist(PlayerListNode* pHead)
 	for (int i = 0; i < line_long; i++, p = p->next){
 		player = p->player;
 		printf("%d.", i + 1/*序号*/);
-		printf("名称:%s", player.name.name/*名称*/);
-		printf(" 性别:%s", &player.gender);
-		printf(" 年龄:%d", &player.year);
+		printf("名称:%s ", player.name.name/*名称*/);
+		printf(" 性别:%s ", &player.gender);
+		printf(" 年龄:%d \n", player.year);
 		printf(" 参加项目:");
 		if (player.game_number == 0) printf("无");
 		else for (int j = 0; j < player.game_number; j++) printf("%s ", &player.score->name.name);//项目名称
@@ -321,4 +321,92 @@ void deleteNode(GroupListNode *p) {
 							//相当于丢失了将p下一个节点复制到p中,并丢失了p下一个节点
 	free(p_next);//释放无用内存
 	p_next = NULL;
+}
+//传入头节点，返回有多少个节点
+int longNode(GroupListNode* pHead) {
+	GroupListNode* p = pHead; 
+	int x;
+	if (p == NULL) return 0;
+	else x++;
+	while (p->next != NULL) {
+		x++;
+	}
+	return x;
+}
+//传入文件数据至链表
+GroupListNode* readGrouplist() {
+	FILE *fp;//文件指针
+	GroupListNode* pHead = NULL;
+	int line_long;
+	Group group;
+	 /*文件打开*/
+	fp = fopen("group.txt", "rt+");
+
+	std::string file_path = "group.txt";
+	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空
+		return NULL;
+	}
+
+	fscanf_s(fp, "单位数量:%d\n", &line_long);
+	for (int i = 0; i < line_long; i++) {
+		fscanf(fp, "单位ID:%d\n",& group.name.id);/*id*/
+		fscanf(fp, "单位名称:%s\n",& group.name.name);/*名称*/
+		fscanf(fp, "比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
+		fscanf(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
+		fscanf(fp, "单位人数:%d\n", &group.member_number);/*人数*/
+		for (int n = 0; n < group.member_number; n++) {/*成员ID*/
+			fscanf(fp, "运动员ID:%d\n", &group.memberid[n]);
+		}
+		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
+			fscanf(fp, "比赛名称:%s\n", &group.score->name);
+			fscanf(fp, "该比赛所得积分:%d\n", &group.score->point);
+			fscanf(fp, "该比赛最佳成绩:%f\n", &group.score->score);
+		}
+		if (i == 0) pHead = createpHead(group);
+		else addNode(pHead, group);
+	}
+	fclose(fp);
+	return pHead;
+}
+//保存链表
+void saveGrouplist(GroupListNode* pHead) {
+	FILE* fp;//文件指针
+	fp = fopen("group.txt", "w");
+	int line_long=longNode(pHead);
+	GroupListNode* p = pHead;
+	Group group;
+
+	fprintf(fp, "单位数量:%d\n", line_long);
+	for (int i = 0; i < line_long; i++,p=p->next) {
+		group = p->group;
+		fprintf(fp, "单位ID:%d\n", group.name.id);/*id*/
+		fprintf(fp, "单位名称:%s\n", group.name.name);/*名称*/
+		fprintf(fp, "单位比赛报名数:%d\n", group.game_number);/*报名数*/
+		fprintf(fp, "单位总得分:%d\n", group.fullscore);/*总得分*/
+		fprintf(fp, "单位人数:%d\n", group.member_number);/*人数*/
+		for (int j = 0; j < group.member_number; j++) {/*成员ID*/
+			fprintf(fp, "运动员ID:%d\n", group.memberid[j]);
+		}
+		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
+			fprintf(fp, "比赛名称:%s\n", group.score->name);
+			fprintf(fp, "该比赛所得积分:%d\n", group.score->point);
+			fscanf(fp, "该比赛最佳成绩:%f\n", group.score->score);
+		}
+
+
+	}
+	fclose(fp);
+}
+//打印链表
+void printGrouplist(GroupListNode* pHead) {
+	int line_long = longNode(pHead);
+	GroupListNode* p = pHead;
+	Group group;
+	for (int i = 0; i < line_long; i++,p=p->next) {
+		group = p->group;
+		printf("%d.", i);/*序号*/
+		printf("名称:%s ", group.name.name);
+		printf("人数:%d ", group.member_number);
+		printf("比赛报名数:%d ", group.game_number);
+	}
 }
