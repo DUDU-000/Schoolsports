@@ -22,11 +22,15 @@ void searchGamelist_all();
 void searchPlayerlist_name();
 void searchPlayerlist_group();
 void searchPlayer_all();
-
+void searchGroup_name();
+void searchGroup_all();
+void searchGroup_game(GroupListNode* p);
+void searchGroup_palyer(GroupListNode* p);
 
 
 void information_game(GameListNode* pHead, int situation);
 void information_player(PlayerListNode * pnewHead, int situation);
+void information_group(GroupListNode* pnewHead, int situation);
 
 
 void reviseGame(Game game);

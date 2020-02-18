@@ -134,8 +134,13 @@ void printPlayerlist(PlayerListNode * pHead);
 
 GroupListNode * createpHead(Group group);
 
+GroupListNode* readGrouplist();
+
 void addNode(GroupListNode * pHead, Group group);
 
 void insertNode(GroupListNode * p, Group group);
 
 void deleteNode(GroupListNode * p);
+int longNode(GroupListNode* pHead);
+void saveGrouplist(GroupListNode* pHead);
+void printGrouplist(GroupListNode* pHead);

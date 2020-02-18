@@ -197,7 +197,7 @@ void revisePlayer(Player player) {
 	printf("总分数:%d\n", player.fullscore);//总分数
 	printf("比赛数:%d\n", player.game_number);//比赛数
 
-	printf("比赛项目:\n", player.game_number);//比赛数
+	printf("比赛项目:%d\n", player.game_number);//比赛数
 	if (player.game_number == 0) printf("无\n");
 	else
 		for (int j = 0; j < player.game_number; j++) {

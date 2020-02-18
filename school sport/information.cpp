@@ -10,7 +10,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	int i = 1;
 	GameListNode* p=pnewHead;
 	Game game;
-	char entry[99];
+	
 
 	while (i != situation) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã
 		p = p->next;
@@ -35,7 +35,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.·µ»Ø\n");//Ñ¡Ïî
 
 	int x=0;
-	char entry_s[99];
+	char entry_s[99] = {0};
 	while (x == 0)//ÊäÈë¼ì²â
 	{
 		gets_s(entry_s, 99);
@@ -67,7 +67,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	int i = 1;
 	PlayerListNode* p = pnewHead;
 	Player player;
-	char entry[99];
+	
 
 	while (i != situation) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã
 		p = p->next;
@@ -85,7 +85,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	printf("×Ü·ÖÊı:%d\n", player.fullscore);//×Ü·ÖÊı
 	printf("±ÈÈüÊı:%d\n", player.game_number);//±ÈÈüÊı
 
-	printf("±ÈÈüÏîÄ¿:\n", player.game_number);//±ÈÈüÊı
+	printf("±ÈÈüÏîÄ¿:%d\n", player.game_number);//±ÈÈüÊı
 	if (player.game_number == 0) printf("ÎŞ\n");
 	else 
 	for (int j = 0; j < player.game_number; j++) {
@@ -125,5 +125,49 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	}//É¾³ı
 	break;
 	case 3:break;//·µ»Ø
+	}
+}
+
+void information_group(GroupListNode* pnewHead, int situation) {
+	int i = 1;
+	GroupListNode* p = pnewHead;
+	Group group;
+	while (i != situation) {
+		p = p->next;
+	}
+	system("CLS");
+	printf("µ¥Î»Ãû³Æ:%s\n", group.name.name);
+	printf("µ¥Î»ÈËÊı:%d\n", group.member_number);
+	printf("µ¥Î»×ÜµÃ·Ö:%d\n", group.fullscore);
+	printf("µ¥Î»±ÈÈü±¨ÃûÊı:%d\n", group.game_number);
+	int swi=0;
+	char entry_str[99] = {0};
+	printf("\n\n\n");
+	printf("²Ù×÷:\n");//²Ù×÷
+	printf("1.²éÑ¯±ÈÈü³É¼¨\n2.²éÑ¯µ¥Î»³ÉÔ±\n3.ĞŞ¸Ä\n4.É¾³ı\n5.·µ»Ø\n");//Ñ¡Ïî
+	while (swi == 0) {
+		gets_s(entry_str, 99);
+		rewind(stdin);
+		swi = entrycheck(entry_str, 1, 5);
+		if (swi == 0)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+	}
+
+	switch (swi)
+	{
+	case 1:searchGroup_game(p);break;
+	case 2:searchGroup_palyer(p); break;
+	case 3:break;
+	case 4: {
+		GroupListNode* pHead = readGrouplist();
+		p = pHead;
+		while (p->group.name.id != group.name.id) {
+			p=p->next;
+		}
+	    deleteNode(p);
+		saveGrouplist(pHead);
+		printf("\n\nÉ¾³ıÍê³É\n");
+		system("pause");
+	}
+	case 5:break;//·µ»Ø
 	}
 }

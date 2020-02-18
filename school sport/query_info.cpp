@@ -300,3 +300,92 @@ void searchPlayer_all() {
 		}
 	}
 }
+
+void searchGroup_name() {
+	GroupListNode* pHead = readGrouplist();
+	GroupListNode* input = NULL;
+	int line_long = longNode(pHead);
+	char entry_str[99] = {0};
+	system("CLS");
+	printf("请输入单位名称:");
+	gets_s(entry_str, 99);
+	rewind(stdin);
+	GroupListNode* p = pHead;
+	for (int i = 0; i < line_long; i++, p = p->next) {
+		if (strstr(p->group.name.name, entry_str)) {
+			if (i == 0 || input == NULL)input = createpHead(p->group);
+			else addNode(input, p->group);
+		}
+
+	}
+	if (input == NULL) {
+		printf("\n\n\n找不到该项目\n");
+		system("pause");
+	}
+	else {//主要是这里,
+		int input_long = longNode(input);
+		printf("\n\n\n查得以下项目:\n");
+		printGrouplist(input);
+		printf("%d.返回\n", input_long + 1);//增加返回选项
+		int swi = 0;
+		char entry_s[99];
+		while (swi == 0)//输入检测
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_s, 1, input_long + 1);
+			if (swi == 0)printf("输入有误,请重新输入:");
+		}
+		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
+			information_group(input, swi);
+		}
+	}
+}
+
+void searchGroup_all() {
+	system("CLS");
+	GroupListNode* input = readGrouplist();
+	if(input==NULL) {
+		printf("找不到项目\n");
+		system("pause");
+	}
+	else {
+		int input_long = longNode(input);
+		printf("所有项目:\n");
+		printGrouplist(input);
+		printf("%d.返回\n", input_long + 1);
+		int swi = 0;
+		char entry_s[99];
+		while (swi == 0)
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_s, 1, input_long + 1);
+			if (swi == 0)printf("输入有误,请重新输入:");
+		}
+		if (swi != input_long + 1) {
+			information_group(input, swi);
+		}
+	}
+}
+
+void searchGroup_game(GroupListNode *p) {
+	Group group=p->group;
+	system("CLS");
+	printf("该单位的比赛记录:\n");
+	for (int i = 0; i < group.game_number; i++) {//单位全部比赛打印
+		printf("%d.", i+1);
+		printf("比赛名称:%s 比赛成绩:%f 比赛得分:%d\n", group.score[i].name, group.score[i].score, group.score[i].point);
+	}
+	system("PAUSE");
+}
+
+void searchGroup_palyer(GroupListNode* p) {
+	Group group = p->group;
+	printf("该单位的成员:\n");
+	for (int i = 0; i < group.member_number; i++) {
+		printf("%d.", i + 1);
+		printf("成员ID:%d\n", group.memberid[i]);
+	}
+	system("PAUSE");
+}
