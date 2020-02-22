@@ -136,6 +136,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 		p = p->next;
 	}
 	system("CLS");
+	group = p->group;
 	printf("单位名称:%s\n", group.name.name);
 	printf("单位人数:%d\n", group.member_number);
 	printf("单位总得分:%d\n", group.fullscore);
@@ -144,7 +145,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	char entry_str[99] = {0};
 	printf("\n\n\n");
 	printf("操作:\n");//操作
-	printf("1.查询比赛成绩\n2.查询单位成员\n3.修改\n4.删除\n5.返回\n");//选项
+	printf("1.比赛成绩\n2.单位成员\n3.修改\n4.删除\n5.返回\n");//选项
 	while (swi == 0) {
 		gets_s(entry_str, 99);
 		rewind(stdin);
@@ -154,20 +155,38 @@ void information_group(GroupListNode* pnewHead, int situation) {
 
 	switch (swi)
 	{
-	case 1:searchGroup_game(p);break;
-	case 2:searchGroup_palyer(p); break;
-	case 3:break;
+	case 1: {
+		searchGroup_game(p);
+		GroupListNode* pHead = readGrouplist();
+		GroupListNode* p_2 = pHead;
+		while (p_2->group.name.id != p->group.name.id) {
+			p_2 = p_2->next;
+		}
+		p_2->group = p->group;
+		saveGrouplist(pHead); 
+	}; break;
+	case 2: {
+		searchGroup_palyer(p);
+		GroupListNode* pHead = readGrouplist();
+		GroupListNode* p_2 = pHead;
+		while (p_2->group.name.id != p->group.name.id) {
+			p_2 = p_2->next;
+		}
+		p_2->group = p->group;
+		saveGrouplist(pHead);
+	} break;
+	case 3:reviseGroup(group); break;
 	case 4: {
 		GroupListNode* pHead = readGrouplist();
 		p = pHead;
 		while (p->group.name.id != group.name.id) {
-			p=p->next;
+			p = p->next;
 		}
-	    deleteNode(p);
+		deleteNode(p);
 		saveGrouplist(pHead);
 		printf("\n\n删除完成\n");
 		system("pause");
-	}
+	}break;
 	case 5:break;//返回
 	}
 }

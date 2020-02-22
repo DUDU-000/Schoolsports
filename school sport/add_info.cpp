@@ -215,3 +215,53 @@ void addPlayerNode() {
 	printf("\n\n新增完成\n");
 	system("pause");
 }
+
+void addGroupNode() {
+	Group newgroup;
+	GroupListNode* pHead, * p;
+	int entry_int = 0;
+	char entry_s[99];
+
+	//填写newPlayer的数据
+	system("CLS");
+	printf("单位名称:");
+	gets_s(newgroup.name.name, 99);
+	printf("单位总得分:");
+	scanf_s("%d", &newgroup.fullscore);
+	printf("单位人数:");
+	scanf_s("%d", &newgroup.member_number);
+	for (int i = 0; i < newgroup.member_number; i++) {//根据人数逐个输入
+		printf("第%d个运动员的ID:", i + 1);
+		scanf_s("%d", &newgroup.memberid[i]);
+	}
+	printf("单位比赛报名数:");
+	scanf_s("%d", &newgroup.game_number);
+	for (int i = 0; i < newgroup.game_number; i++) {//比赛记录逐个逐项输入
+		newgroup.score->name.id = i + 1;//ID
+		printf("第%d项比赛名称:",i+1);//名称
+		gets_s(newgroup.score->name.name, 99);
+		printf("第%d项比赛成绩:", i + 1);
+		scanf_s("%f", &newgroup.score->score);
+		printf("第%d项比赛得分:", i + 1);
+		scanf_s("%d", &newgroup.score->point);
+	}
+
+	pHead = readGrouplist();
+	p = pHead;
+	if (pHead == NULL) { 
+		newgroup.name.id = 1;
+		pHead = createpHead(newgroup);
+
+	}
+	else {
+		//若有数据,则在pHead链表最后新增一个节点
+		while (p->next != NULL) {//找到最后的节点指针
+			p = p->next;
+		}
+		newgroup.name.id = p->group.name.id + 1;
+		addNode(pHead, newgroup);
+	}
+	saveGrouplist(pHead);
+	printf("\n\n新增完成\n");
+	system("pause");
+}

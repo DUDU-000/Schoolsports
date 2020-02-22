@@ -35,7 +35,9 @@ void information_group(GroupListNode* pnewHead, int situation);
 
 void reviseGame(Game game);
 void revisePlayer(Player player);
+void reviseGroup(Group group);
 
 
 void addGameNode();
 void addPlayerNode();
+void addGroupNode();

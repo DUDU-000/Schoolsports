@@ -369,15 +369,118 @@ void searchGroup_all() {
 	}
 }
 
-void searchGroup_game(GroupListNode *p) {
+void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 	Group group=p->group;
 	system("CLS");
 	printf("该单位的比赛记录:\n");
-	for (int i = 0; i < group.game_number; i++) {//单位全部比赛打印
+	int i = 0;
+	for ( i = 0; i < group.game_number; i++) {//单位全部比赛打印
 		printf("%d.", i+1);
-		printf("比赛名称:%s 比赛成绩:%f 比赛得分:%d\n", group.score[i].name, group.score[i].score, group.score[i].point);
+		printf("比赛名称:%s 比赛成绩:%f 比赛得分:%d\n", group.score[i].name.name, group.score[i].score, group.score[i].point);
 	}
-	system("PAUSE");
+	printf("\n请选择操作:\n");
+	printf("1.新增\n2.修改\n3.返回\n");
+	int swi = 0;
+	char entry_str[99];
+	while (swi == 0) {
+		gets_s(entry_str, 99);
+		swi = entrycheck(entry_str, 1, 3);
+		if (swi == 0)printf("输入有误，请重新输入:");
+	}
+
+	//以下为比赛记录的功能部分
+	switch (swi) {
+	case 1: {//添加比赛记录
+		system("CLS");
+		printf("请输入比赛名称:");
+		gets_s(group.score[group.game_number].name.name, 99);
+		printf("请输入比赛成绩:");
+		scanf_s("%f", &group.score[group.game_number].score);
+		printf("请输入比赛得分:");
+		scanf_s("%d", &group.score[group.game_number].point);
+
+		if (group.game_number == 0)group.score[0].name.id = 1;
+		else { group.score[group.game_number].name.id = group.score[group.game_number - 1].name.id + 1; }
+		group.game_number++;
+	}break;
+	case 2: {//修改比赛记录
+		if (group.game_number == 0) {
+			printf("无比赛可修改");
+			system("pause");
+		}
+		else {
+			printf("请输入比赛序号:");
+			int  n= 0;
+			char entry_str[99];
+			while (n == 0) {
+				gets_s(entry_str, 99);//选择第几项比赛
+				rewind(stdin);
+				n = entrycheck(entry_str, 1, i + 1);
+				if (n == 0)printf("输入有误，请重新输入:");
+			}
+			system("CLS");//打印该比赛
+			printf("该比赛名称为:%s\n", group.score[n - 1].name.name);
+			printf("该比赛成绩为:%f\n", group.score[n - 1].score);
+			printf("该比赛得分为:%d\n", group.score[n - 1].point);
+			printf("\n请选择操作:\n1.修改名称\n2.修改成绩\n3.修改得分\n4.删除\n5.返回");
+			//比赛记录操作
+			int x = 0;
+			while (x == 0) {
+				gets_s(entry_str, 99);
+				rewind(stdin);
+				x= entrycheck(entry_str, 1, 5);
+				if (x == 0)printf("输入有误，请重新输入:");
+			}
+			switch (x) {
+			case 1: {//修改单项比赛记录的名称
+				system("CLS");
+				printf("该比赛名称为:%s\n请输入修改内容:", group.score[n - 1].name.name);
+				gets_s(group.score[n - 1].name.name, 99);
+				rewind(stdin);
+				printf("修改成功！修改为:%s", group.score[n - 1].name.name);
+				system("pause");
+			}break;
+			case 2: {//修改单项比赛记录成绩
+				system("CLS");
+				printf("该比赛成绩为:%f\n请输入修改内容:", group.score[n - 1].score);
+				scanf_s("%f", &group.score[n - 1].score);
+				printf("修改成功！修改为:%f", group.score[n - 1].score);
+				system("pause");
+			}break;
+			case 3: {//修改单项比赛记录得分
+				system("CLS");
+				printf("该比赛得分为:%d\n请输入修改内容:", group.score[n - 1].point);
+				scanf_s("%f", &group.score[n - 1].point);
+				printf("修改成功！修改为:%f", group.score[n - 1].point);
+				system("pause");
+			}break;
+			case 4: {//删除单项比赛记录
+				if (group.score[n].name.id) {//最后一项
+					group.score[n - 1].name.id = 0;
+					memset(group.score[n - 1].name.name, 0, sizeof(group.score[n - 1].name.name));
+					group.score[n - 1].point = 0;
+					group.score[n - 1].score = 0;
+					group.game_number--;
+					printf("删除成功！");
+					system("pause");
+				}
+				else {
+					for (; n < group.game_number; n++) {
+						group.score[n - 1] = group.score[n];
+					}
+					printf("删除成功！");
+					system("pause");
+				}
+
+			}break;
+			case 5: query_group_menu; break;
+			}
+
+		}
+
+	}
+	}
+	p->group = group;
 }
 
 void searchGroup_palyer(GroupListNode* p) {
@@ -387,5 +490,51 @@ void searchGroup_palyer(GroupListNode* p) {
 		printf("%d.", i + 1);
 		printf("成员ID:%d\n", group.memberid[i]);
 	}
-	system("PAUSE");
+	printf("\n请选择操作:\n");
+	printf("1.新增\n2.修改\n3.返回\n");
+
+	int swi = 0;
+	char entry_str[99] = { 0 };
+	while (swi == 0) {
+		gets_s(entry_str, 99);
+		rewind(stdin);
+		swi = entrycheck(entry_str, 1, 3);
+		if (swi == 0)printf("输入有误，请重新输入:");
+	}
+
+	switch (swi) {
+	case 1: {//新增成员ID
+		system("CLS");
+		printf("请输入新增成员ID:");
+		int newMemberid;
+		scanf_s("%d", &newMemberid);
+		if (group.member_number == 0)group.memberid[0] = newMemberid;
+		else
+		{
+			group.memberid[group.member_number] = newMemberid;
+		}
+		printf("新增成功！");
+		system("pause");
+
+	}break;
+	case 2: {
+		if (group.member_number == 0) {
+			printf("无成员可修改");
+			system("pause");
+		}
+		else
+		{
+			printf("请输入修改的成员序号:");
+			int n;
+			scanf_s("%d", &n);
+			system("CLS");
+			printf("该成员ID为:%d\n请输入修改内容", group.memberid[n - 1]);
+			scanf_s("%d", &group.memberid[n - 1]);
+			printf("修改成功！修改该成员ID为:%d", group.memberid[n - 1]);
+			system("pause");
+		}break;
+	case 3:break;
+	}
+	}
+
 }
