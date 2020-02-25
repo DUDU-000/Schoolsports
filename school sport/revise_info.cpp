@@ -304,67 +304,17 @@ void revisePlayer(Player player) {
 }
 
 void reviseGroup(Group group) {
-	system("CLS");
 	GroupListNode* pHead = readGrouplist();
 	GroupListNode* p = pHead;
 	while (p->group.name.id!=group.name.id)
 	{
 		p = p->next;
 	}
-	printf("单位信息:\n");
-	printf("ID:%d\n", group.name.id);
-	printf("名称:%s\n", group.name.name);
-	printf("人数:%d\n",group.member_number);
-	printf("比赛报名数:%d\n", group.game_number);
-	printf("总得分:%d\n", group.fullscore);
-
-	printf("\n\n");
-	printf("修改内容:\n");
-	printf("1.名称\n2.人数\n3.比赛报名数\n4.总得分\n5.返回");
-	int swi= -1;
-	char entry_str[99];
-	while (swi == -1) {
-		gets_s(entry_str, 99);
-		swi = entrycheck(entry_str, 1, 5);
-		if (swi == -1)printf("输入有误,请重新输入:");
-	}
-	switch (swi)
-	{
-	case 1: {
-		system("CLS");
-		printf("当前单位名称为:%s\n", group.name.name);
-		printf("请输入修改内容:");
-		gets_s(p->group.name.name, 99);
-		printf("修改成功！修改名称为:%s\n", p->group.name.name);
-		system("pause");
-	}break;
-	case 2: {
-		system("CLS");
-		printf("当前单位人数为:%d\n", group.member_number);
-		printf("请输入修改内容:");
-		scanf_s("%d", &p->group.member_number);
-		printf("修改成功！修改人数为:%d\n", p->group.member_number);
-		system("pause");
-	}break;
-	case 3: {
-		system("CLS");
-		printf("当前单位比赛报名数为:%d\n", group.game_number);
-		printf("请输入修改内容:");
-		scanf_s("%d", &p->group.game_number);
-		printf("修改成功！修改比赛报名数为:%d", p->group.game_number);
-		system("pause");
-	}break;
-	case 4: {
-		system("CLS");
-		printf("该单位总得分为:%d\n", group.fullscore);
-		printf("请输入修改内容:");
-		scanf_s("%d", &p->group.fullscore);
-		printf("修改成功！修改总得分为:%d", p->group.fullscore);
-		system("pause");
-	}break;
-	case 5:query_group_menu; break;
-	}
-
+	printf("修改名称为:");
+	gets_s(p->group.name.name, 99);
+	rewind(stdin);
+	printf("修改成功！\n");
+	system("pause");
 	saveGrouplist(pHead);
 
 

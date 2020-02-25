@@ -16,7 +16,7 @@ void query_group_menu() {
 	switch (swi) {
 	case -1: query_group_menu(); break;
 	case 1:searchGroup_name();break;
-	case 2:searchGroup_all;break;
+	case 2:searchGroup_all();break;
 	case 3:break;
 	}
 }

@@ -282,9 +282,9 @@ void printPlayerlist(PlayerListNode* pHead)
 	for (int i = 0; i < line_long; i++, p = p->next){
 		player = p->player;
 		printf("%d.", i + 1/*序号*/);
-		printf("名称:%s ", player.name.name/*名称*/);
 		printf(" ID:%d ", player.name.id);
-		printf(" 性别:%s ", &player.gender);
+		printf("名称:%s ", player.name.name/*名称*/);
+		printf(" 性别:%s ", player.gender);
 		printf(" 参加项目:");
 		if (player.game_number == 0) printf("无");
 		else for (int j = 0; j < player.game_number; j++) printf("%s ", &player.score->name.name);//项目名称
@@ -305,12 +305,12 @@ GroupListNode* createpHead(Group group) {
 //在链表最后面新增一个节点,新增节点的数据为player,pHead为该链表中任一指针节点.
 void addNode(GroupListNode* pHead, Group group) {
 	GroupListNode* p = pHead;
-	while (p->next != NULL) {//找到最后的节点指针
-		p = p->next;
-	}
 	GroupListNode* pNewNode = new GroupListNode;//创建一个新的指针节点并分配空间
 	pNewNode->group = group;//将gmae赋值进改节点中
 	pNewNode->next = NULL;//该节点的next指向NULL
+	while (p->next != NULL) {//找到最后的节点指针
+		p = p->next;
+	}
 	p->next = pNewNode;//将最后的节点指针指向新的节点
 }
 //p节点后插入值为player的节点
@@ -336,6 +336,7 @@ int longNode(GroupListNode* pHead) {
 	if (p == NULL) return 0;
 	else x++;
 	while (p->next != NULL) {
+		p = p->next;
 		x++;
 	}
 	return x;
@@ -358,13 +359,13 @@ GroupListNode* readGrouplist() {
 	for (int i = 0; i < line_long; i++) {
 		fscanf_s(fp, "单位ID:%d\n",& group.name.id);/*id*/
 		fscanf_s(fp, "单位名称:%s\n",& group.name.name,99);/*名称*/
-		fscanf_s(fp, "比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
+		fscanf_s(fp, "单位比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
 		fscanf_s(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
 		fscanf_s(fp, "单位人数:%d\n", &group.member_number);/*人数*/
-		for (int n = 0; n < group.member_number; n++) {/*成员ID*/
+		for (int n = 0; n < group.member_number; n++) {
 			fscanf_s(fp, "运动员ID:%d\n", &group.memberid[n]);
 		}
-		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
+		for (int n = 0; n < group.game_number; n++) {
 			fscanf_s(fp, "比赛ID:%d\n", &group.score->name.id);
 			fscanf_s(fp, "比赛名称:%s\n", &group.score->name.name,99);
 			fscanf_s(fp, "该比赛所得积分:%d\n", &group.score->point);
@@ -380,6 +381,7 @@ GroupListNode* readGrouplist() {
 void saveGrouplist(GroupListNode* pHead) {
 	FILE* fp;//文件指针
 	fp = fopen("group.txt", "w");
+
 	int line_long=longNode(pHead);
 	GroupListNode* p = pHead;
 	Group group;
@@ -392,16 +394,16 @@ void saveGrouplist(GroupListNode* pHead) {
 		fprintf(fp, "单位比赛报名数:%d\n", group.game_number);/*报名数*/
 		fprintf(fp, "单位总得分:%d\n", group.fullscore);/*总得分*/
 		fprintf(fp, "单位人数:%d\n", group.member_number);/*人数*/
-		for (int j = 0; j < group.member_number; j++) {/*成员ID*/
+	    for (int j = 0; j < group.member_number; j++) {
 			fprintf(fp, "运动员ID:%d\n", group.memberid[j]);
 		}
-		for (int n = 0; n < group.game_number; n++) {/*单位比赛记录*/
+		for (int n = 0; n < group.game_number; n++) {
 			fprintf(fp, "比赛ID:%d\n", group.score->name.id);
 			fprintf(fp, "比赛名称:%s\n", group.score->name.name);
 			fprintf(fp, "该比赛所得积分:%d\n", group.score->point);
 			fprintf(fp, "该比赛最佳成绩:%f\n", group.score->score);
 		}
-
+		
 
 	}
 	fclose(fp);
@@ -413,9 +415,10 @@ void printGrouplist(GroupListNode* pHead) {
 	Group group;
 	for (int i = 0; i < line_long; i++,p=p->next) {
 		group = p->group;
-		printf("%d.", i);/*序号*/
-		printf("名称:%s ", group.name.name);
+		printf("%d.", i+1);/*序号*/
 		printf("ID:%d ", group.name.id);
-		printf("比赛报名数:%d ", group.game_number);
+		printf("名称:%s ", group.name.name);
+		printf("人数:%d ", group.member_number);
+		printf("比赛报名数:%d \n", group.game_number);
 	}
 }

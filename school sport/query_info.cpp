@@ -380,7 +380,8 @@ void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 		printf("%d.", i+1);
 		printf("比赛名称:%s 比赛成绩:%f 比赛得分:%d\n", group.score[i].name.name, group.score[i].score, group.score[i].point);
 	}
-	printf("\n请选择操作:\n");
+	system("pause");
+/*	printf("\n请选择操作:\n");
 	printf("1.新增\n2.修改\n3.返回\n");
 	int swi = -1;
 	char entry_str[99];
@@ -482,10 +483,11 @@ void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 
 	}
 	}
-	p->group = group;
+	p->group = group;*/
 }
 
 void searchGroup_palyer(GroupListNode* p) {
+	system("CLS");
 	Group group = p->group;
 	printf("该单位的成员:\n");
 	for (int i = 0; i < group.member_number; i++) {
@@ -515,13 +517,14 @@ void searchGroup_palyer(GroupListNode* p) {
 		{
 			group.memberid[group.member_number] = newMemberid;
 		}
-		printf("新增成功！");
+		group.member_number++;
+		printf("新增成功！\n");
 		system("pause");
 
 	}break;
 	case 2: {
 		if (group.member_number == 0) {
-			printf("无成员可修改");
+			printf("无成员可修改\n");
 			system("pause");
 		}
 		else
@@ -530,13 +533,14 @@ void searchGroup_palyer(GroupListNode* p) {
 			int n;
 			scanf_s("%d", &n);
 			system("CLS");
-			printf("该成员ID为:%d\n请输入修改内容", group.memberid[n - 1]);
+			printf("该成员ID为:%d\n请输入修改内容:", group.memberid[n - 1]);
 			scanf_s("%d", &group.memberid[n - 1]);
 			printf("修改成功！修改该成员ID为:%d", group.memberid[n - 1]);
 			system("pause");
 		}break;
 	case 3:break;
 	}
-	}
 
+	}
+	p->group = group;
 }

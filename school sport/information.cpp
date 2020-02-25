@@ -236,6 +236,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	Group group;
 	while (i != situation) {
 		p = p->next;
+		i++;
 	}
 	system("CLS");
 	group = p->group;
@@ -247,7 +248,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	char entry_str[99] = {0};
 	printf("\n\n\n");
 	printf("操作:\n");//操作
-	printf("1.比赛成绩\n2.单位成员\n3.修改\n4.删除\n5.返回\n");//选项
+	printf("1.比赛成绩查看\n2.单位成员\n3.修改名称\n4.删除\n5.返回\n");//选项
 	while (swi == -1) {
 		gets_s(entry_str, 99);
 		rewind(stdin);
@@ -257,7 +258,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 
 	switch (swi)
 	{
-	case 1: {
+	case 1: {//此处比赛记录只可查看(或亦可修改?待商讨)
 		searchGroup_game(p);
 		GroupListNode* pHead = readGrouplist();
 		GroupListNode* p_2 = pHead;
