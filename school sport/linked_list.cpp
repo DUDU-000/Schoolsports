@@ -93,8 +93,10 @@ GameListNode* readGamelist() {
 		fscanf_s(fp, "人数:%d\n", &game.number);//人数
 		fscanf_s(fp, "开始时间:%d月%d日%d : %d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//开始时间
 		fscanf_s(fp, "结束时间:%d : %d\n", &game.endtime.hour, &game.endtime.minute);//结束时时间
-		for (int j = 0; j < game.number; j++)
-			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j]);//报名人员id
+		for (int j = 0; j < game.number; j++) {
+			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j].id);//报名人员id
+			fscanf_s(fp, "报名人员名称:%s\n", &game.playerid[j].name,99);//报名人名称
+		}
 		if (i == 0) pHead = createpHead(game);
 		else addNode(pHead, game);
 	}
@@ -120,8 +122,10 @@ void saveGamelist(GameListNode* pHead) {
 		fprintf(fp, "人数:%d\n", game.number/*报名人数*/);
 		fprintf(fp, "开始时间:%d月%d日%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/);
 		fprintf(fp, "结束时间:%d : %d\n",  game.endtime.hour, game.endtime.minute/*结束时间*/);
-		for (int j = 0; j < game.number; j++)//储存报名人员id
-			fprintf(fp, "报名人员ID:%d\n", game.playerid[j]);
+		for (int j = 0; j < game.number; j++){//储存报名人员id
+			fprintf(fp, "报名人员ID:%d\n", game.playerid[j].id);
+			fprintf(fp, "报名人员名称:%s\n", game.playerid[j].name);//报名人名称
+		}
 	}
 	fclose(fp);
 }
@@ -136,8 +140,8 @@ void printGamelist(GameListNode* pHead)
 		game = p->game;
 		printf("%d.", i + 1/*序号*/);
 		printf("名称:%s", game.name.name/*名称*/);
-		printf(" 人数:%d",game.number /*人数*/);
-		printf(" 开始时间:%d月%d日%d : %d - %d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute, game.endtime.hour, game.endtime.minute/*时间*/);
+		printf(" ID:%d",game.name.id /*ID*/);
+		printf(" 时间:%d月%d日%d : %d - %d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute, game.endtime.hour, game.endtime.minute/*时间*/);
 	}
 }
 
@@ -233,7 +237,7 @@ PlayerListNode* readPlayerlist() {
 		for (int j = 0; j < player.game_number; j++) {
 			fscanf_s(fp, "项目ID:%d\n", &player.score->name.id);//项目id
 			fscanf_s(fp, "项目名称:%s\n", &player.score->name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%f\n", &player.score->score);//项目成绩
+			fscanf_s(fp, "项目成绩:%0.2lf\n", &player.score->score);//项目成绩
 			fscanf_s(fp, "项目得分:%d\n", &player.score->point);//项目成绩
 		}
 		if (i == 0) pHead = createpHead(player);
@@ -263,7 +267,7 @@ void savePlayerlist(PlayerListNode* pHead) {
 		for (int j = 0; j < player.game_number; j++) {
 			fprintf(fp, "项目ID:%d\n", player.score->name.id);//项目id
 			fprintf(fp, "项目名称:%s\n", player.score->name.name);//项目名称
-			fprintf(fp, "项目成绩:%f\n", player.score->score);//项目成绩
+			fprintf(fp, "项目成绩:%0.2lf\n", player.score->score);//项目成绩
 			fprintf(fp, "项目得分:%d\n", player.score->point);//项目成绩
 		}
 	}
@@ -279,13 +283,14 @@ void printPlayerlist(PlayerListNode* pHead)
 		player = p->player;
 		printf("%d.", i + 1/*序号*/);
 		printf("名称:%s ", player.name.name/*名称*/);
+		printf(" ID:%d ", player.name.id);
 		printf(" 性别:%s ", &player.gender);
-		printf(" 年龄:%d ", player.year);
 		printf(" 参加项目:");
 		if (player.game_number == 0) printf("无");
 		else for (int j = 0; j < player.game_number; j++) printf("%s ", &player.score->name.name);//项目名称
+		printf("\n");
 	}
-	printf("\n");
+	
 }
 
 //组的链表函数
@@ -410,7 +415,7 @@ void printGrouplist(GroupListNode* pHead) {
 		group = p->group;
 		printf("%d.", i);/*序号*/
 		printf("名称:%s ", group.name.name);
-		printf("人数:%d ", group.member_number);
+		printf("ID:%d ", group.name.id);
 		printf("比赛报名数:%d ", group.game_number);
 	}
 }

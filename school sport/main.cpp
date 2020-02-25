@@ -19,7 +19,7 @@ int main() {
 	int swi = entrycheck(entry, 1, 4);
 
 	switch (swi) {
-	case 0: main();  break;
+	case -1: main();  break;
 	case 1: basic_info(); main(); break;
 	case 2: score_entry(); main();  break;
 	case 3: count_query(); main();  break;

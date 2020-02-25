@@ -20,9 +20,14 @@ void reviseGame(Game game) {
 	printf("地点:%s\n", game.place/*地点*/);
 	printf("人数:%d\n", game.number/*报名人数*/);
 	printf("时间:%d月%d日%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/, game.endtime.hour, game.endtime.minute/*结束时间*/);
-	printf("报名人员ID:");
-	if (game.playerid[0] == NULL || game.playerid[0] <= 0) printf("无");
-	else for (int j = 0; j < game.number; j++) printf("%d   ", game.playerid[j]);//报名人员id
+	printf("报名人员:\n");
+	if (game.playerid[0].id == NULL || game.playerid[0].id <= 0) printf("无");
+	else
+		for (int j = 0; j < game.number; j++) {
+			printf("ID:%d ", game.playerid[j].id);//报名人员id
+			printf("名称:%s    ", game.playerid[j].name);//报名人员id
+			if ((j + 1) % 5 == 0) printf("\n");
+		}
 	printf("\n\n\n");
 
 	printf("修改内容:\n");
@@ -33,13 +38,13 @@ void reviseGame(Game game) {
 	printf("5.结束时间\n");
 	printf("6.返回\n");
 	
-	int x = 0;
+	int x = -1;
 	char entry_s[99];
-	while (x == 0) {
+	while (x == -1) {
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		x = entrycheck(entry_s, 1, 6);
-		if (x == 0)printf("输入有误,请重新输入:");
+		if (x == -1)printf("输入有误,请重新输入:");
 	}
 	switch (x)
 	{
@@ -75,13 +80,13 @@ void reviseGame(Game game) {
 	case 3: {//修改地点
 		system("CLS");
 		printf("当前选定项目的地点为：%s\n请输入修改内容(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：", p->game.place);
-		int n = 0;
+		int n = -1;
 		char place_selection[99];
-		while (n == 0) {
+		while (n == -1) {
 			gets_s(place_selection, 99);
 			rewind(stdin);
 			n = entrycheck(place_selection, 1, 6);
-			if (n == 0)printf("输入有误,请重新输入:");
+			if (n == -1)printf("输入有误,请重新输入:");
 		}
 		switch (n)
 		{
@@ -100,32 +105,32 @@ void reviseGame(Game game) {
 		system("CLS");
 		printf("目前选定项目的开始时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
 		char month_s[99], date_s[99], hour_s[99], minute_s[99];
-		int month=0, date=0, hour=0, minute=0;
-		while (month == 0) {//月
+		int month= -1, date= -1, hour= -1, minute= -1;
+		while (month == -1) {//月
 			printf("月：");
 			gets_s(month_s, 99);
 			month = entrycheck(month_s, 1, 12);
-			if (month == 0)printf("输入错误请重新输入：");
+			if (month == -1)printf("输入错误请重新输入：");
 		}
-		while (date == 0) {//日
+		while (date == -1) {//日
 			printf("日：");
 			gets_s(date_s, 99);
 			if((month<=7&&month%2!=0)||(month>=8&&month%2==0))date = entrycheck(date_s, 1, 31);
 			else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
 			if (month==2)date = entrycheck(date_s, 1, 29);
-			if (date == 0)printf("输入错误请重新输入：");
+			if (date == -1)printf("输入错误请重新输入：");
 		}
-		while (hour == 0) {//时
+		while (hour == -1) {//时
 			printf("几点：");
 			gets_s(hour_s, 99);
 			hour = entrycheck(hour_s, 1, 24);
-			if (hour == 0)printf("输入错误请重新输入：");
+			if (hour == -1)printf("输入错误请重新输入：");
 		}
-		while (minute == 0) {//分
+		while (minute == -1) {//分
 			printf("几点：");
 			gets_s(minute_s, 99);
 			minute = entrycheck(minute_s, 1, 24);
-			if (minute == 0)printf("输入错误请重新输入：");
+			if (minute == -1)printf("输入错误请重新输入：");
 		}
 		p->game.starttime.month = month;
 		p->game.starttime.date = date;
@@ -139,32 +144,32 @@ void reviseGame(Game game) {
 		system("CLS");
 		printf("目前选定项目的结束时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
 		char month_s[99], date_s[99], hour_s[99], minute_s[99];
-		int month = 0, date = 0, hour = 0, minute = 0;
-		while (month == 0) {//月
+		int month = -1, date = -1, hour = -1, minute = -1;
+		while (month == -1) {//月
 			printf("月：");
 			gets_s(month_s, 99);
 			month = entrycheck(month_s, 1, 12);
-			if (month == 0)printf("输入错误请重新输入：");
+			if (month == -1)printf("输入错误请重新输入：");
 		}
-		while (date == 0) {//日
+		while (date == -1) {//日
 			printf("日：");
 			gets_s(date_s, 99);
 			if ((month <= 7 && month % 2 != 0) || (month >= 8 && month % 2 == 0))date = entrycheck(date_s, 1, 31);
 			else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
 			if (month == 2)date = entrycheck(date_s, 1, 29);
-			if (date == 0)printf("输入错误请重新输入：");
+			if (date == -1)printf("输入错误请重新输入：");
 		}
-		while (hour == 0) {//时
+		while (hour == -1) {//时
 			printf("几点：");
 			gets_s(hour_s, 99);
 			hour = entrycheck(hour_s, 1, 24);
-			if (hour == 0)printf("输入错误请重新输入：");
+			if (hour == -1)printf("输入错误请重新输入：");
 		}
-		while (minute == 0) {//分
+		while (minute == -1) {//分
 			printf("几点：");
 			gets_s(minute_s, 99);
 			minute = entrycheck(minute_s, 1, 24);
-			if (minute == 0)printf("输入错误请重新输入：");
+			if (minute == -1)printf("输入错误请重新输入：");
 		}
 		p->game.starttime.month = month;
 		p->game.starttime.date = date;
@@ -214,13 +219,13 @@ void revisePlayer(Player player) {
 	printf("4.小组\n");
 	printf("5.返回\n");
 
-	int x = 0;
+	int x = -1;
 	char entry_s[99];
-	while (x == 0) {
+	while (x == -1) {
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		x = entrycheck(entry_s, 1, 6);
-		if (x == 0)printf("输入有误,请重新输入:");
+		if (x == -1)printf("输入有误,请重新输入:");
 	}
 	switch (x)
 	{
@@ -237,15 +242,15 @@ void revisePlayer(Player player) {
 		printf("当前前选定运动员的性别为：%s\n", p->player.gender);
 
 		printf("性别(1.男  2.女)：");//性别
-		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-		while (entry_int == 0)
+		int entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			entry_int = entrycheck(entry_s, 1, 2);//若是一个数字,则返回int,否则,返回0
 			switch (entry_int)
 			{
-			case 0:printf("输入有误,请重新输入:"); break;
+			case -1:printf("输入有误,请重新输入:"); break;
 			case 1:strcpy(p->player.gender, "男"); break;
 			case 2:strcpy(p->player.gender, "女"); break;
 			}
@@ -259,13 +264,13 @@ void revisePlayer(Player player) {
 		printf("当前前选定运动员的年龄为：%d\n", p->player.year);
 
 		printf("年龄:");
-		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-		while (entry_int == 0)
+		int entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
-			if (entry_int == 0) printf("输入有误,请重新输入:");
+			if (entry_int == -1) printf("输入有误,请重新输入:");
 			else p->player.year = entry_int;
 
 		}//结束检测
@@ -278,13 +283,13 @@ void revisePlayer(Player player) {
 		printf("当前前选定运动员的小组ID为：%d\n", p->player.group_id);
 
 		printf("小组ID:");
-		int entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-		while (entry_int == 0)
+		int entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+		while (entry_int == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
-			if (entry_int == 0) printf("输入有误,请重新输入:");
+			if (entry_int == -1) printf("输入有误,请重新输入:");
 			else p->player.year = entry_int;
 
 		}//结束检测
@@ -316,12 +321,12 @@ void reviseGroup(Group group) {
 	printf("\n\n");
 	printf("修改内容:\n");
 	printf("1.名称\n2.人数\n3.比赛报名数\n4.总得分\n5.返回");
-	int swi=0;
+	int swi= -1;
 	char entry_str[99];
-	while (swi == 0) {
+	while (swi == -1) {
 		gets_s(entry_str, 99);
 		swi = entrycheck(entry_str, 1, 5);
-		if (swi == 0)printf("输入有误,请重新输入:");
+		if (swi == -1)printf("输入有误,请重新输入:");
 	}
 	switch (swi)
 	{

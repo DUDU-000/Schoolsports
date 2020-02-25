@@ -61,7 +61,7 @@ struct Game//比赛项目
 	char type[5];//比赛类型 田赛或竞赛
 	char place[7];//比赛地点
 	int number;//报名人数
-	int playerid[99];//报名运动员id
+	Name playerid[99];//报名运动员id
 };
 struct Player//运动员
 {

@@ -10,7 +10,7 @@ void addGameNode() {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情
 
 	Game newGame;
 	GameListNode* pHead, *p;
-	int entry_int = 0;
+	int entry_int = -1;
 	char entry_s[99];
 
 
@@ -22,30 +22,30 @@ void addGameNode() {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情
 
 	printf("比赛类型(1.田赛  2.竞赛)：");
 
-	entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-	while (entry_int == 0)
+	entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 2);//若是一个数字,则返回int,否则,返回0
 		switch (entry_int)
 		{
-		case 0:printf("输入有误,请重新输入:"); break;
+		case -1:printf("输入有误,请重新输入:"); break;
 		case 1:strcpy(newGame.type, Tian); break;
 		case 2:strcpy(newGame.type, Jing); break;
 		}
 	}//结束检测
 
 	printf("比赛地点(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 6);
 		switch (entry_int)
 		{
-		case 0:printf("输入有误,请重新输入:"); break;
+		case -1:printf("输入有误,请重新输入:"); break;
 		case 1:strcpy(newGame.place, Runway); break;
 		case 2:strcpy(newGame.place, Football); break;
 		case 3:strcpy(newGame.place, ShotPut); break;
@@ -56,71 +56,71 @@ void addGameNode() {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情
 	}
 
 	printf("月份：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 12);
 		newGame.starttime.month = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 
 	printf("日期：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 31);
 		newGame.starttime.date = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 
 
 	printf("开始时间：\n");
 	printf("几点：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 0, 24);
 		newGame.starttime.hour = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 
 	printf("几分：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 0, 60);
 		newGame.starttime.minute = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 
 	printf("结束时间：\n");
 	printf("几点：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 0, 24);
 		newGame.endtime.hour = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 	printf("几分：");
-	entry_int = 0;
-	while (entry_int == 0)
+	entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 0, 60);
 		newGame.endtime.minute = entry_int;
-		if (entry_int == 0)printf("输入有误,请重新输入:");
+		if (entry_int == -1)printf("输入有误,请重新输入:");
 	}
 	newGame.number = 0;
 
@@ -145,7 +145,7 @@ void addGameNode() {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情
 void addPlayerNode() {
 	Player newPlayer;
 	PlayerListNode* pHead, *p;
-	int entry_int = 0;
+	int entry_int = -1;
 	char entry_s[99];
 
 
@@ -156,40 +156,40 @@ void addPlayerNode() {
 	rewind(stdin);
 
 	printf("年龄:");//年龄
-	entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-	while (entry_int == 0)
+	entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
-		if(entry_int==0) printf("输入有误,请重新输入:");
+		if(entry_int==-1) printf("输入有误,请重新输入:");
 		else newPlayer.year = entry_int;
 
 	}//结束检测
 
 	printf("性别(1.男  2.女)：");//性别
-	entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-	while (entry_int == 0)
+	entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 2);//若是一个数字,则返回int,否则,返回0
 		switch (entry_int)
 		{
-		case 0:printf("输入有误,请重新输入:"); break;
+		case -1:printf("输入有误,请重新输入:"); break;
 		case 1:strcpy(newPlayer.gender, "男"); break;
 		case 2:strcpy(newPlayer.gender, "女"); break;
 		}
 	}//结束检测
 
 	printf("小组ID:");//小组id
-	entry_int = 0;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
-	while (entry_int == 0)
+	entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
-		if (entry_int == 0) printf("输入有误,请重新输入:");
+		if (entry_int == -1) printf("输入有误,请重新输入:");
 		else newPlayer.group_id = entry_int;
 
 	}//结束检测
@@ -219,7 +219,7 @@ void addPlayerNode() {
 void addGroupNode() {
 	Group newgroup;
 	GroupListNode* pHead, * p;
-	int entry_int = 0;
+	int entry_int = -1;
 	char entry_s[99];
 
 	//填写newPlayer的数据

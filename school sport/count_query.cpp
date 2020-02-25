@@ -16,7 +16,7 @@ void count_query() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 4);
 	switch (swi) {
-	case 0: count_query(); break;
+	case -1: count_query(); break;
 	case 1: break;
 	case 2: break;
 	case 3: break;

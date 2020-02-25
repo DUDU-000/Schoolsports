@@ -32,14 +32,14 @@ void searchGamelist_name() {//我修缮了下功能,有输入检测和能打开页面了和返回了 , 
 		printf("\n\n\n查得以下项目:\n");
 		printGamelist(input);
 		printf("%d.返回\n", input_long + 1);//增加返回选项
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)//输入检测
+		while (swi == -1)//输入检测
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
 			information_game(input, swi);
@@ -55,13 +55,13 @@ void searchGamelist_type()
 	printf("请选择比赛类型(1.田赛 2.竞赛):");
 	int x;
 	char entry_s[99];
-	x = 0;
-	while (x == 0)
+	x = -1;
+	while (x == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		x = entrycheck(entry_s, 1, 2);
-		if (x == 0)printf("输入有误,请重新输入:");
+		if (x == -1)printf("输入有误,请重新输入:");
 	}
 
 	int list_long = longNode(pHead);
@@ -87,14 +87,14 @@ void searchGamelist_type()
 		printf("\n\n\n查得以下项目:\n");
 		printGamelist(input);
 		printf("%d.返回\n", input_long + 1);
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)
+		while (swi == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {
 			information_game(input, swi);
@@ -113,7 +113,7 @@ void searchGamelist_time() {
 		gets_s(entry_s,99);
 		rewind(stdin);
 		x = entrycheck(entry_s, 1, 31);
-		if (x == 0)printf("输入有误,请重新输入:");
+		if (x == -1)printf("输入有误,请重新输入:");
 	}
 
 	int list_long = longNode(pHead);
@@ -146,7 +146,7 @@ void searchGamelist_time() {
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {
 			information_game(input, swi);
@@ -167,14 +167,14 @@ void searchGamelist_all(){
 		printf("所有项目:\n");
 		printGamelist(input);
 		printf("%d.返回\n", input_long + 1);
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)
+		while (swi == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {
 			information_game(input, swi);
@@ -215,7 +215,7 @@ void searchPlayerlist_name() {
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
 			information_player(input, swi);
@@ -231,13 +231,13 @@ void searchPlayerlist_group() {
 	system("CLS");
 	printf("请输入小组ID：");
 	
-	int entry_int = 0;
-	while (entry_int == 0)
+	int entry_int = -1;
+	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 99);//小组id范围
-		if (entry_int == 0) printf("输入有误,请重新输入:");
+		if (entry_int == -1) printf("输入有误,请重新输入:");
 	}//结束检测
 
 	PlayerListNode* p = pHead;
@@ -257,14 +257,14 @@ void searchPlayerlist_group() {
 		printf("\n\n\n查得以下项目:\n");
 		printPlayerlist(input);
 		printf("%d.返回\n", input_long + 1);//增加返回选项
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)//输入检测
+		while (swi == -1)//输入检测
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
 			information_player(input, swi);
@@ -286,14 +286,14 @@ void searchPlayer_all() {
 		printf("所有项目:\n");
 		printPlayerlist(input);
 		printf("%d.返回\n", input_long + 1);
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)
+		while (swi == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {
 			information_player(input, swi);
@@ -327,14 +327,14 @@ void searchGroup_name() {
 		printf("\n\n\n查得以下项目:\n");
 		printGrouplist(input);
 		printf("%d.返回\n", input_long + 1);//增加返回选项
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)//输入检测
+		while (swi == -1)//输入检测
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {//如果按的不是返回选项,则进入相关详细页面
 			information_group(input, swi);
@@ -354,20 +354,22 @@ void searchGroup_all() {
 		printf("所有项目:\n");
 		printGrouplist(input);
 		printf("%d.返回\n", input_long + 1);
-		int swi = 0;
+		int swi = -1;
 		char entry_s[99];
-		while (swi == 0)
+		while (swi == -1)
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
 			swi = entrycheck(entry_s, 1, input_long + 1);
-			if (swi == 0)printf("输入有误,请重新输入:");
+			if (swi == -1)printf("输入有误,请重新输入:");
 		}
 		if (swi != input_long + 1) {
 			information_group(input, swi);
 		}
 	}
 }
+
+
 
 void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 	Group group=p->group;
@@ -380,12 +382,12 @@ void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 	}
 	printf("\n请选择操作:\n");
 	printf("1.新增\n2.修改\n3.返回\n");
-	int swi = 0;
+	int swi = -1;
 	char entry_str[99];
-	while (swi == 0) {
+	while (swi == -1) {
 		gets_s(entry_str, 99);
 		swi = entrycheck(entry_str, 1, 3);
-		if (swi == 0)printf("输入有误，请重新输入:");
+		if (swi == -1)printf("输入有误，请重新输入:");
 	}
 
 	//以下为比赛记录的功能部分
@@ -410,13 +412,13 @@ void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 		}
 		else {
 			printf("请输入比赛序号:");
-			int  n= 0;
+			int  n= -1;
 			char entry_str[99];
-			while (n == 0) {
+			while (n == -1) {
 				gets_s(entry_str, 99);//选择第几项比赛
 				rewind(stdin);
 				n = entrycheck(entry_str, 1, i + 1);
-				if (n == 0)printf("输入有误，请重新输入:");
+				if (n == -1)printf("输入有误，请重新输入:");
 			}
 			system("CLS");//打印该比赛
 			printf("该比赛名称为:%s\n", group.score[n - 1].name.name);
@@ -424,12 +426,12 @@ void searchGroup_game(GroupListNode *p) {//单位内的比赛记录搜索
 			printf("该比赛得分为:%d\n", group.score[n - 1].point);
 			printf("\n请选择操作:\n1.修改名称\n2.修改成绩\n3.修改得分\n4.删除\n5.返回");
 			//比赛记录操作
-			int x = 0;
-			while (x == 0) {
+			int x = -1;
+			while (x == -1) {
 				gets_s(entry_str, 99);
 				rewind(stdin);
 				x= entrycheck(entry_str, 1, 5);
-				if (x == 0)printf("输入有误，请重新输入:");
+				if (x == -1)printf("输入有误，请重新输入:");
 			}
 			switch (x) {
 			case 1: {//修改单项比赛记录的名称
@@ -493,13 +495,13 @@ void searchGroup_palyer(GroupListNode* p) {
 	printf("\n请选择操作:\n");
 	printf("1.新增\n2.修改\n3.返回\n");
 
-	int swi = 0;
+	int swi = -1;
 	char entry_str[99] = { 0 };
-	while (swi == 0) {
+	while (swi == -1) {
 		gets_s(entry_str, 99);
 		rewind(stdin);
 		swi = entrycheck(entry_str, 1, 3);
-		if (swi == 0)printf("输入有误，请重新输入:");
+		if (swi == -1)printf("输入有误，请重新输入:");
 	}
 
 	switch (swi) {

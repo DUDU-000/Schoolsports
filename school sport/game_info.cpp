@@ -19,7 +19,7 @@ void query_game_menu() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: query_game_menu(); break;
+	case -1: query_game_menu(); break;
 	case 1: searchGamelist_name(); break;
 	case 2: searchGamelist_type(); break;
 	case 3: searchGamelist_time(); break;
@@ -39,7 +39,7 @@ void game_info() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 3);
 	switch (swi) {
-	case 0: game_info(); break;
+	case -1: game_info(); break;
 	case 1: addGameNode(); game_info(); break;
 	case 2: query_game_menu(); game_info(); break;
 	case 3: break;

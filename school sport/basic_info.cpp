@@ -17,7 +17,7 @@ void basic_info() {
 	int swi = entrycheck(entry, 1, 4);
 
 	switch (swi) {
-	case 0: basic_info(); break;
+	case -1: basic_info(); break;
 	case 1: group_info(); basic_info(); break;
 	case 2: player_info(); basic_info(); break;
 	case 3: game_info(); basic_info(); break;

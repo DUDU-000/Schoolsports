@@ -18,7 +18,7 @@ void score_entry() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: score_entry(); break;
+	case -1: score_entry(); break;
 	case 1: break;
 	case 2: break;
 	case 3: break;

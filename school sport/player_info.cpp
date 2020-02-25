@@ -15,7 +15,7 @@ void query_player_menu() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 5);
 	switch (swi) {
-	case 0: query_player_menu(); break;
+	case -1: query_player_menu(); break;
 	case 1: searchPlayerlist_name(); break;
 	case 2: searchPlayerlist_group(); break;
 	case 3: searchPlayer_all(); break;
@@ -34,7 +34,7 @@ void player_info() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 3);
 	switch (swi) {
-	case 0: player_info(); break;
+	case -1: player_info(); break;
 	case 1: addPlayerNode(); player_info(); break;
 	case 2: query_player_menu(); player_info(); break;
 	case 3: break;
