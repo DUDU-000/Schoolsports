@@ -45,7 +45,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
-		x = entrycheck(entry_s, 1, 3);
+		x = entrycheck(entry_s, 1, 4);
 		if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 	}
 	switch (x){

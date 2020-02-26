@@ -237,7 +237,7 @@ PlayerListNode* readPlayerlist() {
 		for (int j = 0; j < player.game_number; j++) {
 			fscanf_s(fp, "项目ID:%d\n", &player.score->name.id);//项目id
 			fscanf_s(fp, "项目名称:%s\n", &player.score->name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%0.2lf\n", &player.score->score);//项目成绩
+			fscanf_s(fp, "项目成绩:%lf\n", &player.score->score);//项目成绩
 			fscanf_s(fp, "项目得分:%d\n", &player.score->point);//项目成绩
 		}
 		if (i == 0) pHead = createpHead(player);
