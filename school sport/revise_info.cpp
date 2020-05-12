@@ -313,7 +313,7 @@ void reviseGroup(Group group) {
 	printf("修改名称为:");
 	gets_s(p->group.name.name, 99);
 	rewind(stdin);
-	printf("修改成功！\n");
+	printf("修改成功！修改名称为：%s\n",p->group.name.name);
 	system("pause");
 	saveGrouplist(pHead);
 

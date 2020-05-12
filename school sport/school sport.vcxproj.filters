@@ -84,6 +84,9 @@
     <ClCompile Include="player_info.cpp">
       <Filter>源文件\basic_info</Filter>
     </ClCompile>
+    <ClCompile Include="count_query_player.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="method.h">

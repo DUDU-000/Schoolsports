@@ -41,6 +41,7 @@ struct BriefGame//简略版记录
 	Name name;//项目名称
 	double score;//对运动员:个人成绩; 对单位:最优成绩
 	int point;//得分
+	int rank;//排名
 };
 
 struct Group//单位
@@ -62,6 +63,7 @@ struct Game//比赛项目
 	char place[7];//比赛地点
 	int number;//报名人数
 	Name playerid[99];//报名运动员id
+	int status=0;//0表示报名进行中 1表示报名截止
 };
 struct Player//运动员
 {

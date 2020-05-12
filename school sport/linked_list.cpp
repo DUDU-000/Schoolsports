@@ -97,6 +97,7 @@ GameListNode* readGamelist() {
 			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j].id);//报名人员id
 			fscanf_s(fp, "报名人员名称:%s\n", &game.playerid[j].name,99);//报名人名称
 		}
+		fscanf_s(fp, "报名状态(0:进行中|1:截止):%d\n", & game.status);//报名状态
 		if (i == 0) pHead = createpHead(game);
 		else addNode(pHead, game);
 	}
@@ -126,6 +127,7 @@ void saveGamelist(GameListNode* pHead) {
 			fprintf(fp, "报名人员ID:%d\n", game.playerid[j].id);
 			fprintf(fp, "报名人员名称:%s\n", game.playerid[j].name);//报名人名称
 		}
+		fprintf(fp, "报名状态(0:进行中|1:截止):%d\n", game.status);//报名状态
 	}
 	fclose(fp);
 }
@@ -237,7 +239,7 @@ PlayerListNode* readPlayerlist() {
 		for (int j = 0; j < player.game_number; j++) {
 			fscanf_s(fp, "项目ID:%d\n", &player.score->name.id);//项目id
 			fscanf_s(fp, "项目名称:%s\n", &player.score->name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%lf\n", &player.score->score);//项目成绩
+			fscanf_s(fp, "项目成绩:%1f\n", &player.score->score);//项目成绩
 			fscanf_s(fp, "项目得分:%d\n", &player.score->point);//项目成绩
 		}
 		if (i == 0) pHead = createpHead(player);
@@ -267,7 +269,7 @@ void savePlayerlist(PlayerListNode* pHead) {
 		for (int j = 0; j < player.game_number; j++) {
 			fprintf(fp, "项目ID:%d\n", player.score->name.id);//项目id
 			fprintf(fp, "项目名称:%s\n", player.score->name.name);//项目名称
-			fprintf(fp, "项目成绩:%0.2lf\n", player.score->score);//项目成绩
+			fprintf(fp, "项目成绩:%lf\n", player.score->score);//项目成绩
 			fprintf(fp, "项目得分:%d\n", player.score->point);//项目成绩
 		}
 	}

@@ -36,83 +36,129 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	printf("\n\n\n");
 
 
-	printf("²Ù×÷:\n");//²Ù×÷
-	printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
-
-	int x=-1;
-	char entry_s[99] = {0};
-	while (x == -1)//ÊäÈë¼ì²â
+	if (game.status == 0)//±¨Ãû½øĞĞÖĞ½çÃæ
 	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		x = entrycheck(entry_s, 1, 4);
-		if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-	}
-	switch (x){
-	case 1: reviseGame(game); break;//ĞŞ¸Ä
-	case 2:{
-		GameListNode* pHead = readGamelist();
-		p_game = pHead;
-		while (p_game->game.name.id!=game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
-			p_game = p_game->next;
-		}
-		pHead = deleteNode(pHead, p_game);
-		saveGamelist(pHead);
-		printf("\n\nÉ¾³ıÍê³É\n");
-		system("pause");
-	}
-		break;//É¾³ı
-	case 3: {
-		PlayerListNode * pHead_player = readPlayerlist();
-		PlayerListNode * p_player = pHead_player;
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.±¨Ãû½ØÖ¹\n5.·µ»Ø\n");//Ñ¡Ïî
 
-		printf("\nÊäÈëÔË¶¯Ô±ID½øĞĞ±¨Ãû\nÊäÈë0ÍË³ö±¨Ãû\n");
-		
-		while(true) {
-			printf("ÊäÈë:");
-			int id = -1;
-			while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
-				while (id == -1)//ÊäÈë¼ì²â
-				{
-					gets_s(entry_s, 99);
-					rewind(stdin);
-					id = entrycheck(entry_s, 0, 99);
-					if (id == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		int x = -1;
+		char entry_s[99] = { 0 };
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 5);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		}
+		switch (x) {
+		case 1: reviseGame(game); break;//ĞŞ¸Ä
+		case 2: {
+			GameListNode* pHead = readGamelist();
+			p_game = pHead;
+			while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+				p_game = p_game->next;
+			}
+			pHead = deleteNode(pHead, p_game);
+			saveGamelist(pHead);
+			printf("\n\nÉ¾³ıÍê³É\n");
+			system("pause");
+		}
+			  break;//É¾³ı
+		case 3: {
+			PlayerListNode* pHead_player = readPlayerlist();
+			PlayerListNode* p_player = pHead_player;
+
+			printf("\nÊäÈëÔË¶¯Ô±ID½øĞĞ±¨Ãû\nÊäÈë0ÍË³ö±¨Ãû\n");
+
+			while (true) {
+				printf("ÊäÈë:");
+				int id = -1;
+				while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
+					while (id == -1)//ÊäÈë¼ì²â
+					{
+						gets_s(entry_s, 99);
+						rewind(stdin);
+						id = entrycheck(entry_s, 0, 99);
+						if (id == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+					}
+					if (id == 0) break;
+					p_player = pHead_player;
+					while (p_player->player.name.id != id) {
+						if (p_player->next == NULL) break;
+						p_player = p_player->next;
+					}
+					if (p_player->player.name.id != id && p_player->next == NULL) {
+						printf("ÕÒ²»µ½¸ÃÔË¶¯Ô±,ÇëÖØĞÂÊäÈë:");
+						id = -1;
+					}
+					else {
+						p_player->player.score[p_player->player.game_number].name = game.name;
+						p_player->player.score[p_player->player.game_number].point = 0;
+						p_player->player.score[p_player->player.game_number].score = 0;
+						p_player->player.game_number++;
+						game.playerid[game.number] = p_player->player.name;
+						game.number++;
+						savePlayerlist(pHead_player);
+						break;
+					}
 				}
 				if (id == 0) break;
-				p_player = pHead_player;
-				while (p_player->player.name.id != id) {
-					if (p_player->next == NULL) break;
-					p_player = p_player->next;
-				}
-				if (p_player->player.name.id != id&&p_player->next == NULL) {
-					printf("ÕÒ²»µ½¸ÃÔË¶¯Ô±,ÇëÖØĞÂÊäÈë:");
-					id = -1;
-				}
-				else {
-					p_player->player.score[p_player->player.game_number].name = game.name;
-					p_player->player.score[p_player->player.game_number].point = 0;
-					p_player->player.score[p_player->player.game_number].score = 0;
-					p_player->player.game_number++;
-					game.playerid[game.number] = p_player->player.name;
-					game.number++;
-					savePlayerlist(pHead_player);
-					break;
-				}
 			}
-			if (id == 0) break;
+			GameListNode* pHead_game = readGamelist();
+			p_game = pHead_game;
+			while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+				p_game = p_game->next;
+			}
+			p_game->game = game;
+			saveGamelist(pHead_game);
+			printf("\n\n±¨ÃûÍê³É\n");
+			system("pause");
+		}break;//±¨Ãû
+		case 4: {
+			game.status = 1;
+			GameListNode* pHead_game = readGamelist();
+			p_game = pHead_game;
+			while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+				p_game = p_game->next;
+			}
+			p_game->game = game;
+			saveGamelist(pHead_game);
+			printf("\n\n±¨ÃûÒÑ½ØÖ¹\n");
+			system("pause");
+		}; break;//±¨Ãû½ØÖ¹
+		case 5:break;//·µ»Ø
 		}
-		GameListNode* pHead_game = readGamelist();
-		p_game = pHead_game;
-		while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
-			p_game = p_game->next;
+	}
+	else if (game.status == 1)//±¨Ãû½ØÖ¹½çÃæ
+	{
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.·µ»Ø\n");//Ñ¡Ïî
+
+		int x = -1;
+		char entry_s[99] = { 0 };
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 3);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
-		p_game->game = game;
-		saveGamelist(pHead_game);
-		printf("\n\n±¨ÃûÍê³É\n");
-		system("pause");
-	}break;//±¨Ãû
-	case 4:break;//·µ»Ø
+		switch (x) {
+		case 1: reviseGame(game); break;//ĞŞ¸Ä
+		case 2: {
+			GameListNode* pHead = readGamelist();
+			p_game = pHead;
+			while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+				p_game = p_game->next;
+			}
+			pHead = deleteNode(pHead, p_game);
+			saveGamelist(pHead);
+			printf("\n\nÉ¾³ıÍê³É\n");
+			system("pause");
+		};
+			  break;//É¾³ı
+		case 3:break;//·µ»Ø
+		}
 	}
 }
 
