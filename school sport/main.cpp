@@ -5,7 +5,8 @@
 #include"basic_info.h"
 #include"count_query.h"
 
-int main() {
+int main() //运动会管理系统
+{
 	char entry[99];
 	system("CLS");
 	printf("主菜单\n");
