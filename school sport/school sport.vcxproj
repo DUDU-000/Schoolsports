@@ -34,7 +34,7 @@
     <ClCompile Include="game_rank.cpp" />
     <ClCompile Include="query_info.cpp" />
     <ClCompile Include="revise_info.cpp" />
-    <ClCompile Include="score_entry.cpp" />
+    <ClCompile Include="score_entry.cpp.cpp" />
     <ClCompile Include="score_rank.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +42,6 @@
     <ClInclude Include="count_query.h" />
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="method.h" />
-    <ClInclude Include="score_entry.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -41,3 +41,6 @@ void reviseGroup(Group group);
 void addGameNode();
 void addPlayerNode();
 void addGroupNode();
+
+
+void score_entry(Game game);

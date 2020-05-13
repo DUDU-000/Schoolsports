@@ -28,12 +28,6 @@
     <Filter Include="源文件\count_query\activity">
       <UniqueIdentifier>{dc278ce2-4b79-47d3-b86d-fc977fc45d99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\score_entry">
-      <UniqueIdentifier>{4e02bb62-135e-4af7-96d5-3c19f579150d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\score_entry\activity">
-      <UniqueIdentifier>{c4beef3e-37bf-4793-a8e0-4f3df8552ccb}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,9 +50,6 @@
     </ClCompile>
     <ClCompile Include="linked_list.cpp">
       <Filter>源文件\method</Filter>
-    </ClCompile>
-    <ClCompile Include="score_entry.cpp">
-      <Filter>源文件\score_entry</Filter>
     </ClCompile>
     <ClCompile Include="group_rank.cpp">
       <Filter>源文件\count_query\activity</Filter>
@@ -87,6 +78,9 @@
     <ClCompile Include="count_query_player.cpp">
       <Filter>源文件\basic_info\activity</Filter>
     </ClCompile>
+    <ClCompile Include="score_entry.cpp.cpp">
+      <Filter>源文件\basic_info\activity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="method.h">
@@ -99,9 +93,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="basic_info.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="score_entry.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

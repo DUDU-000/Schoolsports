@@ -1,6 +1,5 @@
 #include<iostream>
 #include<stdio.h>
-#include"score_entry.h"
 #include"method.h"
 #include"basic_info.h"
 #include"count_query.h"
