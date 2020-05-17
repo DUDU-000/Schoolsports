@@ -75,6 +75,13 @@ struct Player//运动员
 	int game_number;
 	BriefGame score[3];//某项比赛得分
 };
+struct BriefPlayer //新建简易运动员
+{
+	Name name; //名称
+	int year; //年龄
+	BriefGame score[3];//某项比赛得分
+	int rank;//排名
+};
 
 
 
@@ -93,6 +100,11 @@ struct PlayerListNode {//运动员的链表节点
 struct GroupListNode {//组的链表节点
 	Group group;
 	GroupListNode* next;
+};
+
+struct BriefPlayerListNode {//新建运动员的链表节点
+BriefPlayer briefplayer;
+BriefPlayerListNode* next;
 };
 
 
@@ -146,3 +158,13 @@ void deleteNode(GroupListNode * p);
 int longNode(GroupListNode* pHead);
 void saveGrouplist(GroupListNode* pHead);
 void printGrouplist(GroupListNode* pHead);
+
+//5.17新建简易运动员
+
+BriefPlayerListNode * createpHead(BriefPlayer briefplayer);
+
+void addNode(BriefPlayerListNode * pHead, BriefPlayer briefplayer);
+
+void insertNode(BriefPlayerListNode * p, BriefPlayer briefplayer);
+
+BriefPlayerListNode* readBriefplayerlist();
