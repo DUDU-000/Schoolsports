@@ -36,6 +36,16 @@ struct EndTime//时间（ xx : xx ）
 	int minute;//几分
 };
 
+struct BriefGame_2//简略版记录
+{
+	Name name;//项目名称
+	int number;//报名人数
+	Name playername[99];
+	double score[99];//对运动员:个人成绩; 对单位:最优成绩
+	int point[99];//得分
+	int rank[99];//排名
+};
+
 struct BriefGame//简略版记录
 {
 	Name name;//项目名称
@@ -75,13 +85,8 @@ struct Player//运动员
 	int game_number;
 	BriefGame score[3];//某项比赛得分
 };
-struct BriefPlayer //新建简易运动员
-{
-	Name name; //名称
-	int year; //年龄
-	BriefGame score[3];//某项比赛得分
-	int rank;//排名
-};
+
+
 
 
 
@@ -102,9 +107,9 @@ struct GroupListNode {//组的链表节点
 	GroupListNode* next;
 };
 
-struct BriefPlayerListNode {//新建运动员的链表节点
-BriefPlayer briefplayer;
-BriefPlayerListNode* next;
+struct BriefGame_2ListNode {//新建简易比赛的链表节点
+BriefGame_2 briefgame_2;
+BriefGame_2ListNode* next;
 };
 
 
@@ -161,10 +166,8 @@ void printGrouplist(GroupListNode* pHead);
 
 //5.17新建简易运动员
 
-BriefPlayerListNode * createpHead(BriefPlayer briefplayer);
-
-void addNode(BriefPlayerListNode * pHead, BriefPlayer briefplayer);
-
-void insertNode(BriefPlayerListNode * p, BriefPlayer briefplayer);
-
-BriefPlayerListNode* readBriefplayerlist();
+BriefGame_2ListNode * InipHead();
+void addNode(BriefGame_2ListNode * pHead, BriefGame_2 briefplayer);
+int longNode(BriefGame_2ListNode* pHead);
+void saveBriefGame_2list(BriefGame_2ListNode* pHead);
+BriefGame_2ListNode* deleteNode(BriefGame_2ListNode* pHead, BriefGame_2ListNode* p);

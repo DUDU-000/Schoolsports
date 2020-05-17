@@ -425,38 +425,79 @@ void printGrouplist(GroupListNode* pHead) {
 	}
 }
 
-//新建简易运动员的链表函数
+//新建简易比赛的链表函数
+BriefGame_2ListNode* InipHead() {//初始化简易链表（已排序），每次使用前要调用这个函数
+	char name[20];
+	double score,id;
+	int point;
+	GameListNode* p_game = readGamelist();
+	PlayerListNode* p_player = readPlayerlist();
+	if (p_player == NULL || p_game == NULL)return NULL;
+	BriefGame_2ListNode* pHeadNode = new BriefGame_2ListNode;//创建一个新的指针节点并分配空间
+	if (pHeadNode == NULL) {
+		printf("创建链表失败");
+		exit(0);
+	}
+	BriefGame_2ListNode* p = pHeadNode;
+	while (p_game->next) {//以比赛为单位逐个比赛内部排序
+		p->briefgame_2.name.id = p_game->game.name.id;
+		strcpy(p->briefgame_2.name.name, p_game->game.name.name);
+		p->briefgame_2.number = p_game->game.number;
+		p_game = p_game->next;
+		for (int i = 0; i < p->briefgame_2.number; i++) {//该项目的运动人员循环
+			while (p_player->next) {
+				for (int x = 0; x < p_player->player.game_number; x++)//运动员本身成绩查询
+				{
+					if (p_player->player.score[x].name.id == p->briefgame_2.name.id) {//获取运动员在该项目的成绩
+						p->briefgame_2.playername[i].id = p_player->player.name.id;
+						strcpy(p->briefgame_2.playername[i].name, p_player->player.name.name);
+						p->briefgame_2.score[i] = p_player->player.score[x].score;
+						p->briefgame_2.point[i] = p_player->player.score[x].point;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < p->briefgame_2.number - 1; i++) {
+			for (int j = 0; j < p->briefgame_2.number -1-i; j++)
+			{
+				if (p->briefgame_2.score[j] < p->briefgame_2.score[j + 1]) {
+					id = p->briefgame_2.playername[j].id;
+					p->briefgame_2.playername[j].id = p->briefgame_2.playername[j + 1].id;
+					p->briefgame_2.playername[j+1].id =id;//id交换
 
-//创建一个链表的头节点,函数返回值为该节点指针
-BriefPlayerListNode* createpHead(BriefPlayer briefplayer) {
-	BriefPlayerListNode* pHeadNode = new BriefPlayerListNode;//创建一个新的指针节点并分配空间
-	pHeadNode->briefplayer = briefplayer;//将briefplayer赋值进改节点中
-	pHeadNode->next = NULL;//该节点的next指向NULL
-	return pHeadNode;
+					strcpy(name, p->briefgame_2.playername[j].name);
+					strcpy(p->briefgame_2.playername[j].name, p->briefgame_2.playername[j+1].name);
+					strcpy(p->briefgame_2.playername[j+1].name,name);//运动员名称交换
+
+					score = p->briefgame_2.score[j];
+					p->briefgame_2.score[j] = p->briefgame_2.score[j + 1];
+					p->briefgame_2.score[j + 1] = score;//成绩交换
+
+					point = p->briefgame_2.point[j];
+					p->briefgame_2.point[j]= p->briefgame_2.point[j+1];
+					p->briefgame_2.point[j + 1] = point;//得分交换
+				}
+			}
+		}
+		for (int i = 0; i < p->briefgame_2.number - 1; i++) { p->briefgame_2.rank[i] = i + 1; }
+	}
 }
-//在链表最后面新增一个节点,新增节点的数据为briefplayer,pHead为该链表中任一指针节点.
-void addNode(BriefPlayerListNode* pHead, BriefPlayer briefplayer) {
-	BriefPlayerListNode* p = pHead;
-	BriefPlayerListNode* pNewNode = new BriefPlayerListNode;//创建一个新的指针节点并分配空间
-	pNewNode->briefplayer = briefplayer;//将briefplayer赋值进改节点中
+//在链表最后面新增一个节点,新增节点的数据为player,pHead为该链表中任一指针节点.
+void addNode(BriefGame_2ListNode* pHead, BriefGame_2 BriefGame_2) {
+	BriefGame_2ListNode* p = pHead;
+	BriefGame_2ListNode* pNewNode = new BriefGame_2ListNode;//创建一个新的指针节点并分配空间
+	pNewNode->briefgame_2 = BriefGame_2;//将gmae赋值进改节点中
 	pNewNode->next = NULL;//该节点的next指向NULL
 	while (p->next != NULL) {//找到最后的节点指针
 		p = p->next;
 	}
 	p->next = pNewNode;//将最后的节点指针指向新的节点
 }
-//p节点后插入值为player的节点
-void insertNode(BriefPlayerListNode* p, BriefPlayer briefplayer) {
-	BriefPlayerListNode* pNewNode = new BriefPlayerListNode;//创建一个新的指针节点并分配空间
-	pNewNode->briefplayer = briefplayer;//将briefplayer赋值进改节点中
-	pNewNode->next = p->next;//该新节点的next指向p的下一个节点
-	p->next = pNewNode;//将最后的节点指针指向新的节点
-}
 //删除节点p,pHead是头节点,返回头节点,如果全删除了返回NULL;
-BriefPlayerListNode* deleteNode(BriefPlayerListNode* pHead, BriefPlayerListNode* p) {
+BriefGame_2ListNode* deleteNode(BriefGame_2ListNode* pHead, BriefGame_2ListNode* p) {
 	if (p->next != NULL) {
-		p->briefplayer = p->next->briefplayer;//将下一个节点的内容放入p中
-		BriefPlayerListNode* p_next = p->next;//记录指针
+		p->briefgame_2 = p->next->briefgame_2;//将下一个节点的内容放入p中
+		BriefGame_2ListNode* p_next = p->next;//记录指针
 		p->next = p->next->next;//将下一个节点的next放入p中,
 								//相当于丢失了将p下一个节点复制到p中,并丢失了p下一个节点
 		free(p_next);//释放无用内存
@@ -468,7 +509,7 @@ BriefPlayerListNode* deleteNode(BriefPlayerListNode* pHead, BriefPlayerListNode*
 		return NULL;
 	}
 	else {//p是最后一个节点
-		BriefPlayerListNode* newp = pHead;
+		BriefGame_2ListNode* newp = pHead;
 		while (newp->next->next != NULL) {
 			newp = newp->next;
 		}
@@ -478,9 +519,9 @@ BriefPlayerListNode* deleteNode(BriefPlayerListNode* pHead, BriefPlayerListNode*
 	}
 }
 //传入头节点,返回有多少个节点
-int longNode(BriefPlayerListNode* pHead) {
+int longNode(BriefGame_2ListNode* pHead) {
 	int i = 0;
-	BriefPlayerListNode* p = pHead;
+	BriefGame_2ListNode* p = pHead;
 	if (p == NULL) return 0;
 	else i++;
 	while (p->next != NULL) {
@@ -489,79 +530,29 @@ int longNode(BriefPlayerListNode* pHead) {
 	}
 	return i;
 }
-//传入文件数据至链表
-BriefPlayerListNode* readBriefPlayerlist() {
-	FILE *fp;//文件指针
-	BriefPlayerListNode* pHead = NULL;
-	int line_long;
-	BriefPlayer BriefPlayer;
-	Player player;
-	/*文件的打开*/
-	fp = fopen("BriefPlayer.txt", "rt+");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
 
-	std::string file_path = "BriefPlayer.txt";
-	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空
-		return NULL;
-	}
-
-	fscanf_s(fp, "运动员数量:%d\n", &line_long);
-	for (int i = 0; i < line_long; i++) {
-		fscanf_s(fp, "ID:%d\n", BriefPlayer.name.id);//id
-		fscanf_s(fp, "名称:%s\n", &BriefPlayer.name.name, 99);//名称
-		fscanf_s(fp, "年龄:%d\n", &BriefPlayer.year);//年龄
-		for (int j = 0; j < player.game_number; j++) {
-			fscanf_s(fp, "项目ID:%d\n", &BriefPlayer.score[j].name.id);//项目id
-			fscanf_s(fp, "项目名称:%s\n", &BriefPlayer.score[j].name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%1f\n", &BriefPlayer.score[j].score);//项目成绩
-			fscanf_s(fp, "项目得分:%d\n", &BriefPlayer.score[j].point);//项目成绩
-			fscanf_s(fp, "排名:%d\n", BriefPlayer.rank);//排名
-		}
-		if (i == 0) pHead = createpHead(BriefPlayer);
-		else addNode(pHead, BriefPlayer);
-	}
-	fclose(fp);
-	return pHead;
-}
 //把链表存入文件中
-void saveBriefPlayerlist(BriefPlayerListNode* pHead) {
-	FILE *fp;//文件指针
-	fp = fopen("BriefPlayer.txt", "w");
+void saveBriefGame_2list(BriefGame_2ListNode* pHead) {
+	FILE* fp;//文件指针
+	fp = fopen("BriefGame_2.txt", "w");
 	int line_long = longNode(pHead);//该链表有多少个节点
-	BriefPlayerListNode* p = pHead;
-	BriefPlayer BriefPlayer;
-	Player player;
-	fprintf(fp, "运动员数量:%d\n", line_long);
+	BriefGame_2ListNode* p = pHead;
+	BriefGame_2 BriefGame_2;
+
+	fprintf(fp, "项目数量:%d\n", line_long);//储存有多少个节点
 	for (int i = 0; i < line_long; i++, p = p->next) {
-		BriefPlayer = p->briefplayer;
-		fprintf(fp, "ID:%d\n", BriefPlayer.name.id);//id
-		fprintf(fp, "名称:%s\n", BriefPlayer.name.name);//名称
-		fprintf(fp, "年龄:%d\n", BriefPlayer.year);//年龄
-		for (int j = 0; j < player.game_number; j++) {
-			fprintf(fp, "项目ID:%d\n", BriefPlayer.score[j].name.id);//项目id
-			fprintf(fp, "项目名称:%s\n", BriefPlayer.score[j].name.name);//项目名称
-			fprintf(fp, "项目成绩:%lf\n", BriefPlayer.score[j].score);//项目成绩
-			fprintf(fp, "项目得分:%d\n", BriefPlayer.score[j].point);//项目成绩
-			fprintf(fp, "排名:%d\n", BriefPlayer.rank);//排名
+		BriefGame_2 = p->briefgame_2;
+		fprintf(fp, "ID:%d\n", BriefGame_2.name.id/*id*/);
+		fprintf(fp, "名称:%s\n", BriefGame_2.name.name/*名称*/);
+		fprintf(fp, "人数:%d\n", BriefGame_2.number/*报名人数*/);
+		for (int j = 0; j < BriefGame_2.number; j++) {//储存报名人员id
+			fprintf(fp, "报名人员ID:%d ", BriefGame_2.playername[j].id);//
+			fprintf(fp, "报名人员名称:%s ", BriefGame_2.playername[j].name);//报名人名称
+			fprintf(fp, "报名人员成绩:%f ", BriefGame_2.score[j]);//成绩
+			fprintf(fp, "报名人员得分:%d ", BriefGame_2.point[j]);//得分
+			fprintf(fp, "报名人员排名:%d\n", BriefGame_2.rank[j]);//排名
 		}
-	}
 
+	}
 	fclose(fp);
-}
-//打印链表
-void printBriefPlayerlist(BriefPlayerListNode* pHead)
-{
-	int line_long = longNode(pHead);
-	BriefPlayerListNode* p = pHead;
-	BriefPlayer BriefPlayer;
-	Player player;
-	for (int i = 0; i < line_long; i++, p = p->next) {
-		BriefPlayer = p->briefplayer;
-		printf(" ID:%d ", BriefPlayer.name.id);
-		printf("名称:%s ", BriefPlayer.name.name/*名称*/);
-		printf(" 参加项目:");
-		if (player.game_number == 0) printf("无");
-		else for (int j = 0; j < player.game_number; j++) printf("%s/  排名：%d ", &BriefPlayer.score[j].name.name, BriefPlayer.rank);//项目名称及其排名
-		printf("\n");
-	}
-
 }

@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-
+#include"linked_list.h"
 
 //若entry在mix与max之间,则返回int型的entry,否则,返回0,传入的是char型数组
 int entrycheck(char entry[] , int mix,int max) {
@@ -27,3 +27,4 @@ bool file_is_empty(std::string &file_path) {//参数是文件路径
 	else
 		return false;
 }
+
