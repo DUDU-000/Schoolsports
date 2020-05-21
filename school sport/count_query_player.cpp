@@ -1,8 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-#include"basic_info.h"
-#include"count_query.h"
+#include"activity.h"
 #include"linked_list.h"
 
 void single_player_score() {
@@ -48,7 +47,7 @@ void count_query_player() {
 	rewind(stdin);
 	int swi = entrycheck(entry, 1, 3);
 	switch (swi) {
-	case -1: count_query(); break;
+	case -1: break;
 	case 1:single_player_score(); break;
 	case 2: break;
 	case 3: break;

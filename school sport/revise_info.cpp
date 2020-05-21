@@ -1,7 +1,7 @@
 #include<iostream>
 #include <stdio.h>
 #include <string.h>
-#include "basic_info.h"
+#include"activity.h"
 #include"linked_list.h"
 #include"method.h"
 

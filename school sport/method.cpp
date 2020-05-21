@@ -17,14 +17,33 @@ int entrycheck(char entry[] , int mix,int max) {
 
 bool file_is_empty(std::string &file_path) {//参数是文件路径
 	struct stat buf;
-
 	stat(file_path.c_str(), &buf);
-
 	size_t size = buf.st_size;
-
 	if (size == 0)//若文件为空 ,返回true
 		return true;
 	else
 		return false;
+}
+
+void savesituation(int a) {
+	FILE *fp;//文件指针
+	fp = fopen("setting.txt", "w");
+	fprintf(fp, "状态:%d\n", a);
+	fclose(fp);
+}
+
+int readsituation() {
+	FILE *fp;//文件指针
+	int a;
+	/*文件的打开*/
+	fp = fopen("setting.txt", "rt+");//fopen打开文件，这个文件可以是当前不存在的。“w”以写入的形式打开，“r”以读的形式打开
+	std::string file_path = "setting.txt";
+
+	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空
+		return -1;
+	}
+	fscanf_s(fp, "状态:%d\n", &a);
+	fclose(fp);
+	return a;
 }
 

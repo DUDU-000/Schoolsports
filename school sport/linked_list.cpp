@@ -97,7 +97,6 @@ GameListNode* readGamelist() {
 			fscanf_s(fp, "报名人员ID:%d\n", &game.playerid[j].id);//报名人员id
 			fscanf_s(fp, "报名人员名称:%s\n", &game.playerid[j].name,99);//报名人名称
 		}
-		fscanf_s(fp, "报名状态(0:进行中|1:截止):%d\n", & game.status);//报名状态
 		if (i == 0) pHead = createpHead(game);
 		else addNode(pHead, game);
 	}
@@ -127,7 +126,6 @@ void saveGamelist(GameListNode* pHead) {
 			fprintf(fp, "报名人员ID:%d\n", game.playerid[j].id);
 			fprintf(fp, "报名人员名称:%s\n", game.playerid[j].name);//报名人名称
 		}
-		fprintf(fp, "报名状态(0:进行中|1:截止):%d\n", game.status);//报名状态
 	}
 	fclose(fp);
 }

@@ -1,19 +1,12 @@
 #pragma once
 #include"linked_list.h"
-//三个不同类型,在activity中使用
-const int type_group = 1;
-const int type_player = 2;
-const int type_game = 3;
 
-
-void basic_info();
-void group_info();
-void player_info();
-void game_info();
 
 void query_game_menu();
 void query_group_menu();
 void query_player_menu();
+void add_menu();
+
 
 void searchGamelist_type();
 void searchGamelist_name();
@@ -26,6 +19,7 @@ void searchGroup_name();
 void searchGroup_all();
 void searchGroup_game(GroupListNode* p);
 void searchGroup_palyer(GroupListNode* p);
+
 
 
 void information_game(GameListNode* pHead, int situation);

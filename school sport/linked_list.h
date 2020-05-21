@@ -73,7 +73,6 @@ struct Game//比赛项目
 	char place[7];//比赛地点
 	int number;//报名人数
 	Name playerid[99];//报名运动员id
-	int status=0;//0表示报名进行中 1表示报名截止
 };
 struct Player//运动员
 {

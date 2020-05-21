@@ -3,10 +3,10 @@
 #include<string.h>
 #include"method.h"
 #include"linked_list.h"
-#include"basic_info.h"
+#include"activity.h"
 
 
-void addGameNode() {//type有三种类型,分别是三个在basic_info.h里的常数,对应三种情况
+void addGameNode() {
 
 	Game newGame;
 	GameListNode* pHead, *p;

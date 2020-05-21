@@ -1,17 +1,17 @@
 #include<iostream>
 #include <stdio.h>
 #include <string.h>
-#include "basic_info.h"
+#include"activity.h"
 #include"linked_list.h"
 #include"method.h"
 
 
 void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µÄÎ»ÖÃ(µÚ¼¸¸ö)
+
+	int sit = readsituation();
 	int i = 1;
 	GameListNode* p_game=pnewHead;
 	Game game;
-	
-
 	while (i != situation) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã
 		p_game = p_game->next;
 		i++;
@@ -36,7 +36,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	printf("\n\n\n");
 
 
-	if (game.status == 0)//±¨Ãû½øĞĞÖĞ½çÃæ
+	if (sit == 0)//±¨Ãû,ĞŞ¸Ä½øĞĞÖĞ½çÃæ
 	{
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
@@ -117,10 +117,9 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		case 4:break;//·µ»Ø
 		}
 	}
-	else if (game.status == 1)//±¨Ãû½ØÖ¹½çÃæ
-	{
+	else if (sit == 1){//±¨Ãû½ØÖ¹½çÃæ
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.³É¼¨Â¼Èë\n4.·µ»Ø");//Ñ¡Ïî
+		printf("1.³É¼¨Â¼Èë\n2.·µ»Ø");//Ñ¡Ïî
 
 		int x = -1;
 		char entry_s[99] = { 0 };
@@ -128,32 +127,39 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		{
 			gets_s(entry_s, 99);
 			rewind(stdin);
-			x = entrycheck(entry_s, 1, 3);
+			x = entrycheck(entry_s, 1, 2);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		}
+
+
+		switch (x) {
+		case 1: score_entry(game); break;//ĞŞ¸Ä
+		case 2: break;//·µ»Ø
+		}
+
+	}
+	else if (sit == 2) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø");//Ñ¡Ïî
+
+		int x = -1;
+		char entry_s[99] = { 0 };
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 2);
 			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
 		switch (x) {
-		case 1: reviseGame(game); break;//ĞŞ¸Ä
-		case 2: {
-			GameListNode* pHead = readGamelist();
-			p_game = pHead;
-			while (p_game->game.name.id != game.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
-				p_game = p_game->next;
-			}
-			pHead = deleteNode(pHead, p_game);
-			saveGamelist(pHead);
-			printf("\n\nÉ¾³ıÍê³É\n");
-			system("pause");
-		}; break;//É¾³ı
-		case 3: {
-			score_entry(game);
-		}break;//³É¼¨Â¼Èë
-
-		case 4:break;//·µ»Ø
+		case 1: system("pause"); break;//ĞŞ¸Ä
+		case 2: break;//·µ»Ø
 		}
 	}
 }
 
 void information_player(PlayerListNode* pnewHead, int situation) {
+	int sit = readsituation();
 	int i = 1;
 	PlayerListNode* p = pnewHead;
 	Player player;
@@ -183,91 +189,131 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 		printf("ÏîÄ¿³É¼¨:%f ", player.score->score);//ÏîÄ¿³É¼¨
 		printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
 	}
-
-
 	printf("\n\n\n");
-	printf("²Ù×÷:\n");//²Ù×÷
-	printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
 
-	int x = -1;
-	char entry_s[99];
-	while (x == -1)//ÊäÈë¼ì²â
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		x = entrycheck(entry_s, 1, 4);
-		if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-	}
-	switch (x){
-	case 1: revisePlayer(player); break;//ĞŞ¸Ä
-	case 2:{
-		PlayerListNode* pHead = readPlayerlist();
-		p = pHead;
-		while (p->player.name.id != player.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
-			p = p->next;
+
+	if (sit == 0) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
+		int x = -1;
+		char entry_s[99];
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 4);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
-		pHead = deleteNode(pHead, p);
-		savePlayerlist(pHead);
-		printf("\n\nÉ¾³ıÍê³É\n");
-		system("pause");
-	}//É¾³ı
-	break;
-	case 3: {
-		if (player.game_number < 3) {
-			printf("\n\nÇëÊäÈë±ÈÈüID:");
-			int x = -1;
-			char entry_s[99];
-			GameListNode* pHead_game = readGamelist();
-			GameListNode* p_game;
-			while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
-				while (x == -1)//ÊäÈë¼ì²â
-				{
-					gets_s(entry_s, 99);
-					rewind(stdin);
-					x = entrycheck(entry_s, 1, 99);
-					if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-				}
-				p_game = pHead_game;
-				while (p_game->game.name.id != x) {
-					if (p_game->next == NULL) break;
-					p_game = p_game->next;
-				}
-				if (p_game->game.name.id != x&&p_game->next == NULL) {
-					printf("ÕÒ²»µ½¸Ã±ÈÈü,ÇëÖØĞÂÊäÈë:");
-					x = -1;
-				}
-				else break;
-			}
-			player.score[player.game_number].name = p_game->game.name;
-			player.score[player.game_number].point = 0;
-			player.score[player.game_number].score = 0;
-			player.game_number++;
-			p_game->game.playerid[p_game->game.number] = player.name;
-			p_game->game.number++;
 
-			saveGamelist(pHead_game);
-			
-			PlayerListNode* pHead_player = readPlayerlist();
-			p = pHead_player;
+		switch (x) {
+		case 1: revisePlayer(player); break;//ĞŞ¸Ä
+		case 2: {
+			PlayerListNode* pHead = readPlayerlist();
+			p = pHead;
 			while (p->player.name.id != player.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
 				p = p->next;
 			}
-			p->player = player;
-			savePlayerlist(pHead_player);
-			printf("±¨Ãû³É¹¦\n");
-		}
-		else {
-			printf("ÔË¶¯Ô±ÒÑ±¨ÃûÈı¸öÏîÄ¿,²»¿ÉÔÙ±¨Ãû\n");
-		}
-		system("pause");
-	}
-	break;//±¨Ãû
-	case 4:break;
+			pHead = deleteNode(pHead, p);
+			savePlayerlist(pHead);
+			printf("\n\nÉ¾³ıÍê³É\n");
+			system("pause");
+		}//É¾³ı
+		break;
+		case 3: {
+			if (player.game_number < 3) {
+				printf("\n\nÇëÊäÈë±ÈÈüID:");
+				int x = -1;
+				char entry_s[99];
+				GameListNode* pHead_game = readGamelist();
+				GameListNode* p_game;
+				while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
+					while (x == -1)//ÊäÈë¼ì²â
+					{
+						gets_s(entry_s, 99);
+						rewind(stdin);
+						x = entrycheck(entry_s, 1, 99);
+						if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+					}
+					p_game = pHead_game;
+					while (p_game->game.name.id != x) {
+						if (p_game->next == NULL) break;
+						p_game = p_game->next;
+					}
+					if (p_game->game.name.id != x&&p_game->next == NULL) {
+						printf("ÕÒ²»µ½¸Ã±ÈÈü,ÇëÖØĞÂÊäÈë:");
+						x = -1;
+					}
+					else break;
+				}
+				player.score[player.game_number].name = p_game->game.name;
+				player.score[player.game_number].point = 0;
+				player.score[player.game_number].score = 0;
+				player.game_number++;
+				p_game->game.playerid[p_game->game.number] = player.name;
+				p_game->game.number++;
 
+				saveGamelist(pHead_game);
+
+				PlayerListNode* pHead_player = readPlayerlist();
+				p = pHead_player;
+				while (p->player.name.id != player.name.id) {//ÕÒµ½ËùÑ¡ÔñµÄ½Úµã,Õâ¸ö´úÂëÄã¿ÉÒÔÔÚĞŞ¸ÄÄÇÀïÓÃ;
+					p = p->next;
+				}
+				p->player = player;
+				savePlayerlist(pHead_player);
+				printf("±¨Ãû³É¹¦\n");
+			}
+			else {
+				printf("ÔË¶¯Ô±ÒÑ±¨ÃûÈı¸öÏîÄ¿,²»¿ÉÔÙ±¨Ãû\n");
+			}
+			system("pause");
+		}break;//±¨Ãû
+		case 4:break;
+
+		}
+	}
+	else if (sit == 1) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.³É¼¨Â¼Èë\n2.·µ»Ø\n");//Ñ¡Ïî
+		int x = -1;
+		char entry_s[99];
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 4);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		}
+
+		switch (x) {
+		case 1:break;
+		case 2:break;
+		}
+
+
+	}
+	else if (sit == 2) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
+		int x = -1;
+		char entry_s[99];
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 4);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		}
+
+		switch (x) {
+		case 1:break;
+		case 2:break;
+		}
 	}
 }
 
 void information_group(GroupListNode* pnewHead, int situation) {
+	int sit = readsituation();
 	int i = 1;
 	GroupListNode* p = pnewHead;
 	Group group;
@@ -284,49 +330,87 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	int swi=-1;
 	char entry_str[99] = {0};
 	printf("\n\n\n");
-	printf("²Ù×÷:\n");//²Ù×÷
-	printf("1.±ÈÈü³É¼¨²é¿´\n2.µ¥Î»³ÉÔ±\n3.ĞŞ¸ÄÃû³Æ\n4.É¾³ı\n5.·µ»Ø\n");//Ñ¡Ïî
-	while (swi == -1) {
-		gets_s(entry_str, 99);
-		rewind(stdin);
-		swi = entrycheck(entry_str, 1, 5);
-		if (swi == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-	}
 
-	switch (swi)
-	{
-	case 1: {//´Ë´¦±ÈÈü¼ÇÂ¼Ö»¿É²é¿´(»òÒà¿ÉĞŞ¸Ä?´ıÉÌÌÖ)
-		searchGroup_game(p);
-		GroupListNode* pHead = readGrouplist();
-		GroupListNode* p_2 = pHead;
-		while (p_2->group.name.id != p->group.name.id) {
-			p_2 = p_2->next;
+	if (sit == 0) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.µ¥Î»³ÉÔ±\n2.ĞŞ¸ÄÃû³Æ\n3.É¾³ı\n4.·µ»Ø\n");//Ñ¡Ïî
+		while (swi == -1) {
+			gets_s(entry_str, 99);
+			rewind(stdin);
+			swi = entrycheck(entry_str, 1, 5);
+			if (swi == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
-		p_2->group = p->group;
-		saveGrouplist(pHead); 
-	}; break;
-	case 2: {
-		searchGroup_palyer(p);
-		GroupListNode* pHead = readGrouplist();
-		GroupListNode* p_2 = pHead;
-		while (p_2->group.name.id != p->group.name.id) {
-			p_2 = p_2->next;
+
+		switch (swi)
+		{
+		case 1: {
+			searchGroup_palyer(p);
+			GroupListNode* pHead = readGrouplist();
+			GroupListNode* p_2 = pHead;
+			while (p_2->group.name.id != p->group.name.id) {
+				p_2 = p_2->next;
+			}
+			p_2->group = p->group;
+			saveGrouplist(pHead);
+		} break;
+		case 2:reviseGroup(group); break;
+		case 3: {
+			GroupListNode* pHead = readGrouplist();
+			p = pHead;
+			while (p->group.name.id != group.name.id) {
+				p = p->next;
+			}
+			deleteNode(p);
+			saveGrouplist(pHead);
+			printf("\n\nÉ¾³ıÍê³É\n");
+			system("pause");
+		}break;
+		case 4:break;//·µ»Ø
 		}
-		p_2->group = p->group;
-		saveGrouplist(pHead);
-	} break;
-	case 3:reviseGroup(group); break;
-	case 4: {
-		GroupListNode* pHead = readGrouplist();
-		p = pHead;
-		while (p->group.name.id != group.name.id) {
-			p = p->next;
+	}
+	else if (sit == 1) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
+		int x = -1;
+		char entry_s[99];
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 4);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
 		}
-		deleteNode(p);
-		saveGrouplist(pHead);
-		printf("\n\nÉ¾³ıÍê³É\n");
-		system("pause");
-	}break;
-	case 5:break;//·µ»Ø
+
+		switch (x) {
+		case 1:break;
+		case 2:break;
+		}
+	}
+	else if (sit == 2) {
+		printf("²Ù×÷:\n");//²Ù×÷
+		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
+		int x = -1;
+		char entry_s[99];
+		while (x == -1)//ÊäÈë¼ì²â
+		{
+			gets_s(entry_s, 99);
+			rewind(stdin);
+			x = entrycheck(entry_s, 1, 4);
+			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
+		}
+
+		switch (x) {
+		case 1: {//´Ë´¦±ÈÈü¼ÇÂ¼Ö»¿É²é¿´(»òÒà¿ÉĞŞ¸Ä?´ıÉÌÌÖ)
+			searchGroup_game(p);
+			GroupListNode* pHead = readGrouplist();
+			GroupListNode* p_2 = pHead;
+			while (p_2->group.name.id != p->group.name.id) {
+				p_2 = p_2->next;
+			}
+			p_2->group = p->group;
+			saveGrouplist(pHead);
+		}; break;
+		case 2:break;
+		}
 	}
 }
