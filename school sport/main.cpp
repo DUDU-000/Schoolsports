@@ -63,6 +63,7 @@ int main()
 		}
 		else if (situation == 1) {//进入下一阶段
 			savesituation(2);
+			main();
 		}
 		else if (situation == 2) {//排名
 			
@@ -72,6 +73,7 @@ int main()
 	case 5: {
 		if (situation == 0) {//进入下一阶段
 			savesituation(1);
+			main();
 		}
 		else {//退出
 			system("pause");

@@ -214,6 +214,7 @@ int longNode(PlayerListNode *pHead) {
 PlayerListNode* readPlayerlist() {
 	FILE *fp;//文件指针
 	PlayerListNode* pHead = NULL;
+
 	int line_long;
 	Player player;
 
@@ -237,7 +238,7 @@ PlayerListNode* readPlayerlist() {
 		for (int j = 0; j < player.game_number; j++) {
 			fscanf_s(fp, "项目ID:%d\n", &player.score[j].name.id);//项目id
 			fscanf_s(fp, "项目名称:%s\n", &player.score[j].name.name, 99);//项目名称
-			fscanf_s(fp, "项目成绩:%1f\n", &player.score[j].score);//项目成绩
+			fscanf_s(fp, "项目成绩:%lf\n", &player.score[j].score);//项目成绩
 			fscanf_s(fp, "项目得分:%d\n", &player.score[j].point);//项目成绩
 		}
 		if (i == 0) pHead = createpHead(player);
@@ -267,7 +268,7 @@ void savePlayerlist(PlayerListNode* pHead) {
 		for (int j = 0; j < player.game_number; j++) {
 			fprintf(fp, "项目ID:%d\n", player.score[j].name.id);//项目id
 			fprintf(fp, "项目名称:%s\n", player.score[j].name.name);//项目名称
-			fprintf(fp, "项目成绩:%lf\n", player.score[j].score);//项目成绩
+			fprintf(fp, "项目成绩:%0.2f\n", player.score[j].score);//项目成绩
 			fprintf(fp, "项目得分:%d\n", player.score[j].point);//项目成绩
 		}
 	}

@@ -18,13 +18,13 @@ int entrycheck(char entry[] , int mix,int max) {
 int entrycheckandreinput(int mix ,int max) {
 	int x = -1;
 	char entry_s[99] = { 0 };
-	printf("输入:");
+	printf("\n输入:");
 	while (x == -1)//输入检测
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
 		x = entrycheck(entry_s, mix, max);
-		if (x == -1)printf("输入有误,请重新输入:");
+		if (x == -1)printf("\n输入有误,请重新输入:");
 	}
 	return x;
 }
@@ -56,7 +56,7 @@ int readsituation() {
 	if (fp == NULL || file_is_empty(file_path)) {//判断如果文件指针为空
 		return -1;
 	}
-	fscanf_s(fp, "状态:%d\n", &a);
+	fscanf_s(fp, "状态:%d", &a);
 	fclose(fp);
 	return a;
 }

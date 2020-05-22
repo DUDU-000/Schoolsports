@@ -67,10 +67,15 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 				printf("ÊäÈë:");
 				int id = -1;
 				while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
-					id = entrycheckandreinput(1, 99);
+
+					id = entrycheckandreinput(0, 99);
+
 
 					if (id == 0) break;
+
+
 					p_player = pHead_player;
+
 					while (p_player->player.name.id != id) {
 						if (p_player->next == NULL) break;
 						p_player = p_player->next;
@@ -107,13 +112,13 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	}
 	else if (sit == 1){//±¨Ãû½ØÖ¹½çÃæ
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.È«³É¼¨Â¼Èë\n2.²é¿´³É¼¨\n3.ĞŞ¸Ä³É¼¨\n4.·µ»Ø");//Ñ¡Ïî
+		printf("1.È«³É¼¨Â¼Èë\n2.²é¿´³É¼¨\n3.ĞŞ¸Ä³É¼¨\n4.·µ»Ø\n");//Ñ¡Ïî
 
 		int x = entrycheckandreinput(1, 4);
 
 		switch (x) {
 		case 1: game_score_entry(game); information_game(pnewHead, situation); break;//³É¼¨Â¼Èë
-		case 2: break;//·µ»Ø
+		case 2: game_socre_print(game); information_game(pnewHead, situation); break;//·µ»Ø
 		case 3: break;//·µ»Ø
 		case 4: break;//·µ»Ø
 		}
@@ -121,7 +126,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	}
 	else if (sit == 2) {
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø");//Ñ¡Ïî
+		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
 
 		int x = entrycheckandreinput(1, 2);
 
@@ -159,7 +164,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	else 
 	for (int j = 0; j < player.game_number; j++) {
 		printf("ÏîÄ¿Ãû³Æ:%s ", player.score->name.name);//ÏîÄ¿Ãû³Æ
-		printf("ÏîÄ¿³É¼¨:%f ", player.score->score);//ÏîÄ¿³É¼¨
+		printf("ÏîÄ¿³É¼¨:%0.2f ", player.score->score);//ÏîÄ¿³É¼¨
 		printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
 	}
 	printf("\n\n\n");
@@ -239,7 +244,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	}
 	else if (sit == 1) {//³É¼¨Â¼Èë½×¶Î
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.³É¼¨ĞŞ¸Ä2.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.³É¼¨ĞŞ¸Ä\n2.·µ»Ø\n");//Ñ¡Ïî
 		
 		int x = entrycheckandreinput(1, 2);
 
@@ -317,7 +322,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	}
 	else if (sit == 1) {
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.µ¥Î»³ÉÔ±2.³É¼¨²éÑ¯\n3.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.µ¥Î»³ÉÔ±\n2.³É¼¨²éÑ¯\n3.·µ»Ø\n");//Ñ¡Ïî
 		
 		int x = entrycheckandreinput(1, 2);
 

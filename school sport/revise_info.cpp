@@ -4,6 +4,7 @@
 #include"activity.h"
 #include"linked_list.h"
 #include"method.h"
+#include"menu.h"
 
 void reviseGame(Game game) {
 	system("CLS");

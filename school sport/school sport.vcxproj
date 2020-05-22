@@ -28,7 +28,7 @@
     <ClCompile Include="method.cpp" />
     <ClCompile Include="query_info.cpp" />
     <ClCompile Include="revise_info.cpp" />
-    <ClCompile Include="score_entry.cpp" />
+    <ClCompile Include="score_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="activity.h" />

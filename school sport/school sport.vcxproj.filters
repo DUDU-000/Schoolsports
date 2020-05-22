@@ -48,7 +48,7 @@
     <ClCompile Include="menu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="score_entry.cpp">
+    <ClCompile Include="score_info.cpp">
       <Filter>源文件\activity</Filter>
     </ClCompile>
   </ItemGroup>
