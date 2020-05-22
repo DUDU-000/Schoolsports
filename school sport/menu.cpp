@@ -6,7 +6,6 @@
 
 
 void query_game_menu() {
-	char entry[99];
 	system("CLS");
 	printf("项目查询\n");
 	printf("1.名称查询\n");
@@ -15,9 +14,8 @@ void query_game_menu() {
 	printf("4.所有项目\n");
 	printf("5.返回\n");
 
-	gets_s(entry, 99);
-	rewind(stdin);
-	int swi = entrycheck(entry, 1, 5);
+	int swi = swi = entrycheckandreinput(1, 5);
+
 	switch (swi) {
 	case -1: query_game_menu(); break;
 	case 1: searchGamelist_name(); break;
@@ -28,15 +26,13 @@ void query_game_menu() {
 	}
 }
 void query_group_menu() {
-	char entry[99];
+	
 	system("CLS");
 	printf("组查询\n");
 	printf("1.名称查询\n");
 	printf("2.所有单位\n");
 	printf("3.返回\n");
-	gets_s(entry, 99);
-	rewind(stdin);
-	int swi = entrycheck(entry, 1, 5);
+	int swi = swi = entrycheckandreinput(1, 3);
 	switch (swi) {
 	case -1: query_group_menu(); break;
 	case 1:searchGroup_name(); break;
@@ -45,16 +41,16 @@ void query_group_menu() {
 	}
 }
 void query_player_menu() {
-	char entry[99];
+
 	system("CLS");
 	printf("运动员查询\n");
 	printf("1.名称查询\n");
 	printf("2.小组查询\n");
 	printf("3.所有运动员\n");
 	printf("4.返回\n");
-	gets_s(entry, 99);
-	rewind(stdin);
-	int swi = entrycheck(entry, 1, 5);
+	
+	int swi = swi = entrycheckandreinput(1, 4);
+	
 	switch (swi) {
 	case -1: query_player_menu(); break;
 	case 1: searchPlayerlist_name(); break;
@@ -64,7 +60,6 @@ void query_player_menu() {
 	}
 }
 void add_menu() {
-	char entry[99];
 	system("CLS");
 	printf("增加\n");
 	printf("1.单位\n");
@@ -72,9 +67,7 @@ void add_menu() {
 	printf("3.项目\n");
 	printf("4.返回\n");
 
-	gets_s(entry, 99);
-	rewind(stdin);
-	int swi = entrycheck(entry, 1, 4);
+	int swi = swi = entrycheckandreinput(1, 4);
 
 	switch (swi) {
 	case -1: add_menu(); break;

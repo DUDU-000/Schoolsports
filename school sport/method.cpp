@@ -15,6 +15,20 @@ int entrycheck(char entry[] , int mix,int max) {
 	else return -1;
 }
 
+int entrycheckandreinput(int mix ,int max) {
+	int x = -1;
+	char entry_s[99] = { 0 };
+	printf("输入:");
+	while (x == -1)//输入检测
+	{
+		gets_s(entry_s, 99);
+		rewind(stdin);
+		x = entrycheck(entry_s, mix, max);
+		if (x == -1)printf("输入有误,请重新输入:");
+	}
+	return x;
+}
+
 bool file_is_empty(std::string &file_path) {//参数是文件路径
 	struct stat buf;
 	stat(file_path.c_str(), &buf);

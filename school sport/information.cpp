@@ -41,15 +41,8 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
 
-		int x = -1;
-		char entry_s[99] = { 0 };
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 5);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		int x=entrycheckandreinput(1, 4);
+
 		switch (x) {
 		case 1: reviseGame(game); break;//ĞŞ¸Ä
 		case 2: {
@@ -62,25 +55,20 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 			saveGamelist(pHead);
 			printf("\n\nÉ¾³ıÍê³É\n");
 			system("pause");
-		}
-			  break;//É¾³ı
+			
+		}break;//É¾³ı 
 		case 3: {
 			PlayerListNode* pHead_player = readPlayerlist();
 			PlayerListNode* p_player = pHead_player;
-
+	
 			printf("\nÊäÈëÔË¶¯Ô±ID½øĞĞ±¨Ãû\nÊäÈë0ÍË³ö±¨Ãû\n");
 
 			while (true) {
 				printf("ÊäÈë:");
 				int id = -1;
 				while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
-					while (id == -1)//ÊäÈë¼ì²â
-					{
-						gets_s(entry_s, 99);
-						rewind(stdin);
-						id = entrycheck(entry_s, 0, 99);
-						if (id == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-					}
+					id = entrycheckandreinput(1, 99);
+
 					if (id == 0) break;
 					p_player = pHead_player;
 					while (p_player->player.name.id != id) {
@@ -113,7 +101,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 			saveGamelist(pHead_game);
 			printf("\n\n±¨ÃûÍê³É\n");
 			system("pause");
-		}break;
+		}break;//±¨Ãû
 		case 4:break;//·µ»Ø
 		}
 	}
@@ -121,19 +109,11 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨Â¼Èë\n2.·µ»Ø");//Ñ¡Ïî
 
-		int x = -1;
-		char entry_s[99] = { 0 };
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 2);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		int x = entrycheckandreinput(1, 2);
 
 
 		switch (x) {
-		case 1: score_entry(game); break;//ĞŞ¸Ä
+		case 1: score_entry(game); break;//³É¼¨Â¼Èë
 		case 2: break;//·µ»Ø
 		}
 
@@ -142,17 +122,10 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø");//Ñ¡Ïî
 
-		int x = -1;
-		char entry_s[99] = { 0 };
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 2);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		int x = entrycheckandreinput(1, 2);
+
 		switch (x) {
-		case 1: system("pause"); break;//ĞŞ¸Ä
+		case 1: system("pause"); break;//³É¼¨²éÑ¯
 		case 2: break;//·µ»Ø
 		}
 	}
@@ -195,15 +168,8 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	if (sit == 0) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.ĞŞ¸Ä\n2.É¾³ı\n3.±¨Ãû\n4.·µ»Ø\n");//Ñ¡Ïî
-		int x = -1;
-		char entry_s[99];
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 4);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		
+		int x = entrycheckandreinput(1, 4);
 
 		switch (x) {
 		case 1: revisePlayer(player); break;//ĞŞ¸Ä
@@ -217,8 +183,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 			savePlayerlist(pHead);
 			printf("\n\nÉ¾³ıÍê³É\n");
 			system("pause");
-		}//É¾³ı
-		break;
+		}break;//É¾³ı
 		case 3: {
 			if (player.game_number < 3) {
 				printf("\n\nÇëÊäÈë±ÈÈüID:");
@@ -275,15 +240,8 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	else if (sit == 1) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨Â¼Èë\n2.·µ»Ø\n");//Ñ¡Ïî
-		int x = -1;
-		char entry_s[99];
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 4);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		
+		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
 		case 1:break;
@@ -295,15 +253,8 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	else if (sit == 2) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
-		int x = -1;
-		char entry_s[99];
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 4);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+
+		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
 		case 1:break;
@@ -327,19 +278,13 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	printf("µ¥Î»ÈËÊı:%d\n", group.member_number);
 	printf("µ¥Î»×ÜµÃ·Ö:%d\n", group.fullscore);
 	printf("µ¥Î»±ÈÈü±¨ÃûÊı:%d\n", group.game_number);
-	int swi=-1;
-	char entry_str[99] = {0};
 	printf("\n\n\n");
 
 	if (sit == 0) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.µ¥Î»³ÉÔ±\n2.ĞŞ¸ÄÃû³Æ\n3.É¾³ı\n4.·µ»Ø\n");//Ñ¡Ïî
-		while (swi == -1) {
-			gets_s(entry_str, 99);
-			rewind(stdin);
-			swi = entrycheck(entry_str, 1, 5);
-			if (swi == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		
+		int swi = entrycheckandreinput(1, 4);
 
 		switch (swi)
 		{
@@ -352,8 +297,8 @@ void information_group(GroupListNode* pnewHead, int situation) {
 			}
 			p_2->group = p->group;
 			saveGrouplist(pHead);
-		} break;
-		case 2:reviseGroup(group); break;
+		} break;//µ¥Î»³ÉÔ±
+		case 2:reviseGroup(group); break;//ĞŞ¸ÄÃû³Æ
 		case 3: {
 			GroupListNode* pHead = readGrouplist();
 			p = pHead;
@@ -364,22 +309,15 @@ void information_group(GroupListNode* pnewHead, int situation) {
 			saveGrouplist(pHead);
 			printf("\n\nÉ¾³ıÍê³É\n");
 			system("pause");
-		}break;
+		}break;//É¾³ı
 		case 4:break;//·µ»Ø
 		}
 	}
 	else if (sit == 1) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
-		int x = -1;
-		char entry_s[99];
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 4);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+		
+		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
 		case 1:break;
@@ -389,15 +327,8 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	else if (sit == 2) {
 		printf("²Ù×÷:\n");//²Ù×÷
 		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
-		int x = -1;
-		char entry_s[99];
-		while (x == -1)//ÊäÈë¼ì²â
-		{
-			gets_s(entry_s, 99);
-			rewind(stdin);
-			x = entrycheck(entry_s, 1, 4);
-			if (x == -1)printf("ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë:");
-		}
+
+		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
 		case 1: {//´Ë´¦±ÈÈü¼ÇÂ¼Ö»¿É²é¿´(»òÒà¿ÉĞŞ¸Ä?´ıÉÌÌÖ)

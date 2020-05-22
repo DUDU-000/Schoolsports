@@ -11,7 +11,6 @@ int main()
 		situation = 0;
 	}
 	int swi;
-	char entry[99];
 	system("CLS");
 	switch (situation) {
 	case 0: {
@@ -46,11 +45,10 @@ int main()
 		printf("4.ÍË³ö\n");
 	}break;
 	}
-	gets_s(entry, 99);
-	rewind(stdin);
-	if (situation == 0) swi = entrycheck(entry, 1, 6);
-	else if (situation == 1) swi = entrycheck(entry, 1, 5);
-	else if (situation == 2) swi = entrycheck(entry, 1, 4);
+	
+	if (situation == 0) swi = entrycheckandreinput(1, 6);
+	else if (situation == 1) swi = entrycheckandreinput(1, 5);
+	else if (situation == 2) swi = entrycheckandreinput(1, 4);
 
 	switch (swi) {
 	case -1: main();  break;
