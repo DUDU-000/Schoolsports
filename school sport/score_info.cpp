@@ -32,7 +32,7 @@ void game_score_entry(Game game) {
 		scanf("%lf", &p_player->player.score[i].score);
 	}
 	savePlayerlist(pHead_player);
-	game_score_rank(game);
+	game_score_rank(game.name.id);
 
 	printf("成绩录入完成");
 	system("pause");
@@ -56,8 +56,13 @@ BriefGame_2 sortBriefGame(BriefGame_2 briefgame) {
 }
 
 //获取game 的比赛的运动员排名信息,并排名和给得分
-BriefGame_2 game_score_rank(Game game) {
+BriefGame_2 game_score_rank(int GameID) {
 
+	GameListNode *p_game = readGamelist();
+	while (p_game->game.name.id != GameID) {
+		p_game = p_game->next;
+	}
+	Game game = p_game->game;
 	BriefGame_2 briefgame;
 	PlayerListNode *pHead_player = readPlayerlist();
 	briefgame.name = game.name;
@@ -109,7 +114,7 @@ BriefGame_2 game_score_rank(Game game) {
 }
 
 void game_socre_print(Game game) {
-	BriefGame_2 game_score = game_score_rank(game);
+	BriefGame_2 game_score = game_score_rank(game.name.id);
 	printf("\n\n\n");
 	printf("比赛成绩:");
 	if (game.type == "田赛") {

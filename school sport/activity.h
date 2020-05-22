@@ -30,5 +30,5 @@ void addPlayerNode();
 void addGroupNode();
 //成绩录入相关
 void game_score_entry(Game game);
-BriefGame_2 game_score_rank(Game game);
+BriefGame_2 game_score_rank(int GameID);
 void game_socre_print(Game game);
