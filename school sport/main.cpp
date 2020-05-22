@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 #include"method.h"
-#include"activity.h"
+#include"menu.h"
 
 int main() 
 {
@@ -41,8 +41,9 @@ int main()
 		printf("1.单位信息\n");
 		printf("2.运动员信息\n");
 		printf("3.项目信息\n");
+		printf("4.排名\n");
 		printf("\n设置\n");
-		printf("4.退出\n");
+		printf("5.退出\n");
 	}break;
 	}
 	
@@ -56,22 +57,23 @@ int main()
 	case 2: query_player_menu(); main(); break;
 	case 3: query_game_menu(); main();  break;
 	case 4: {
-		if (situation == 0) {
+		if (situation == 0) {//新增
 			add_menu(); 
 			main();
 		}
-		else if (situation == 1) {
+		else if (situation == 1) {//进入下一阶段
 			savesituation(2);
 		}
-		else if (situation == 2) {
+		else if (situation == 2) {//排名
+			
 			system("pause");
 		}
 	} break;
 	case 5: {
-		if (situation == 0) {
+		if (situation == 0) {//进入下一阶段
 			savesituation(1);
 		}
-		else if (situation == 1) {
+		else {//退出
 			system("pause");
 		}
 	} break;

@@ -107,14 +107,15 @@ void information_game(GameListNode* pnewHead,int situation) {// ‰»ÎÕ∑Ω⁄µ„∫Õ∂‘”¶µ
 	}
 	else if (sit == 1){//±®√˚Ωÿ÷πΩÁ√Ê
 		printf("≤Ÿ◊˜:\n");//≤Ÿ◊˜
-		printf("1.≥…º®¬º»Î\n2.∑µªÿ");//—°œÓ
+		printf("1.»´≥…º®¬º»Î\n2.≤Èø¥≥…º®\n3.–ﬁ∏ƒ≥…º®\n4.∑µªÿ");//—°œÓ
 
-		int x = entrycheckandreinput(1, 2);
-
+		int x = entrycheckandreinput(1, 4);
 
 		switch (x) {
-		case 1: score_entry(game); break;//≥…º®¬º»Î
+		case 1: game_score_entry(game); information_game(pnewHead, situation); break;//≥…º®¬º»Î
 		case 2: break;//∑µªÿ
+		case 3: break;//∑µªÿ
+		case 4: break;//∑µªÿ
 		}
 
 	}
@@ -137,7 +138,6 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	PlayerListNode* p = pnewHead;
 	Player player;
 	
-
 	while (i != situation) {//’“µΩÀ˘—°‘ÒµƒΩ⁄µ„
 		p = p->next;
 		i++;
@@ -165,7 +165,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	printf("\n\n\n");
 
 
-	if (sit == 0) {
+	if (sit == 0) {//±®√˚,–ﬁ∏ƒΩ¯––÷–ΩÁ√Ê
 		printf("≤Ÿ◊˜:\n");//≤Ÿ◊˜
 		printf("1.–ﬁ∏ƒ\n2.…æ≥˝\n3.±®√˚\n4.∑µªÿ\n");//—°œÓ
 		
@@ -237,9 +237,9 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 
 		}
 	}
-	else if (sit == 1) {
+	else if (sit == 1) {//≥…º®¬º»ÎΩ◊∂Œ
 		printf("≤Ÿ◊˜:\n");//≤Ÿ◊˜
-		printf("1.≥…º®¬º»Î\n2.∑µªÿ\n");//—°œÓ
+		printf("1.≥…º®–ﬁ∏ƒ2.∑µªÿ\n");//—°œÓ
 		
 		int x = entrycheckandreinput(1, 2);
 
@@ -250,7 +250,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 
 
 	}
-	else if (sit == 2) {
+	else if (sit == 2) {//≥…º®≤È—ØΩ◊∂Œ
 		printf("≤Ÿ◊˜:\n");//≤Ÿ◊˜
 		printf("1.≥…º®≤È—Ø\n2.∑µªÿ\n");//—°œÓ
 
@@ -272,6 +272,8 @@ void information_group(GroupListNode* pnewHead, int situation) {
 		p = p->next;
 		i++;
 	}
+
+
 	system("CLS");
 	group = p->group;
 	printf("µ•Œª√˚≥∆:%s\n", group.name.name);
@@ -315,13 +317,23 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	}
 	else if (sit == 1) {
 		printf("≤Ÿ◊˜:\n");//≤Ÿ◊˜
-		printf("1.≥…º®≤È—Ø\n2.∑µªÿ\n");//—°œÓ
+		printf("1.µ•Œª≥…‘±2.≥…º®≤È—Ø\n3.∑µªÿ\n");//—°œÓ
 		
 		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
-		case 1:break;
+		case 1: {
+			searchGroup_palyer(p);
+			GroupListNode* pHead = readGrouplist();
+			GroupListNode* p_2 = pHead;
+			while (p_2->group.name.id != p->group.name.id) {
+				p_2 = p_2->next;
+			}
+			p_2->group = p->group;
+			saveGrouplist(pHead);
+		} break;//µ•Œª≥…‘±
 		case 2:break;
+		case 3:break;
 		}
 	}
 	else if (sit == 2) {

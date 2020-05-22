@@ -33,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="activity.h" />
     <ClInclude Include="linked_list.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="method.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include"method.h"
 #include"activity.h"
-#include"linked_list.h"
+#include"menu.h"
 
 
 void query_game_menu() {
@@ -75,5 +75,22 @@ void add_menu() {
 	case 2: addPlayerNode();  add_menu(); break;
 	case 3: addGameNode(); add_menu(); break;
 	case 4: break;
+	}
+}
+
+void rank_menu() {
+	system("CLS");
+	printf("排名\n");
+	printf("1.单位得分排名\n");
+	printf("2.运动员得分排名\n");
+	printf("3.返回\n");
+
+	int swi = swi = entrycheckandreinput(1, 3);
+
+	switch (swi) {
+	case -1: rank_menu(); break;
+	case 1:   rank_menu(); break;
+	case 2:   rank_menu(); break;
+	case 3: break;
 	}
 }
