@@ -249,7 +249,33 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
-		case 1:break;
+		case 1: {
+			system("CLS");
+			printf("比赛项目:%d\n", player.game_number);//比赛数
+			if (player.game_number == 0) printf("无\n");
+			else {
+				for (int j = 0; j < player.game_number; j++) {
+					printf("项目ID:%d ", player.score[j].name.id);//项目id
+					printf("项目名称:%s ", player.score[j].name.name);//项目名称
+					printf("项目成绩:%f ", player.score[j].score);//项目成绩
+					printf("项目得分:%d \n", player.score[j].point);//项目成绩
+				}
+				printf("\n请输入需要修改的比赛项目id:");
+				int id, i = 0;
+				double chengji;
+				scanf_s("%d", &id);
+				for (int j = 0; j < player.game_number; j++) {
+					if (player.score[j].name.id == id) {
+						printf("%s项目取得的成绩为%f\n输入修改成绩:", player.score[j].name.name, player.score[j].score);
+						scanf_s("%f", &chengji);
+						player.score[j].score = chengji;
+						i = 1;
+					}
+				}
+				if (i == 0)printf("在该项目中没有成绩记录");
+				game_score_rank(id);
+			}
+		}break;
 		case 2:break;
 		}
 

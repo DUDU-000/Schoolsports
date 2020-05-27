@@ -218,15 +218,14 @@ void revisePlayer(Player player) {
 	printf("2.性别\n");
 	printf("3.年龄\n");
 	printf("4.小组\n");
-	printf("5.比赛成绩\n");
-	printf("6.返回\n");
+	printf("5.返回\n");
 
 	int x = -1;
 	char entry_s[99];
 	while (x == -1) {
 		gets_s(entry_s, 99);
 		rewind(stdin);
-		x = entrycheck(entry_s, 1, 6);
+		x = entrycheck(entry_s, 1, 5);
 		if (x == -1)printf("输入有误,请重新输入:");
 	}
 	switch (x)
@@ -299,33 +298,7 @@ void revisePlayer(Player player) {
 		printf("修改成功！修改年龄为：%d\n", p->player.group_id);
 		system("pause");
 	}break;
-	case 5: {
-		system("CLS");
-		printf("比赛项目:%d\n", player.game_number);//比赛数
-		if (player.game_number == 0) printf("无\n");
-		else {
-			for (int j = 0; j < player.game_number; j++) {
-				printf("项目名称:%s ", player.score[j].name.name);//项目名称
-				printf("项目成绩:%f ", player.score[j].score);//项目成绩
-				printf("项目得分:%d \n", player.score[j].point);//项目成绩
-			}
-			printf("\n请输入需要修改的比赛项目id:");
-			int id,i=0;
-			double chengji;
-			scanf_s("%d", &id);
-			for (int j = 0; j < player.game_number; j++) {
-				if (player.score[j].name.id == id) {
-					printf("%s项目取得的成绩为%d\n输入修改成绩:", player.score[j].name.name, player.score[j].score);
-					scanf_s("%f", &chengji);
-					player.score[j].score = chengji;
-					i = 1;
-				}
-			}
-			if (i == 0)printf("在该项目中没有成绩记录");
-			game_score_rank(id);
-		}
-	}; break;
-	case 6: query_player_menu(); break;
+	case 5: query_player_menu(); break;
 	}
 	savePlayerlist(pHead);
 
