@@ -119,7 +119,7 @@ void information_game(GameListNode* pnewHead,int situation) {// ‰»ÎÕ∑Ω⁄µ„∫Õ∂‘”¶µ
 		switch (x) {
 		case 1: game_score_entry(game); information_game(pnewHead, situation); break;//≥…º®¬º»Î
 		case 2: game_socre_print(game); information_game(pnewHead, situation); break;//∑µªÿ
-		case 3: break;//∑µªÿ
+		case 3:single_player_scorerevise(game); information_game(pnewHead, situation); break;//∑µªÿ
 		case 4: break;//∑µªÿ
 		}
 

@@ -138,6 +138,67 @@ void game_socre_print(Game game) {
 	system("pause");
 }
 
+void single_player_scorerevise(Game game) {
+	system("CLS");
+	printf("%s项目运动员ID:\n",game.name.name);
+	for (int i = 0; i < game.number; i++)
+	{
+		printf("%d\n", game.playerid[i]);
+	}
+	char entry_playerid[99];
+	printf("个人成绩修改\n");
+	printf("请输入运动员ID:");
+	gets_s(entry_playerid, 99);
+	rewind(stdin);
+	int id = entrycheck(entry_playerid, 0, 999);
+	PlayerListNode* p = readPlayerlist();
+	while (p->player.name.id != id) {
+		if (p->next == NULL)break;
+
+		p = p->next;
+
+	}//查找运动员
+
+	if (p->player.name.id != id)printf("查询不到相关内容\n");
+
+	else {
+
+		Player player = p->player;
+		printf("所查询运动员\nID : %d\n名称 : %s\n", player.name.id, player.name.name);
+		int mark = 0;
+		int j;
+		for (int n = 0; n < player.game_number; n++) {
+			if (player.score[n].name.id == game.name.id) { 
+				j = n;
+				mark = 1; 
+			}
+		}
+
+		if (player.game_number == 0||mark==0) {
+			printf("没有该项比赛记录");
+		}
+		else {
+
+
+			printf("要修改的成绩为%d\n",player.score[j].score);
+			printf("请输入修改后的项目成绩:\n");
+			char score_entry[1];
+			gets_s(score_entry, 1);
+			int score_e = entrycheck(score_entry, 0, 999);
+			player.score[j].score = score_e;
+
+
+			printf("修改成功！修改后的成绩为\n", player.score[j].score);
+
+			p->player = player;
+
+			savePlayerlist(p);
+			game_score_rank(game.name.id);
+		}
+	}
+	system("pause");
+
+}
 
 
 
