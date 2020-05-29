@@ -1,5 +1,5 @@
 #pragma once
-
+#include<string>
 
 int entrycheck(char entry[], int mix, int max);
 

@@ -51,6 +51,9 @@
     <ClCompile Include="score_info.cpp">
       <Filter>源文件\activity</Filter>
     </ClCompile>
+    <ClCompile Include="next_stage.cpp">
+      <Filter>源文件\activity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="method.h">

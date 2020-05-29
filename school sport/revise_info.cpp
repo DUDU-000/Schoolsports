@@ -283,6 +283,12 @@ void revisePlayer(Player player) {
 		system("CLS");
 		printf("当前前选定运动员的小组ID为：%d\n", p->player.group_id);
 
+		GroupListNode *PHead = readGrouplist();
+		GroupListNode *g_old = PHead;
+		GroupListNode *g = PHead;
+		while (g_old->group.name.id != p->player.group_id) {
+			g_old = g_old->next;
+		}
 		printf("小组ID:");
 		int entry_int = -1;//开始输入检测是否是数字,我改了一下entrycheck,参数是一个char数组
 		while (entry_int == -1)
@@ -291,12 +297,39 @@ void revisePlayer(Player player) {
 			rewind(stdin);
 			entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
 			if (entry_int == -1) printf("输入有误,请重新输入:");
-			else p->player.year = entry_int;
-
+			else {
+				GroupListNode *GHead = readGrouplist();
+				GroupListNode *g = GHead;
+				while (g->group.name.id != entry_int) {
+					g = g->next;
+					if (g == NULL) {
+						printf("该小组不存在,请重新输入:");
+						entry_int = -1;
+						break;
+					}
+				}
+				if (entry_int == -1) continue;
+				p->player.group_id = entry_int;
+			}
 		}//结束检测
-
-		printf("修改成功！修改年龄为：%d\n", p->player.group_id);
+		while (g->group.name.id != p->player.group_id) {
+			g = g->next;
+		}
+		for (int i = 0,j=0; i < g_old->group.member_number-1; i++) {
+			if (g_old->group.memberid[i].id == p->player.name.id) {
+				j = 1;
+			}
+			g_old->group.memberid[i] = g_old->group.memberid[i + 1];
+		}
+		g_old->group.member_number--;
+		g->group.memberid[g->group.member_number] = p->player.name;
+		g->group.member_number++;
+		saveGrouplist(PHead);
+		printf("修改成功！修改小组为：%d\n", p->player.group_id);
 		system("pause");
+
+
+
 	}break;
 	case 5: query_player_menu(); break;
 	}
@@ -317,6 +350,4 @@ void reviseGroup(Group group) {
 	printf("修改成功！修改名称为：%s\n",p->group.name.name);
 	system("pause");
 	saveGrouplist(pHead);
-
-
 }

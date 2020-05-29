@@ -310,7 +310,6 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	printf("单位名称:%s\n", group.name.name);
 	printf("单位人数:%d\n", group.member_number);
 	printf("单位总得分:%d\n", group.fullscore);
-	printf("单位比赛报名数:%d\n", group.game_number);
 	printf("\n\n\n");
 
 	if (sit == 0) {
@@ -323,13 +322,8 @@ void information_group(GroupListNode* pnewHead, int situation) {
 		{
 		case 1: {
 			searchGroup_palyer(p);
-			GroupListNode* pHead = readGrouplist();
-			GroupListNode* p_2 = pHead;
-			while (p_2->group.name.id != p->group.name.id) {
-				p_2 = p_2->next;
-			}
-			p_2->group = p->group;
-			saveGrouplist(pHead);
+			information_group(pnewHead, situation);
+
 		} break;//单位成员
 		case 2:reviseGroup(group); break;//修改名称
 		case 3: {
@@ -375,14 +369,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 
 		switch (x) {
 		case 1: {//此处比赛记录只可查看(或亦可修改?待商讨)
-			searchGroup_game(p);
-			GroupListNode* pHead = readGrouplist();
-			GroupListNode* p_2 = pHead;
-			while (p_2->group.name.id != p->group.name.id) {
-				p_2 = p_2->next;
-			}
-			p_2->group = p->group;
-			saveGrouplist(pHead);
+			
 		}; break;
 		case 2:break;
 		}

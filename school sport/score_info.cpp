@@ -54,7 +54,6 @@ BriefGame_2 sortBriefGame(BriefGame_2 briefgame) {
 	}
 	return briefgame;
 }
-
 //获取game 的比赛的运动员排名信息,并排名和给得分
 BriefGame_2 game_score_rank(int GameID) {
 
@@ -199,6 +198,40 @@ void single_player_scorerevise(Game game) {
 	system("pause");
 
 }
+
+void sortGroup() {
+	GroupListNode *GHead = readGrouplist();
+	GroupListNode *g = GHead;
+	PlayerListNode *PHead = readPlayerlist();
+	PlayerListNode *p = PHead;
+
+	while( g != NULL){
+		Group group = g->group;
+		p = PHead;
+		for (int i = 0; i < group.member_number; i++) {
+			while (p->player.name.id != group.memberid[i].id) {
+				group.point[i] = p->player.fullscore;
+			}
+		}
+		for (int i = 0; i < group.member_number - 1; i++) {
+			for (int j = 0; j < group.member_number - 1 - i; j++) {
+				if (group.point[j]>group.point[j + 1]) {
+					int point = group.point[j];
+					group.point[j] = group.point[j + 1];
+					group.point[j + 1] = point;
+
+					Name id = group.memberid[j];
+					group.memberid[j] = group.memberid[j + 1];
+					group.memberid[j + 1] = id;
+				}
+			}
+		}
+		g->group = group;
+		g = g->next;
+	}
+	saveGrouplist(GHead);
+}
+
 
 
 

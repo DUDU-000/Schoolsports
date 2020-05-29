@@ -190,7 +190,20 @@ void addPlayerNode() {
 		rewind(stdin);
 		entry_int = entrycheck(entry_s, 1, 99);//若是一个数字,则返回int,否则,返回0
 		if (entry_int == -1) printf("输入有误,请重新输入:");
-		else newPlayer.group_id = entry_int;
+		else {
+			GroupListNode *GHead = readGrouplist();
+			GroupListNode *g = GHead;
+			while (g->group.name.id!= entry_int){
+				g = g->next;
+				if (g == NULL) {
+					printf("该小组不存在,请重新输入:");
+					entry_int = -1;
+					break;
+				}
+			}
+			if (entry_int == -1) continue;
+			newPlayer.group_id = entry_int;
+		}
 
 	}//结束检测
 
@@ -212,6 +225,16 @@ void addPlayerNode() {
 		addNode(pHead, newPlayer);
 	}
 	savePlayerlist(pHead);//储存链表
+
+	GroupListNode *PHead = readGrouplist();
+	GroupListNode *g = PHead;
+	while (g->group.name.id != newPlayer.group_id) {
+		g = g->next;
+		}
+	g->group.memberid[g->group.member_number] = newPlayer.name;
+	g->group.member_number++;
+	saveGrouplist(PHead);
+
 	printf("\n\n新增完成\n");
 	system("pause");
 }
@@ -231,7 +254,6 @@ void addGroupNode() {
 		printf("第%d个运动员的ID:", i + 1);
 		scanf_s("%d", &newgroup.memberid[i]);
 	}*/
-	newgroup.game_number = 0;
 	newgroup.member_number = 0;
 	newgroup.fullscore = 0;
 	/*for (int i = 0; i < newgroup.game_number; i++) {//比赛记录逐个逐项输入

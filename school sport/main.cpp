@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include"method.h"
 #include"menu.h"
+#include"activity.h"
 
 int main() 
 {
@@ -63,6 +64,7 @@ int main()
 		}
 		else if (situation == 1) {//进入下一阶段
 			savesituation(2);
+			enter_sit_2();
 			main();
 		}
 		else if (situation == 2) {//排名

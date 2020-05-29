@@ -360,17 +360,14 @@ GroupListNode* readGrouplist() {
 	for (int i = 0; i < line_long; i++) {
 		fscanf_s(fp, "单位ID:%d\n",& group.name.id);/*id*/
 		fscanf_s(fp, "单位名称:%s\n",& group.name.name,99);/*名称*/
-		fscanf_s(fp, "单位比赛报名数:%d\n", &group.game_number);/*比赛报名数*/
 		fscanf_s(fp, "单位总得分:%d\n", &group.fullscore);/*总得分*/
 		fscanf_s(fp, "单位人数:%d\n", &group.member_number);/*人数*/
 		for (int n = 0; n < group.member_number; n++) {
-			fscanf_s(fp, "运动员ID:%d\n", &group.memberid[n]);
+			fscanf_s(fp, "运动员ID:%d\n", &group.memberid[n].id);
+			fscanf_s(fp, "运动员姓名:%s\n", &group.memberid[n].name,99);
 		}
-		for (int n = 0; n < group.game_number; n++) {
-			fscanf_s(fp, "比赛ID:%d\n", &group.score->name.id);
-			fscanf_s(fp, "比赛名称:%s\n", &group.score->name.name,99);
-			fscanf_s(fp, "该比赛所得积分:%d\n", &group.score->point);
-			fscanf_s(fp, "该比赛最佳成绩:%f\n", &group.score->score);
+		for (int n = 0; n < group.member_number; n++) {
+			fscanf_s(fp, "运动员得分:%d\n", &group.point[n]);
 		}
 		if (i == 0) pHead = createpHead(group);
 		else addNode(pHead, group);
@@ -392,20 +389,15 @@ void saveGrouplist(GroupListNode* pHead) {
 		group = p->group;
 		fprintf(fp, "单位ID:%d\n", group.name.id);/*id*/
 		fprintf(fp, "单位名称:%s\n", group.name.name);/*名称*/
-		fprintf(fp, "单位比赛报名数:%d\n", group.game_number);/*报名数*/
 		fprintf(fp, "单位总得分:%d\n", group.fullscore);/*总得分*/
 		fprintf(fp, "单位人数:%d\n", group.member_number);/*人数*/
 	    for (int j = 0; j < group.member_number; j++) {
-			fprintf(fp, "运动员ID:%d\n", group.memberid[j]);
+			fprintf(fp, "运动员ID:%d\n", group.memberid[j].id);
+			fprintf(fp, "运动员姓名:%s\n", group.memberid[j].name);
 		}
-		for (int n = 0; n < group.game_number; n++) {
-			fprintf(fp, "比赛ID:%d\n", group.score->name.id);
-			fprintf(fp, "比赛名称:%s\n", group.score->name.name);
-			fprintf(fp, "该比赛所得积分:%d\n", group.score->point);
-			fprintf(fp, "该比赛最佳成绩:%f\n", group.score->score);
+		for (int n = 0; n < group.member_number; n++) {
+			fprintf(fp, "运动员得分:%d\n", group.point[n]);
 		}
-		
-
 	}
 	fclose(fp);
 }
@@ -419,8 +411,7 @@ void printGrouplist(GroupListNode* pHead) {
 		printf("%d.", i+1);/*序号*/
 		printf("ID:%d ", group.name.id);
 		printf("名称:%s ", group.name.name);
-		printf("人数:%d ", group.member_number);
-		printf("比赛报名数:%d \n", group.game_number);
+		printf("人数:%d \n", group.member_number);
 	}
 }
 

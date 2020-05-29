@@ -11,7 +11,6 @@ void searchPlayerlist_group();
 void searchPlayer_all();
 void searchGroup_name();
 void searchGroup_all();
-void searchGroup_game(GroupListNode* p);
 void searchGroup_palyer(GroupListNode* p);
 
 //三个信息界面
@@ -33,3 +32,9 @@ void game_score_entry(Game game);
 BriefGame_2 game_score_rank(int GameID);
 void game_socre_print(Game game);
 void single_player_scorerevise(Game game);
+
+//Group中的得分的排序
+void sortGroup();
+
+//下个阶段
+void enter_sit_2();
