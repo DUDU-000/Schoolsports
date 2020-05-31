@@ -81,8 +81,8 @@ void add_menu() {
 void rank_menu() {
 	system("CLS");
 	printf("排名\n");
-	printf("1.单位得分排名\n");
-	printf("2.运动员得分排名\n");
+	printf("1.单位得分总排名\n");
+	printf("2.运动员得分总排名\n");
 	printf("3.返回\n");
 
 	int swi = swi = entrycheckandreinput(1, 3);

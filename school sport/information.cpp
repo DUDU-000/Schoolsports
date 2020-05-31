@@ -131,7 +131,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
-		case 1: system("pause"); break;//³É¼¨²éÑ¯
+		case 1: game_socre_print(game); information_game(pnewHead, situation); break;//³É¼¨²éÑ¯
 		case 2: break;//·µ»Ø
 		}
 	}
@@ -164,8 +164,10 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	else 
 	for (int j = 0; j < player.game_number; j++) {
 		printf("ÏîÄ¿Ãû³Æ:%s ", player.score->name.name);//ÏîÄ¿Ãû³Æ
-		printf("ÏîÄ¿³É¼¨:%0.2f ", player.score->score);//ÏîÄ¿³É¼¨
-		printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
+		if (sit > 0) {
+			printf("ÏîÄ¿³É¼¨:%0.2f ", player.score->score);//ÏîÄ¿³É¼¨
+			printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
+		}
 	}
 	printf("\n\n\n");
 
@@ -342,7 +344,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	}
 	else if (sit == 1) {
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.µ¥Î»³ÉÔ±\n2.³É¼¨²éÑ¯\n3.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.µ¥Î»³ÉÔ±\n2.·µ»Ø\n");//Ñ¡Ïî
 		
 		int x = entrycheckandreinput(1, 2);
 
@@ -358,17 +360,16 @@ void information_group(GroupListNode* pnewHead, int situation) {
 			saveGrouplist(pHead);
 		} break;//µ¥Î»³ÉÔ±
 		case 2:break;
-		case 3:break;
 		}
 	}
 	else if (sit == 2) {
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.×éÄÚÔË¶¯Ô±µÃ·ÖÅÅÃû\n2.·µ»Ø\n");//Ñ¡Ïî
 
 		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
-		case 1: {//´Ë´¦±ÈÈü¼ÇÂ¼Ö»¿É²é¿´(»òÒà¿ÉĞŞ¸Ä?´ıÉÌÌÖ)
+		case 1: {
 			
 		}; break;
 		case 2:break;

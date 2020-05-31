@@ -5,7 +5,12 @@
 #include"linked_list.h"
 #include"method.h"
 
-
+void count_player_fullsocre(PlayerListNode *p) {
+	p->player.fullscore = 0;
+	for (int i = 0; i < p->player.game_number; i++) {
+		p->player.fullscore = p->player.fullscore + p->player.score[i].point;
+	}
+}
 
 void game_score_entry(Game game) {
 	printf("\n\n");
@@ -98,6 +103,7 @@ BriefGame_2 game_score_rank(int GameID) {
 			if (game.number - j <= 10) briefgame.point[j] = 10 - (game.number - j) + 1;
 			else briefgame.point[j] = 0;
 			p_player->player.score[i].point = briefgame.point[j];
+			count_player_fullsocre(p_player);
 		}
 		else{
 			briefgame.rank[j] = j+1;
@@ -106,7 +112,9 @@ BriefGame_2 game_score_rank(int GameID) {
 			if (j + 1 <= 10) briefgame.point[j] = 10 - (j + 1)+1;
 			else briefgame.point[j] = 0;
 			p_player->player.score[i].point = briefgame.point[j];
+			count_player_fullsocre(p_player);
 		}
+
 	}
 	savePlayerlist(pHead_player);
 	return briefgame;
@@ -199,21 +207,24 @@ void single_player_scorerevise(Game game) {
 
 }
 
-void sortGroup() {
+void sortGroup() {//对单位内运动员成绩进行排名
 	GroupListNode *GHead = readGrouplist();
 	GroupListNode *g = GHead;
 	PlayerListNode *PHead = readPlayerlist();
 	PlayerListNode *p = PHead;
 
-	while( g != NULL){
+	while( g != NULL){//读取运动员得分
 		Group group = g->group;
 		p = PHead;
+		g->group.fullscore = 0;
 		for (int i = 0; i < group.member_number; i++) {
 			while (p->player.name.id != group.memberid[i].id) {
 				group.point[i] = p->player.fullscore;
+				g->group.fullscore = g->group.fullscore + p->player.fullscore;
 			}
 		}
-		for (int i = 0; i < group.member_number - 1; i++) {
+
+		for (int i = 0; i < group.member_number - 1; i++) {//排序
 			for (int j = 0; j < group.member_number - 1 - i; j++) {
 				if (group.point[j]>group.point[j + 1]) {
 					int point = group.point[j];
