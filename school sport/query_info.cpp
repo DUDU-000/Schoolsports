@@ -369,13 +369,15 @@ void searchGroup_all() {
 	}
 }
 
-void searchGroup_palyer(GroupListNode* p) {
+void searchGroup_palyer(GroupListNode* p ,int a) {
 	Group group = p->group;
 	printf("\n该单位的成员:\n");
-	for (int i = 0; i < group.member_number; i++) {
+	for (int i = group.member_number-1; i >=0; i--) {
 		printf("%d.", i + 1);
 		printf("成员ID:%-3d", group.memberid[i].id);
-		printf("成员姓名:%s\n", group.memberid[i].name);
+		printf("成员姓名:%-9s ", group.memberid[i].name);
+		if (a) printf("得分:%d", group.point[i]);
+		printf("\n");
 	}
 	system("pause");
 }

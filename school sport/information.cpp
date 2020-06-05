@@ -323,7 +323,7 @@ void information_group(GroupListNode* pnewHead, int situation) {
 		switch (swi)
 		{
 		case 1: {
-			searchGroup_palyer(p);
+			searchGroup_palyer(p,0);
 			information_group(pnewHead, situation);
 
 		} break;//单位成员
@@ -350,14 +350,8 @@ void information_group(GroupListNode* pnewHead, int situation) {
 
 		switch (x) {
 		case 1: {
-			searchGroup_palyer(p);
-			GroupListNode* pHead = readGrouplist();
-			GroupListNode* p_2 = pHead;
-			while (p_2->group.name.id != p->group.name.id) {
-				p_2 = p_2->next;
-			}
-			p_2->group = p->group;
-			saveGrouplist(pHead);
+			searchGroup_palyer(p, 0);
+			information_group(pnewHead, situation);
 		} break;//单位成员
 		case 2:break;
 		}
@@ -370,8 +364,9 @@ void information_group(GroupListNode* pnewHead, int situation) {
 
 		switch (x) {
 		case 1: {
-			
-		}; break;
+			searchGroup_palyer(p, 1);
+			information_group(pnewHead, situation);
+		}break;
 		case 2:break;
 		}
 	}

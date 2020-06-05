@@ -344,9 +344,18 @@ void reviseGroup(Group group) {
 	{
 		p = p->next;
 	}
-	printf("修改名称为:");
-	gets_s(p->group.name.name, 99);
-	rewind(stdin);
+	while (true) {
+		printf("修改名称为:");
+		gets_s(p->group.name.name, 99);
+		rewind(stdin);
+		if (strcmp(p->group.name.name, "")!=0) {
+			break;
+		}
+		else {
+			printf("输入错误, 请重新输入\n");
+		}
+	}
+
 	printf("修改成功！修改名称为：%s\n",p->group.name.name);
 	system("pause");
 	saveGrouplist(pHead);

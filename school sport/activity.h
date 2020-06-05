@@ -11,7 +11,7 @@ void searchPlayerlist_group();
 void searchPlayer_all();
 void searchGroup_name();
 void searchGroup_all();
-void searchGroup_palyer(GroupListNode* p);
+void searchGroup_palyer(GroupListNode * p, int a);
 
 //三个信息界面
 void information_game(GameListNode* pHead, int situation);
