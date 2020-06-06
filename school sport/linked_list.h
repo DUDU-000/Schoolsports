@@ -169,3 +169,5 @@ void addNode(BriefGame_2ListNode * pHead, BriefGame_2 briefplayer);
 int longNode(BriefGame_2ListNode* pHead);
 void saveBriefGame_2list(BriefGame_2ListNode* pHead);
 BriefGame_2ListNode* deleteNode(BriefGame_2ListNode* pHead, BriefGame_2ListNode* p);
+
+void RankPlayerList();

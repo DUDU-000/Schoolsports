@@ -36,6 +36,26 @@ void single_player_score() {
 	system("pause");
 }
 
+void RankPlayer_in_Game() {
+	char entry_gameid[99];
+	BriefGame_2ListNode *p = InipHead();
+	system("CLS");
+	printf("比赛排名查询\n");
+	printf("请输入比赛ID:");
+	gets_s(entry_gameid, 99);
+	rewind(stdin);
+	int id = entrycheck(entry_gameid, 0, 999);
+	while (p != NULL && p->briefgame_2.name.id == id)p = p->next;
+	if (p->briefgame_2.name.id == id) {
+		printf("%s比赛的运动员排名为:\n", p->briefgame_2.name.name);
+		for (int i = 0; i < p->briefgame_2.number; i++) {
+			printf("第%d名:%s\n", i + 1, p->briefgame_2.playername[i]);
+		}
+	}
+	if (p == NULL)printf("查询出错！\n");
+	system("pause");
+}
+
 void count_query_player() {
 	char entry[99];
 	system("CLS");
@@ -48,8 +68,8 @@ void count_query_player() {
 	int swi = entrycheck(entry, 1, 3);
 	switch (swi) {
 	case -1: break;
-	case 1:single_player_score(); break;
-	case 2: break;
+	case 1:single_player_score(); count_query_player(); break;
+	case 2: RankPlayer_in_Game(); count_query_player(); break;
 	case 3: break;
 	}
 }

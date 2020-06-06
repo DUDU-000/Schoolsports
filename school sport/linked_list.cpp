@@ -294,6 +294,27 @@ void printPlayerlist(PlayerListNode* pHead)
 	
 }
 
+void RankPlayerList() {
+	PlayerListNode *p = readPlayerlist();
+	PlayerListNode* q;
+	PlayerListNode* t;
+	Player player;
+	for (q = p; q != NULL; q = q->next) {
+		for (t = p; t->next != NULL; t = t->next) {
+			if (t->player.fullscore < t->next->player.fullscore) {
+				player = t->player;
+				t->player = t->next->player;
+				t->next->player = player;
+			}
+		}
+	}
+	system("CLS");
+	while (p != NULL) {
+		printf("%d. %s µÃ·ÖÎª:%d\n", p->player.name.id, p->player.name.name, p->player.fullscore);
+	}
+	system("pause");
+}
+
 //×éµÄÁ´±íº¯Êı
 
 //´´½¨Ò»¸öÁ´±íµÄÍ·½Úµã,º¯Êı·µ»ØÖµÎª¸Ã½ÚµãÖ¸Õë
@@ -471,6 +492,7 @@ BriefGame_2ListNode* InipHead() {//³õÊ¼»¯¼òÒ×Á´±í£¨ÒÑÅÅĞò£©£¬Ã¿´ÎÊ¹ÓÃÇ°Òªµ÷ÓÃÕâ¸
 		}
 		for (int i = 0; i < p->briefgame_2.number - 1; i++) { p->briefgame_2.rank[i] = i + 1; }
 	}
+	return pHeadNode;
 }
 //ÔÚÁ´±í×îºóÃæĞÂÔöÒ»¸ö½Úµã,ĞÂÔö½ÚµãµÄÊı¾İÎªplayer,pHeadÎª¸ÃÁ´±íÖĞÈÎÒ»Ö¸Õë½Úµã.
 void addNode(BriefGame_2ListNode* pHead, BriefGame_2 BriefGame_2) {
