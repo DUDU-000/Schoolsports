@@ -313,6 +313,7 @@ void RankPlayerList() {
 		printf("%d. %s 得分为:%d\n", p->player.name.id, p->player.name.name, p->player.fullscore);
 	}
 	system("pause");
+	savePlayerlist(p);
 }
 
 //组的链表函数
@@ -434,6 +435,28 @@ void printGrouplist(GroupListNode* pHead) {
 		printf("名称:%s ", group.name.name);
 		printf("人数:%d \n", group.member_number);
 	}
+}
+
+void RankGroupList() {
+	GroupListNode *p = readGrouplist();
+	GroupListNode* q;
+	GroupListNode* t;
+	Group group;
+	for (q = p; q != NULL; q = q->next) {
+		for (t = p; t->next != NULL; t = t->next) {
+			if (t->group.fullscore < t->next->group.fullscore) {
+				group = t->group;
+				t->group = t->next->group;
+				t->next->group = group;
+			}
+		}
+	}
+	system("CLS");
+	while (p != NULL) {
+		printf("%d. %s 得分为:%d\n", p->group.name.id, p->group.name.name, p->group.fullscore);
+	}
+	system("pause");
+	saveGrouplist(p);
 }
 
 //新建简易比赛的链表函数

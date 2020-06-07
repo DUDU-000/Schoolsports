@@ -171,3 +171,4 @@ void saveBriefGame_2list(BriefGame_2ListNode* pHead);
 BriefGame_2ListNode* deleteNode(BriefGame_2ListNode* pHead, BriefGame_2ListNode* p);
 
 void RankPlayerList();
+void RankGroupList();
