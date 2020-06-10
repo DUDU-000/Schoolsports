@@ -36,22 +36,21 @@ void addGameNode() {
 		}
 	}//结束检测
 
-	printf("比赛地点(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：");
+	printf("比赛地点(1.跑道  2.足球场  3.跳远区  4.铅球区  5.跳高区)：");
 	entry_int = -1;
 	while (entry_int == -1)
 	{
 		gets_s(entry_s, 99);
 		rewind(stdin);
-		entry_int = entrycheck(entry_s, 1, 6);
+		entry_int = entrycheck(entry_s, 1, 5);
 		switch (entry_int)
 		{
 		case -1:printf("输入有误,请重新输入:"); break;
 		case 1:strcpy(newGame.place, Runway); break;
 		case 2:strcpy(newGame.place, Football); break;
-		case 3:strcpy(newGame.place, ShotPut); break;
-		case 4:strcpy(newGame.place, LongJump); break;
-		case 5:strcpy(newGame.place, Discus); break;
-		case 6:strcpy(newGame.place, HighJump); break;
+		case 3:strcpy(newGame.place, LongJump); break;
+		case 4:strcpy(newGame.place, Discus); break;
+		case 5:strcpy(newGame.place, HighJump); break;
 		}
 	}
 

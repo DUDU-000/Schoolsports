@@ -3,10 +3,10 @@
 
 const char Runway[]= "跑道";
 const char Football[] = "足球场";
-const char ShotPut[] = "标枪区";
 const char LongJump[] = "跳远区";
 const char Discus[] = "铅球区";
 const char HighJump[] = "跳高区";
+
 const char Tian[] = "田赛";
 const char Jing[] = "竞赛";
 

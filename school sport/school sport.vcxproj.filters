@@ -54,6 +54,9 @@
     <ClCompile Include="next_stage.cpp">
       <Filter>源文件\activity</Filter>
     </ClCompile>
+    <ClCompile Include="game_time.cpp">
+      <Filter>源文件\activity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="method.h">
