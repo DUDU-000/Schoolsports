@@ -89,7 +89,7 @@ void rank_menu() {
 
 	switch (swi) {
 	case -1: rank_menu(); break;
-	case 1:   rank_menu(); break;
+	case 1: RankGroupList(); rank_menu(); break;
 	case 2: RankPlayerList();  rank_menu(); break;
 	case 3: break;
 	}

@@ -28,14 +28,12 @@ struct StartTime//时间（xx年xx月xx日 xx : xx ）
 	int hour;//几点
 	int minute;//几分
 };
-
 struct EndTime//时间（ xx : xx ）
 {
 	
 	int hour;//几点
 	int minute;//几分
 };
-
 struct BriefGame_2//简略版记录
 {
 	Name name;//项目名称
