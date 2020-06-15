@@ -19,6 +19,7 @@ void reviseGame(Game game) {
 	printf("名称:%s\n", game.name.name/*名称*/);
 	printf("类型:%s\n", game.type/*类型*/);
 	printf("地点:%s\n", game.place/*地点*/);
+	printf("性别(1.男 2.女):%s\n", game.gender/*性别*/);
 	printf("人数:%d\n", game.number/*报名人数*/);
 	printf("时间:%d月%d日%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/, game.endtime.hour, game.endtime.minute/*结束时间*/);
 	printf("报名人员:\n");
@@ -35,16 +36,17 @@ void reviseGame(Game game) {
 	printf("1.名称\n");
 	printf("2.类型\n");
 	printf("3.地点\n");
-	printf("4.开始时间\n");
-	printf("5.结束时间\n");
-	printf("6.返回\n");
+	printf("4.性别\n");
+	printf("5.开始时间\n");
+	printf("6.结束时间\n");
+	printf("7.返回\n");
 	
 	int x = -1;
 	char entry_s[99];
 	while (x == -1) {
 		gets_s(entry_s, 99);
 		rewind(stdin);
-		x = entrycheck(entry_s, 1, 6);
+		x = entrycheck(entry_s, 1, 7);
 		if (x == -1)printf("输入有误,请重新输入:");
 	}
 	switch (x)
@@ -102,7 +104,22 @@ void reviseGame(Game game) {
 		printf("修改成功!修改地点为：%s\n",p->game.place);
 		system("pause");
 	}break;
-	case 4: {//开始时间
+	case 4: {//性别
+		system("CLS"); 
+		printf("目前选定项目的运动员性别为（1.男  2.女）：%d\n请输入修改内容：\n", p->game.gender);
+		char gender[3];
+		int gender_check = -1;
+		while (gender_check == -1) {
+			gets_s(gender, 3);
+			gender_check = entrycheck(gender, 1, 2);
+			if(gender_check==-1)printf("输入错误请重新输入：");
+		}
+		p->game.gender = gender_check;
+		saveGamelist(pHead);
+		printf("修改成功\n目前选定项目的运动员性别为（1.男  2.女）：%d\n", p->game.gender);
+		system("pause");
+	}break;
+	case 5: {//开始时间
 		system("CLS");
 		printf("目前选定项目的开始时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
 		char month_s[99], date_s[99], hour_s[99], minute_s[99];
@@ -141,7 +158,7 @@ void reviseGame(Game game) {
 		printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
 		system("pause");
 	}break;
-	case 5: {//结束时间
+	case 6: {//结束时间
 		system("CLS");
 		printf("目前选定项目的结束时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
 		char month_s[99], date_s[99], hour_s[99], minute_s[99];
@@ -180,7 +197,7 @@ void reviseGame(Game game) {
 		printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
 		system("pause");
 	}break;
-	case 6: query_game_menu(); break;
+	case 7: query_game_menu(); break;
 	}
 
 }

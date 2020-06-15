@@ -23,6 +23,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	printf("Ãû³Æ:%s\n", game.name.name/*Ãû³Æ*/);
 	printf("ÀàĞÍ:%s\n", game.type/*ÀàĞÍ*/);
 	printf("µØµã:%s\n", game.place/*µØµã*/);
+	printf("ĞÔ±ğ£¨1.ÄĞ  2.Å®£©:%s\n", game.gender/*ĞÔ±ğ*/);
 	printf("ÈËÊı:%d\n", game.number/*±¨ÃûÈËÊı*/);
 	printf("Ê±¼ä:%dÔÂ%dÈÕ%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*¿ªÊ¼Ê±¼ä*/, game.endtime.hour, game.endtime.minute/*½áÊøÊ±¼ä*/);
 	printf("±¨ÃûÈËÔ±:\n");

@@ -53,6 +53,20 @@ void addGameNode() {
 		case 5:strcpy(newGame.place, HighJump); break;
 		}
 	}
+	printf("运动员性别（1.男  2.女）：");
+	entry_int = -1;
+	while (entry_int == -1)
+	{
+		gets_s(entry_s, 99);
+		rewind(stdin);
+		entry_int = entrycheck(entry_s, 1, 2);
+		switch (entry_int)
+		{
+		case -1:printf("输入有误,请重新输入:"); break;
+		case 1:newGame.gender=1; break;
+		case 2:newGame.gender=2; break;
+		}
+	}
 
 	printf("月份：");
 	entry_int = -1;

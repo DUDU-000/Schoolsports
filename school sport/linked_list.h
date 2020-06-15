@@ -68,6 +68,7 @@ struct Game//比赛项目
 	EndTime endtime;//结束时间
 	char type[5];//比赛类型 田赛或竞赛
 	char place[7];//比赛地点
+	int gender;//男女比赛 1为男 2为女
 	int number;//报名人数
 	Name playerid[99];//报名运动员id
 };

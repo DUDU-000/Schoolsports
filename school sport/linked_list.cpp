@@ -90,6 +90,7 @@ GameListNode* readGamelist() {
 		fscanf_s(fp, "Ãû³Æ:%s\n", &game.name.name,99);//Ãû³Æ
 		fscanf_s(fp, "ÀàĞÍ:%s\n", &game.type,5);//ÀàĞÍ
 		fscanf_s(fp, "µØµã:%s\n", &game.place,7);//µØµã
+		fscanf_s(fp, "ĞÔ±ğ(1.ÄĞ 2.Å®):%d\n", &game.gender);//ĞÔ±ğ
 		fscanf_s(fp, "ÈËÊı:%d\n", &game.number);//ÈËÊı
 		fscanf_s(fp, "¿ªÊ¼Ê±¼ä:%dÔÂ%dÈÕ%d : %d\n", &game.starttime.month, &game.starttime.date, &game.starttime.hour, &game.starttime.minute);//¿ªÊ¼Ê±¼ä
 		fscanf_s(fp, "½áÊøÊ±¼ä:%d : %d\n", &game.endtime.hour, &game.endtime.minute);//½áÊøÊ±Ê±¼ä
@@ -119,6 +120,7 @@ void saveGamelist(GameListNode* pHead) {
 		fprintf(fp, "Ãû³Æ:%s\n", game.name.name/*Ãû³Æ*/);
 		fprintf(fp, "ÀàĞÍ:%s\n", game.type/*ÀàĞÍ*/);
 		fprintf(fp, "µØµã:%s\n", game.place/*µØµã*/);
+		fprintf(fp, "ĞÔ±ğ(1.ÄĞ 2.Å®):%d\n", game.gender);//ĞÔ±ğ
 		fprintf(fp, "ÈËÊı:%d\n", game.number/*±¨ÃûÈËÊı*/);
 		fprintf(fp, "¿ªÊ¼Ê±¼ä:%dÔÂ%dÈÕ%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*¿ªÊ¼Ê±¼ä*/);
 		fprintf(fp, "½áÊøÊ±¼ä:%d : %d\n",  game.endtime.hour, game.endtime.minute/*½áÊøÊ±¼ä*/);
@@ -473,48 +475,78 @@ BriefGame_2ListNode* InipHead() {//³õÊ¼»¯¼òÒ×Á´±í£¨ÒÑÅÅĞò£©£¬Ã¿´ÎÊ¹ÓÃÇ°Òªµ÷ÓÃÕâ¸
 		exit(0);
 	}
 	BriefGame_2ListNode* p = pHeadNode;
-	while (p_game->next) {//ÒÔ±ÈÈüÎªµ¥Î»Öğ¸ö±ÈÈüÄÚ²¿ÅÅĞò
-		p->briefgame_2.name.id = p_game->game.name.id;
-		strcpy(p->briefgame_2.name.name, p_game->game.name.name);
-		p->briefgame_2.number = p_game->game.number;
-		p_game = p_game->next;
-		for (int i = 0; i < p->briefgame_2.number; i++) {//¸ÃÏîÄ¿µÄÔË¶¯ÈËÔ±Ñ­»·
-			while (p_player->next) {
-				for (int x = 0; x < p_player->player.game_number; x++)//ÔË¶¯Ô±±¾Éí³É¼¨²éÑ¯
-				{
-					if (p_player->player.score[x].name.id == p->briefgame_2.name.id) {//»ñÈ¡ÔË¶¯Ô±ÔÚ¸ÃÏîÄ¿µÄ³É¼¨
-						p->briefgame_2.playername[i].id = p_player->player.name.id;
-						strcpy(p->briefgame_2.playername[i].name, p_player->player.name.name);
-						p->briefgame_2.score[i] = p_player->player.score[x].score;
-						p->briefgame_2.point[i] = p_player->player.score[x].point;
+	
+		while (p_game->next) {//ÒÔ±ÈÈüÎªµ¥Î»Öğ¸ö±ÈÈüÄÚ²¿ÅÅĞò
+			p->briefgame_2.name.id = p_game->game.name.id;
+				strcpy(p->briefgame_2.name.name, p_game->game.name.name);
+				p->briefgame_2.number = p_game->game.number;
+				p_game = p_game->next;
+				for (int i = 0; i < p->briefgame_2.number; i++) {//¸ÃÏîÄ¿µÄÔË¶¯ÈËÔ±Ñ­»·
+					while (p_player->next) {
+						for (int x = 0; x < p_player->player.game_number; x++)//ÔË¶¯Ô±±¾Éí³É¼¨²éÑ¯
+						{
+							if (p_player->player.score[x].name.id == p->briefgame_2.name.id) {//»ñÈ¡ÔË¶¯Ô±ÔÚ¸ÃÏîÄ¿µÄ³É¼¨
+								p->briefgame_2.playername[i].id = p_player->player.name.id;
+								strcpy(p->briefgame_2.playername[i].name, p_player->player.name.name);
+								p->briefgame_2.score[i] = p_player->player.score[x].score;
+								p->briefgame_2.point[i] = p_player->player.score[x].point;
+							}
+						}
 					}
 				}
-			}
-		}
-		for (int i = 0; i < p->briefgame_2.number - 1; i++) {
-			for (int j = 0; j < p->briefgame_2.number -1-i; j++)
-			{
-				if (p->briefgame_2.score[j] < p->briefgame_2.score[j + 1]) {
-					id = p->briefgame_2.playername[j].id;
-					p->briefgame_2.playername[j].id = p->briefgame_2.playername[j + 1].id;
-					p->briefgame_2.playername[j+1].id =id;//id½»»»
+				if (strcmp(p_game->game.type, Tian) == 0) {//ÌïÈüÅÅÃû£¨´óµÄÔÚÇ°£©
+					for (int i = 0; i < p->briefgame_2.number - 1; i++) {
+						for (int j = 0; j < p->briefgame_2.number - 1 - i; j++)
+						{
+							if (p->briefgame_2.score[j] < p->briefgame_2.score[j + 1]) {
+								id = p->briefgame_2.playername[j].id;
+								p->briefgame_2.playername[j].id = p->briefgame_2.playername[j + 1].id;
+								p->briefgame_2.playername[j + 1].id = id;//id½»»»
 
-					strcpy(name, p->briefgame_2.playername[j].name);
-					strcpy(p->briefgame_2.playername[j].name, p->briefgame_2.playername[j+1].name);
-					strcpy(p->briefgame_2.playername[j+1].name,name);//ÔË¶¯Ô±Ãû³Æ½»»»
+								strcpy(name, p->briefgame_2.playername[j].name);
+								strcpy(p->briefgame_2.playername[j].name, p->briefgame_2.playername[j + 1].name);
+								strcpy(p->briefgame_2.playername[j + 1].name, name);//ÔË¶¯Ô±Ãû³Æ½»»»
 
-					score = p->briefgame_2.score[j];
-					p->briefgame_2.score[j] = p->briefgame_2.score[j + 1];
-					p->briefgame_2.score[j + 1] = score;//³É¼¨½»»»
+								score = p->briefgame_2.score[j];
+								p->briefgame_2.score[j] = p->briefgame_2.score[j + 1];
+								p->briefgame_2.score[j + 1] = score;//³É¼¨½»»»
 
-					point = p->briefgame_2.point[j];
-					p->briefgame_2.point[j]= p->briefgame_2.point[j+1];
-					p->briefgame_2.point[j + 1] = point;//µÃ·Ö½»»»
+								point = p->briefgame_2.point[j];
+								p->briefgame_2.point[j] = p->briefgame_2.point[j + 1];
+								p->briefgame_2.point[j + 1] = point;//µÃ·Ö½»»»
+							}
+						}
+					}
+					for (int i = 0; i < p->briefgame_2.number - 1; i++) { p->briefgame_2.rank[i] = i + 1; }
 				}
-			}
+				else if (strcmp(p_game->game.type, Jing) == 0) {//¾ºÈüÅÅÃû£¨Ğ¡µÄÔÚÇ°£©
+					for (int i = 0; i < p->briefgame_2.number - 1; i++) {
+						for (int j = 0; j < p->briefgame_2.number - 1 - i; j++)
+						{
+							if (p->briefgame_2.score[j] > p->briefgame_2.score[j + 1]) {
+								id = p->briefgame_2.playername[j].id;
+								p->briefgame_2.playername[j].id = p->briefgame_2.playername[j + 1].id;
+								p->briefgame_2.playername[j + 1].id = id;//id½»»»
+
+								strcpy(name, p->briefgame_2.playername[j].name);
+								strcpy(p->briefgame_2.playername[j].name, p->briefgame_2.playername[j + 1].name);
+								strcpy(p->briefgame_2.playername[j + 1].name, name);//ÔË¶¯Ô±Ãû³Æ½»»»
+
+								score = p->briefgame_2.score[j];
+								p->briefgame_2.score[j] = p->briefgame_2.score[j + 1];
+								p->briefgame_2.score[j + 1] = score;//³É¼¨½»»»
+
+								point = p->briefgame_2.point[j];
+								p->briefgame_2.point[j] = p->briefgame_2.point[j + 1];
+								p->briefgame_2.point[j + 1] = point;//µÃ·Ö½»»»
+							}
+						}
+					}
+					for (int i = 0; i < p->briefgame_2.number - 1; i++) { p->briefgame_2.rank[i] = i + 1; }
+				}
 		}
-		for (int i = 0; i < p->briefgame_2.number - 1; i++) { p->briefgame_2.rank[i] = i + 1; }
-	}
+	
+
 	return pHeadNode;
 }
 //ÔÚÁ´±í×îºóÃæĞÂÔöÒ»¸ö½Úµã,ĞÂÔö½ÚµãµÄÊı¾İÎªplayer,pHeadÎª¸ÃÁ´±íÖĞÈÎÒ»Ö¸Õë½Úµã.
