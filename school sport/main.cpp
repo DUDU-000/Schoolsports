@@ -74,6 +74,7 @@ int main()
 	} break;
 	case 5: {
 		if (situation == 0) {//进入下一阶段
+			enter_sit_1();
 			savesituation(1);
 			main();
 		}

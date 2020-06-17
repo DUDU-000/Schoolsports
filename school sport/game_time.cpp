@@ -132,6 +132,9 @@ void Game_time() {
 		p = p->next;
 	}
 	//µ÷ÓÃsortGame
+	for (int i = 0; i < 5; i++) {
+		sortGame(T, i);
+	}
 
 
 

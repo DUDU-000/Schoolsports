@@ -63,78 +63,83 @@ void addGameNode() {
 		switch (entry_int)
 		{
 		case -1:printf("输入有误,请重新输入:"); break;
-		case 1:newGame.gender=1; break;
-		case 2:newGame.gender=2; break;
+		case 1:strcpy(newGame.gender, "男"); break;
+		case 2:strcpy(newGame.gender, "女"); break;
 		}
 	}
+	newGame.starttime.month = 0;
+	newGame.starttime.date = 0;
+	newGame.starttime.hour = 0;
+	newGame.starttime.minute = 0;
+	newGame.endtime.hour = 0;
+	newGame.endtime.minute = 0;
+	//printf("月份：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 1, 12);
+	//	newGame.starttime.month = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
 
-	printf("月份：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 1, 12);
-		newGame.starttime.month = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
-
-	printf("日期：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 1, 31);
-		newGame.starttime.date = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
+	//printf("日期：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 1, 31);
+	//	newGame.starttime.date = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
 
 
-	printf("开始时间：\n");
-	printf("几点：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 0, 24);
-		newGame.starttime.hour = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
+	//printf("开始时间：\n");
+	//printf("几点：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 0, 24);
+	//	newGame.starttime.hour = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
 
-	printf("几分：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 0, 60);
-		newGame.starttime.minute = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
+	//printf("几分：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 0, 60);
+	//	newGame.starttime.minute = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
 
-	printf("结束时间：\n");
-	printf("几点：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 0, 24);
-		newGame.endtime.hour = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
-	printf("几分：");
-	entry_int = -1;
-	while (entry_int == -1)
-	{
-		gets_s(entry_s, 99);
-		rewind(stdin);
-		entry_int = entrycheck(entry_s, 0, 60);
-		newGame.endtime.minute = entry_int;
-		if (entry_int == -1)printf("输入有误,请重新输入:");
-	}
+	//printf("结束时间：\n");
+	//printf("几点：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 0, 24);
+	//	newGame.endtime.hour = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
+	//printf("几分：");
+	//entry_int = -1;
+	//while (entry_int == -1)
+	//{
+	//	gets_s(entry_s, 99);
+	//	rewind(stdin);
+	//	entry_int = entrycheck(entry_s, 0, 60);
+	//	newGame.endtime.minute = entry_int;
+	//	if (entry_int == -1)printf("输入有误,请重新输入:");
+	//}
 	newGame.number = 0;
 
 	pHead = readGamelist();	//读取文件中的链表到pHead

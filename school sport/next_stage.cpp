@@ -4,7 +4,7 @@
 #include"activity.h"
 
 void enter_sit_1() {
-
+	Game_time();
 }
 
 void enter_sit_2() {

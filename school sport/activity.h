@@ -37,4 +37,8 @@ void single_player_scorerevise(Game game);
 void sortGroup();
 
 //об╦Ж╫в╤н
+void enter_sit_1();
 void enter_sit_2();
+
+
+void Game_time();

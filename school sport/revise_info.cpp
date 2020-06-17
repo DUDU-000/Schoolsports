@@ -82,7 +82,7 @@ void reviseGame(Game game) {
 	}break;
 	case 3: {//修改地点
 		system("CLS");
-		printf("当前选定项目的地点为：%s\n请输入修改内容(1.跑道  2.足球场  3.标枪区  4.跳远区  5.铅球区  6.跳高区)：", p->game.place);
+		printf("当前选定项目的地点为：%s\n请输入修改内容(1.跑道  2.足球场 3.跳远区  4.铅球区  5.跳高区)：", p->game.place);
 		int n = -1;
 		char place_selection[99];
 		while (n == -1) {
@@ -95,10 +95,9 @@ void reviseGame(Game game) {
 		{
 		case 1:strcpy(p->game.place, Runway); break;
 		case 2:strcpy(p->game.place, Football); break;
-		case 3:strcpy(p->game.place, ShotPut); break;
-		case 4:strcpy(p->game.place, LongJump); break;
-		case 5:strcpy(p->game.place, Discus); break;
-		case 6:strcpy(p->game.place, HighJump); break;
+		case 3:strcpy(p->game.place, LongJump); break;
+		case 4:strcpy(p->game.place, Discus); break;
+		case 5:strcpy(p->game.place, HighJump); break;
 		}
 		saveGamelist(pHead);
 		printf("修改成功!修改地点为：%s\n",p->game.place);
@@ -114,9 +113,14 @@ void reviseGame(Game game) {
 			gender_check = entrycheck(gender, 1, 2);
 			if(gender_check==-1)printf("输入错误请重新输入：");
 		}
-		p->game.gender = gender_check;
+		if (gender_check == 1) {
+			strcpy(p->game.gender, "男");
+		}
+		else {
+			strcpy(p->game.gender, "女");
+		}
 		saveGamelist(pHead);
-		printf("修改成功\n目前选定项目的运动员性别为（1.男  2.女）：%d\n", p->game.gender);
+		printf("修改成功\n目前选定项目的运动员性别为：%s\n", p->game.gender);
 		system("pause");
 	}break;
 	case 5: {//开始时间
