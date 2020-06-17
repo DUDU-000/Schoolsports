@@ -25,7 +25,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 	printf("µØµã:%s\n", game.place/*µØµã*/);
 	printf("ĞÔ±ğ:%s\n", game.gender/*ĞÔ±ğ*/);
 	printf("ÈËÊı:%d\n", game.number/*±¨ÃûÈËÊı*/);
-	printf("Ê±¼ä:%dÔÂ%dÈÕ%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*¿ªÊ¼Ê±¼ä*/, game.endtime.hour, game.endtime.minute/*½áÊøÊ±¼ä*/);
+	printf("Ê±¼ä:µÚ%dÈÕ%d : %d-%d : %d\n",game.starttime.day, game.starttime.hour, game.starttime.minute/*¿ªÊ¼Ê±¼ä*/, game.endtime.hour, game.endtime.minute/*½áÊøÊ±¼ä*/);
 	printf("±¨ÃûÈËÔ±:\n");
 	if (game.playerid[0].id == NULL|| game.playerid[0].id<=0) printf("ÎŞ");
 	else 
@@ -61,20 +61,12 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		case 3: {
 			PlayerListNode* pHead_player = readPlayerlist();
 			PlayerListNode* p_player = pHead_player;
-	
 			printf("\nÊäÈëÔË¶¯Ô±ID½øĞĞ±¨Ãû\nÊäÈë0ÍË³ö±¨Ãû\n");
-
 			while (true) {
-				printf("ÊäÈë:");
 				int id = -1;
 				while (true) {//ÊäÈë²¢²éÕÒÏîÄ¿
-
 					id = entrycheckandreinput(0, 99);
-
-
 					if (id == 0) break;
-
-
 					p_player = pHead_player;
 
 					while (p_player->player.name.id != id) {
@@ -83,6 +75,14 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 					}
 					if (p_player->player.name.id != id && p_player->next == NULL) {
 						printf("ÕÒ²»µ½¸ÃÔË¶¯Ô±,ÇëÖØĞÂÊäÈë:");
+						id = -1;
+					}
+					else if (strcmp(p_player->player.gender,game.gender)!=0) {
+						printf("ÔË¶¯Ô±ĞÔ±ğ²»·ûºÏ£¬ÇëÖØĞÂÊäÈë:");
+						id = -1;
+					}
+					else if (p_player->player.game_number == 3) {
+						printf("ÔË¶¯Ô±ÒÑ±¨Ãû3¸ö±ÈÈü£¬ÇëÖØĞÂÊäÈë:");
 						id = -1;
 					}
 					else {
@@ -214,6 +214,10 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 					}
 					if (p_game->game.name.id != x&&p_game->next == NULL) {
 						printf("ÕÒ²»µ½¸Ã±ÈÈü,ÇëÖØĞÂÊäÈë:");
+						x = -1;
+					}
+					else if (strcmp(p_game->game.gender,player.gender)!=0) {
+						printf("ÔË¶¯Ô±ĞÔ±ğ²»·ûºÏ,ÇëÖØĞÂÊäÈë:");
 						x = -1;
 					}
 					else break;

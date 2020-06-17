@@ -67,8 +67,7 @@ void addGameNode() {
 		case 2:strcpy(newGame.gender, "女"); break;
 		}
 	}
-	newGame.starttime.month = 0;
-	newGame.starttime.date = 0;
+	newGame.starttime.day = 0;
 	newGame.starttime.hour = 0;
 	newGame.starttime.minute = 0;
 	newGame.endtime.hour = 0;
@@ -227,8 +226,6 @@ void addPlayerNode() {
 
 	newPlayer.fullscore = 0;
 	newPlayer.game_number = 0;
-
-
 	pHead = readPlayerlist();	//读取文件中的链表到pHead
 	p = pHead;
 	if (pHead == NULL) { //若文件中无数据,则新建一个链表
@@ -250,7 +247,9 @@ void addPlayerNode() {
 		g = g->next;
 		}
 	g->group.memberid[g->group.member_number] = newPlayer.name;
+	g->group.point[g->group.member_number] = 0;
 	g->group.member_number++;
+	
 	saveGrouplist(PHead);
 
 	printf("\n\n新增完成\n");

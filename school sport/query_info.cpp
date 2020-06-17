@@ -105,7 +105,7 @@ void searchGamelist_type()
 void searchGamelist_time() {
 	system("CLS");
 	GameListNode* pHead = readGamelist();
-	printf("请输入查询日期（号）:");
+	printf("请输入查询第几天:");
 	int x = 0;
 	char entry_s[99];
 	while (x==0)
@@ -123,7 +123,7 @@ void searchGamelist_time() {
 	Game newGame;//新的结构体
 	for (int i = 0; i < list_long; i++,p= p->next) {
 		game = p->game;
-		if (x == game.starttime.date) {
+		if (x == game.starttime.day) {
 			newGame = game;
 			if (i == 0||input==NULL)input = createpHead(newGame);
 			else addNode(input, newGame);

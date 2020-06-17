@@ -21,10 +21,9 @@ struct Name//称呼加ID
 	int id;
 	char name[99];
 };
-struct StartTime//时间（xx年xx月xx日 xx : xx ）
+struct StartTime//时间（第x日 xx : xx ）
 {
-	int date;//日
-	int month;//月
+	int day;//日
 	int hour;//几点
 	int minute;//几分
 };

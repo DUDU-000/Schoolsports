@@ -21,7 +21,7 @@ void reviseGame(Game game) {
 	printf("地点:%s\n", game.place/*地点*/);
 	printf("性别(1.男 2.女):%s\n", game.gender/*性别*/);
 	printf("人数:%d\n", game.number/*报名人数*/);
-	printf("时间:%d月%d日%d : %d-%d : %d\n", game.starttime.month, game.starttime.date, game.starttime.hour, game.starttime.minute/*开始时间*/, game.endtime.hour, game.endtime.minute/*结束时间*/);
+	printf("时间:第%d日%d : %d-%d : %d\n",game.starttime.day, game.starttime.hour, game.starttime.minute/*开始时间*/, game.endtime.hour, game.endtime.minute/*结束时间*/);
 	printf("报名人员:\n");
 	if (game.playerid[0].id == NULL || game.playerid[0].id <= 0) printf("无");
 	else
@@ -37,16 +37,16 @@ void reviseGame(Game game) {
 	printf("2.类型\n");
 	printf("3.地点\n");
 	printf("4.性别\n");
-	printf("5.开始时间\n");
-	printf("6.结束时间\n");
-	printf("7.返回\n");
+	//printf("5.开始时间\n");
+	//printf("6.结束时间\n");
+	printf("5.返回\n");
 	
 	int x = -1;
 	char entry_s[99];
 	while (x == -1) {
 		gets_s(entry_s, 99);
 		rewind(stdin);
-		x = entrycheck(entry_s, 1, 7);
+		x = entrycheck(entry_s, 1, 5);
 		if (x == -1)printf("输入有误,请重新输入:");
 	}
 	switch (x)
@@ -123,85 +123,85 @@ void reviseGame(Game game) {
 		printf("修改成功\n目前选定项目的运动员性别为：%s\n", p->game.gender);
 		system("pause");
 	}break;
-	case 5: {//开始时间
-		system("CLS");
-		printf("目前选定项目的开始时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
-		char month_s[99], date_s[99], hour_s[99], minute_s[99];
-		int month= -1, date= -1, hour= -1, minute= -1;
-		while (month == -1) {//月
-			printf("月：");
-			gets_s(month_s, 99);
-			month = entrycheck(month_s, 1, 12);
-			if (month == -1)printf("输入错误请重新输入：");
-		}
-		while (date == -1) {//日
-			printf("日：");
-			gets_s(date_s, 99);
-			if((month<=7&&month%2!=0)||(month>=8&&month%2==0))date = entrycheck(date_s, 1, 31);
-			else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
-			if (month==2)date = entrycheck(date_s, 1, 29);
-			if (date == -1)printf("输入错误请重新输入：");
-		}
-		while (hour == -1) {//时
-			printf("几点：");
-			gets_s(hour_s, 99);
-			hour = entrycheck(hour_s, 1, 24);
-			if (hour == -1)printf("输入错误请重新输入：");
-		}
-		while (minute == -1) {//分
-			printf("几点：");
-			gets_s(minute_s, 99);
-			minute = entrycheck(minute_s, 1, 24);
-			if (minute == -1)printf("输入错误请重新输入：");
-		}
-		p->game.starttime.month = month;
-		p->game.starttime.date = date;
-		p->game.starttime.hour = hour;
-		p->game.starttime.minute = minute;
-		saveGamelist(pHead);
-		printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
-		system("pause");
-	}break;
-	case 6: {//结束时间
-		system("CLS");
-		printf("目前选定项目的结束时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
-		char month_s[99], date_s[99], hour_s[99], minute_s[99];
-		int month = -1, date = -1, hour = -1, minute = -1;
-		while (month == -1) {//月
-			printf("月：");
-			gets_s(month_s, 99);
-			month = entrycheck(month_s, 1, 12);
-			if (month == -1)printf("输入错误请重新输入：");
-		}
-		while (date == -1) {//日
-			printf("日：");
-			gets_s(date_s, 99);
-			if ((month <= 7 && month % 2 != 0) || (month >= 8 && month % 2 == 0))date = entrycheck(date_s, 1, 31);
-			else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
-			if (month == 2)date = entrycheck(date_s, 1, 29);
-			if (date == -1)printf("输入错误请重新输入：");
-		}
-		while (hour == -1) {//时
-			printf("几点：");
-			gets_s(hour_s, 99);
-			hour = entrycheck(hour_s, 1, 24);
-			if (hour == -1)printf("输入错误请重新输入：");
-		}
-		while (minute == -1) {//分
-			printf("几点：");
-			gets_s(minute_s, 99);
-			minute = entrycheck(minute_s, 1, 24);
-			if (minute == -1)printf("输入错误请重新输入：");
-		}
-		p->game.starttime.month = month;
-		p->game.starttime.date = date;
-		p->game.endtime.hour = hour;
-		p->game.endtime.minute = minute;
-		saveGamelist(pHead);
-		printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
-		system("pause");
-	}break;
-	case 7: query_game_menu(); break;
+	//case 5: {//开始时间
+	//	system("CLS");
+	//	printf("目前选定项目的开始时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
+	//	char month_s[99], date_s[99], hour_s[99], minute_s[99];
+	//	int month= -1, date= -1, hour= -1, minute= -1;
+	//	while (month == -1) {//月
+	//		printf("月：");
+	//		gets_s(month_s, 99);
+	//		month = entrycheck(month_s, 1, 12);
+	//		if (month == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (date == -1) {//日
+	//		printf("日：");
+	//		gets_s(date_s, 99);
+	//		if((month<=7&&month%2!=0)||(month>=8&&month%2==0))date = entrycheck(date_s, 1, 31);
+	//		else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
+	//		if (month==2)date = entrycheck(date_s, 1, 29);
+	//		if (date == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (hour == -1) {//时
+	//		printf("几点：");
+	//		gets_s(hour_s, 99);
+	//		hour = entrycheck(hour_s, 1, 24);
+	//		if (hour == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (minute == -1) {//分
+	//		printf("几点：");
+	//		gets_s(minute_s, 99);
+	//		minute = entrycheck(minute_s, 1, 24);
+	//		if (minute == -1)printf("输入错误请重新输入：");
+	//	}
+	//	p->game.starttime.month = month;
+	//	p->game.starttime.date = date;
+	//	p->game.starttime.hour = hour;
+	//	p->game.starttime.minute = minute;
+	//	saveGamelist(pHead);
+	//	printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.starttime.hour, p->game.starttime.minute);
+	//	system("pause");
+	//}break;
+	//case 6: {//结束时间
+	//	system("CLS");
+	//	printf("目前选定项目的结束时间为：%d月%d日%d : %d\n请输入修改内容：\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
+	//	char month_s[99], date_s[99], hour_s[99], minute_s[99];
+	//	int month = -1, date = -1, hour = -1, minute = -1;
+	//	while (month == -1) {//月
+	//		printf("月：");
+	//		gets_s(month_s, 99);
+	//		month = entrycheck(month_s, 1, 12);
+	//		if (month == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (date == -1) {//日
+	//		printf("日：");
+	//		gets_s(date_s, 99);
+	//		if ((month <= 7 && month % 2 != 0) || (month >= 8 && month % 2 == 0))date = entrycheck(date_s, 1, 31);
+	//		else if ((month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 != 0))date = entrycheck(date_s, 1, 30);
+	//		if (month == 2)date = entrycheck(date_s, 1, 29);
+	//		if (date == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (hour == -1) {//时
+	//		printf("几点：");
+	//		gets_s(hour_s, 99);
+	//		hour = entrycheck(hour_s, 1, 24);
+	//		if (hour == -1)printf("输入错误请重新输入：");
+	//	}
+	//	while (minute == -1) {//分
+	//		printf("几点：");
+	//		gets_s(minute_s, 99);
+	//		minute = entrycheck(minute_s, 1, 24);
+	//		if (minute == -1)printf("输入错误请重新输入：");
+	//	}
+	//	p->game.starttime.month = month;
+	//	p->game.starttime.date = date;
+	//	p->game.endtime.hour = hour;
+	//	p->game.endtime.minute = minute;
+	//	saveGamelist(pHead);
+	//	printf("修改成功\n目前选定项目的开始时间为：%d月%d日%d : %d\n", p->game.starttime.month, p->game.starttime.date, p->game.endtime.hour, p->game.endtime.minute);
+	//	system("pause");
+	//}break;
+	case 5: query_game_menu(); break;
 	}
 
 }
