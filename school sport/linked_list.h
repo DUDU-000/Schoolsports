@@ -23,6 +23,7 @@ struct Name//称呼加ID
 };
 struct StartTime//时间（第x日 xx : xx ）
 {
+	int time;//时间段
 	int day;//日
 	int hour;//几点
 	int minute;//几分

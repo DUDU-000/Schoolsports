@@ -6,15 +6,25 @@
 
 
 void query_game_menu() {
+	int situation = readsituation();
+	int swi;
 	system("CLS");
 	printf("项目查询\n");
 	printf("1.名称查询\n");
 	printf("2.类型查询\n");
 	printf("3.日期查询\n");
 	printf("4.所有项目\n");
-	printf("5.返回\n");
+	if (situation > 0) {
+		printf("5.项目时间表\n");
+		printf("6.返回\n");
+		swi = entrycheckandreinput(1, 6);
+	}
+	else {
+		printf("5.返回\n");
+		swi = entrycheckandreinput(1, 5);
+	}
 
-	int swi = swi = entrycheckandreinput(1, 5);
+	
 
 	switch (swi) {
 	case -1: query_game_menu(); break;
@@ -22,9 +32,15 @@ void query_game_menu() {
 	case 2: searchGamelist_type(); break;
 	case 3: searchGamelist_time(); break;
 	case 4: searchGamelist_all(); break;
-	case 5: break;
+	case 5: 
+		if (situation > 0) {
+			PrintGameTime();
+		}
+		break;
 	}
 }
+
+
 void query_group_menu() {
 	
 	system("CLS");

@@ -42,3 +42,5 @@ void enter_sit_2();
 
 
 void Game_time();
+
+void PrintGameTime();

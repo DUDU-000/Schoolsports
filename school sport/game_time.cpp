@@ -122,6 +122,7 @@ void Givetime(Tbox &T) {
 			else {
 				int k = i % 6;
 				T.GameBox[j][i]->game.starttime.day = i / 6 + 1;
+				T.GameBox[j][i]->game.starttime.time = i;
 				switch (k)
 				{
 				case 0:
@@ -167,8 +168,6 @@ void Givetime(Tbox &T) {
 	}
 }
 
-
-
 void Game_time() {
 	GameListNode * GHead = readGamelist();
 	GameListNode * p = GHead;
@@ -206,4 +205,77 @@ void Game_time() {
 	}
 	Givetime(T);
 	saveGamelist(GHead);
+}
+
+void PrintGameTime() {
+	GameListNode * GHead = readGamelist();
+	GameListNode * p = GHead;
+	Tbox T;
+	memset(T.n, 0, sizeof(int) * 5);
+	memset(T.GameBox, NULL, sizeof(GameListNode *) * 30 * 5);
+	memset(T.GamePlayer, 0, sizeof(int) * 30 * 300);
+	int day = 0;
+	while (p != NULL) {//将Game储存到Box里
+		if (p->game.starttime.day > day)
+			day = p->game.starttime.day;
+		if (strcmp(p->game.place, Runway) == 0) {
+			T.GameBox[0][p->game.starttime.time] = p;
+			T.n[0]++;
+		}
+		else if (strcmp(p->game.place, Football) == 0) {
+			T.GameBox[1][p->game.starttime.time] = p;
+			T.n[1]++;
+		}
+		else if (strcmp(p->game.place, LongJump) == 0) {
+			T.GameBox[2][p->game.starttime.time] = p;
+			T.n[2]++;
+		}
+		else if (strcmp(p->game.place, Discus) == 0) {
+			T.GameBox[3][p->game.starttime.time] = p;
+			T.n[3]++;
+		}
+		else if (strcmp(p->game.place, HighJump) == 0) {
+			T.GameBox[4][p->game.starttime.time] = p;
+			T.n[4]++;
+		}
+		p = p->next;
+	}
+	system("CLS");
+	printf("运动会时间表\n");
+	printf("场地       :     %-15s     %-15s     %-15s     %-15s     %-15s\n", Runway, Football, LongJump, Discus, HighJump);
+	for (int i = 0; i < 6 * day; i++) {
+		int k = i % 6;
+		if (k == 0) printf("第%d天\n", i / 6 + 1);
+		switch (k){
+		case 0:
+			printf("08:00-08:45:");
+			break;
+		case 1:
+			printf("09:00-09:45:");
+			break;
+		case 2:
+			printf("10:00-10:45:");
+			break;
+		case 3:
+			printf("14:00-14:45:");
+			break;
+		case 4:
+			printf("15:00-15:45:");
+			break;
+		case 5:
+			printf("16:00-16:45:");
+			break;
+		}
+		for (int j = 0; j < 5; j++) {
+			if (T.GameBox[j][i] == NULL) {
+				printf("                    ");
+			}
+			else {
+				printf("     %-15s", T.GameBox[j][i]->game.name.name);
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+	system("pause");
 }

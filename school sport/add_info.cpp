@@ -67,11 +67,13 @@ void addGameNode() {
 		case 2:strcpy(newGame.gender, "Å®"); break;
 		}
 	}
+	newGame.starttime.time = -1;
 	newGame.starttime.day = 0;
 	newGame.starttime.hour = 0;
 	newGame.starttime.minute = 0;
 	newGame.endtime.hour = 0;
 	newGame.endtime.minute = 0;
+
 	//printf("ÔÂ·Ý£º");
 	//entry_int = -1;
 	//while (entry_int == -1)
