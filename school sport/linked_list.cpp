@@ -632,35 +632,44 @@ void delete_game()
 {
 	GameListNode *p = readGamelist();
 	GameListNode *q;
-	PlayerListNode *x = readPlayerlist();
-	for (q = p; q != NULL; q = q->next) {
-		if (q->game.number < 4) {
-			//删除参加了该game的运动员中关于此game的记录
-			for (int i = 0; i < q->game.number; i++) {
-				PlayerListNode *x = readPlayerlist();
-				while (x->player.name.id != q->game.playerid[i].id) {
-					x = x->next;
-				}
-				for (int j = 0; j < x->player.game_number; j++) {
-					if (x->player.score[j].name.id == q->game.name.id) {
-						for (int y = j; y < x->player.game_number; y++) {
-							x->player.score[y] = x->player.score[y + 1];
+	PlayerListNode *y = readPlayerlist();
+	PlayerListNode* x = y;
+	if(p!=NULL){
+		for (q = p; q->next!= NULL; q = q->next) {
+
+			if (q->game.number < 4) {
+				//删除参加了该game的运动员中关于此game的记录
+				for (int i = 0; i < q->game.number; i++) {
+					PlayerListNode* x = y;
+					while (x->player.name.id != q->game.playerid[i].id) {
+						x = x->next;
+					}
+					for (int j = 0; j < x->player.game_number; j++) {
+						if (x->player.score[j].name.id == q->game.name.id) {
+							for (int y = j; y < x->player.game_number; y++) {
+								x->player.score[y] = x->player.score[y + 1];
+							}
 						}
 					}
+					x->player.game_number = x->player.game_number - 1;
 				}
-				x->player.game_number = x->player.game_number - 1;
+				
+					deleteNode(p, q);
+					
+				
 			}
-			q->game = q->next->game;
-			q->next = q->next->next;//删除game
-
 		}
+		if (q->game.number < 4)deleteNode(p, q);
 	}
+	saveGamelist(p);
+	savePlayerlist(y);
 
 }
 
 //删除运动员
 void delete_player() {
-	PlayerListNode *p = readPlayerlist();
+	PlayerListNode *y = readPlayerlist();
+	PlayerListNode* p = y;
 	Player player;
 	GroupListNode* x = readGrouplist();
 	Group group;
@@ -668,7 +677,7 @@ void delete_player() {
 	Game game;
 	int i;
 	printf("请输入要删除的运动员id：\n");
-	scanf("%d", &i);
+	scanf_s("%d", &i);
 	while (p->player.name.id != i) {
 		p = p->next;
 	}
@@ -703,12 +712,15 @@ void delete_player() {
 				}
 			}
 		}
-		p->player = p->next->player;
-		p->next = p->next->next;
+		deleteNode(y, p);
 		printf("删除成功\n");
+		system("pause");
 	}
 	else {
 		printf("输入id不存在，请重新输入！\n");
 		delete_player();
 	}
+	savePlayerlist(y);
+	saveGrouplist(x);
+	saveGamelist(q);
 }

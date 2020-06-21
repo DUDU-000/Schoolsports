@@ -43,7 +43,7 @@ bool file_is_empty(std::string &file_path) {//参数是文件路径
 void savesituation(int a) {
 	FILE *fp;//文件指针
 	fp = fopen("setting.txt", "w");
-	fprintf(fp, "状态:%d\n", a);
+	fprintf(fp, "状态:%d", a);
 	fclose(fp);
 }
 

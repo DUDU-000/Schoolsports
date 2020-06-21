@@ -63,7 +63,6 @@ int main()
 			main();
 		}
 		else if (situation == 1) {//进入下一阶段
-			delete_game;//删除不足四人的比赛
 			savesituation(2);
 			enter_sit_2();
 			main();
@@ -75,6 +74,7 @@ int main()
 	} break;
 	case 5: {
 		if (situation == 0) {//进入下一阶段
+			delete_game();//删除不足四人的比赛
 			enter_sit_1();
 			savesituation(1);
 			main();
