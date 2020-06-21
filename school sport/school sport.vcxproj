@@ -22,12 +22,10 @@
     <ClCompile Include="add_info.cpp" />
     <ClCompile Include="game_time.cpp" />
     <ClCompile Include="menu.cpp" />
-    <ClCompile Include="count_query_player.cpp" />
     <ClCompile Include="information.cpp" />
     <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
-    <ClCompile Include="next_stage.cpp" />
     <ClCompile Include="query_info.cpp" />
     <ClCompile Include="revise_info.cpp" />
     <ClCompile Include="score_info.cpp" />

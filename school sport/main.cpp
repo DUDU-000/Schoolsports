@@ -63,7 +63,7 @@ int main()
 			main();
 		}
 		else if (situation == 1) {//进入下一阶段
-			enter_sit_2();
+			sortGroup();
 			savesituation(2);
 			main();
 		}
@@ -75,7 +75,7 @@ int main()
 	case 5: {
 		if (situation == 0) {//进入下一阶段
 			delete_game();//删除不足四人的比赛
-			enter_sit_1();
+			Game_time();
 			savesituation(1);
 			main();
 		}

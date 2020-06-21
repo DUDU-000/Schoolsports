@@ -269,11 +269,3 @@ void sortGroup() {//对单位内运动员成绩进行排名
 	}
 	saveGrouplist(GHead);
 }
-
-
-
-
-
-
-
-

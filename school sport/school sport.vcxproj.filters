@@ -42,16 +42,10 @@
     <ClCompile Include="revise_info.cpp">
       <Filter>源文件\activity</Filter>
     </ClCompile>
-    <ClCompile Include="count_query_player.cpp">
-      <Filter>源文件\activity</Filter>
-    </ClCompile>
     <ClCompile Include="menu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="score_info.cpp">
-      <Filter>源文件\activity</Filter>
-    </ClCompile>
-    <ClCompile Include="next_stage.cpp">
       <Filter>源文件\activity</Filter>
     </ClCompile>
     <ClCompile Include="game_time.cpp">
