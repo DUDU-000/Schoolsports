@@ -36,10 +36,7 @@ void single_player_scorerevise(Game game);
 //Group中的得分的排序
 void sortGroup();
 
-//下个阶段
-void enter_sit_1();
-void enter_sit_2();
-
+void gameScore();
 
 void Game_time();
 

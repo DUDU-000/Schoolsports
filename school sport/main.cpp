@@ -63,7 +63,8 @@ int main()
 			main();
 		}
 		else if (situation == 1) {//进入下一阶段
-			sortGroup();
+			gameScore();//赋予分数和排名
+			sortGroup();//小组分数
 			savesituation(2);
 			main();
 		}

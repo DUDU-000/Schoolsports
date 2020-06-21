@@ -87,7 +87,7 @@ BriefGame_2 game_score_rank(int GameID) {
 	}
 	briefgame = sortBriefGame(briefgame);
 
-	if (strcmp(game.type, "田赛") == 0) {
+	if (strcmp(game.type, "田赛") == 0) {//田赛情况
 		for (int j = game.number-1; j >=0; j--) {
 			PlayerListNode *p_player = pHead_player;
 			while (p_player->player.name.id != game.playerid[j].id) {//找到该运动员
@@ -107,8 +107,28 @@ BriefGame_2 game_score_rank(int GameID) {
 			}
 			else {
 				briefgame.rank[j] = game.number - j;
-				if (game.number - j <= 10) briefgame.point[j] = 10 - (game.number - j) + 1;
-				else briefgame.point[j] = 0;
+				if (game.number >= 6) {//若人数大于等于6人
+					if (game.number - j == 5) 
+						briefgame.point[j] = 1;//赋予得分
+					else if (game.number - j == 4)
+						briefgame.point[j] = 2;//赋予得分
+					else if (game.number - j == 3)
+						briefgame.point[j] = 3;//赋予得分
+					else if (game.number - j == 2)
+						briefgame.point[j] = 5;//赋予得分
+					else if (game.number - j == 1)
+						briefgame.point[j] = 7;//赋予得分
+					else briefgame.point[j] = 0;
+				}
+				else {//若人数小于6人
+					if (game.number - j == 3) 
+						briefgame.point[j]=2;//赋予得分
+					else if (game.number - j == 2)
+						briefgame.point[j] = 3;//赋予得分
+					else if (game.number - j == 1)
+						briefgame.point[j] = 5;//赋予得分
+					else briefgame.point[j] = 0;
+				}
 			}
 			p_player->player.score[i].rank = briefgame.rank[j];
 			p_player->player.score[i].point = briefgame.point[j];
@@ -135,8 +155,28 @@ BriefGame_2 game_score_rank(int GameID) {
 			}
 			else {
 				briefgame.rank[j] = j + 1;
-				if (j + 1 <= 10) briefgame.point[j] = 10 - (j + 1) + 1;
-				else briefgame.point[j] = 0;
+				if (game.number >= 6) {//若人数大于等于6人
+					if (j + 1 == 5)
+						briefgame.point[j] = 1;//赋予得分
+					else if (j + 1 == 4)
+						briefgame.point[j] = 2;//赋予得分
+					else if (j + 1 == 3)
+						briefgame.point[j] = 3;//赋予得分
+					else if (j + 1 == 2)
+						briefgame.point[j] = 5;//赋予得分
+					else if (j + 1 == 1)
+						briefgame.point[j] = 7;//赋予得分
+					else briefgame.point[j] = 0;
+				}
+				else {//若人数小于6人
+					if (j + 1 == 3)
+						briefgame.point[j] = 2;//赋予得分
+					else if (j + 1 == 2)
+						briefgame.point[j] = 3;//赋予得分
+					else if (j + 1 == 1)
+						briefgame.point[j] = 5;//赋予得分
+					else briefgame.point[j] = 0;
+				}
 			}
 			p_player->player.score[i].rank = briefgame.rank[j];
 			p_player->player.score[i].point = briefgame.point[j];
@@ -268,4 +308,12 @@ void sortGroup() {//对单位内运动员成绩进行排名
 		g = g->next;
 	}
 	saveGrouplist(GHead);
+}
+
+void gameScore() {
+	GameListNode *p = readGamelist();
+	while (p != NULL) {
+		game_score_rank(p->game.name.id);
+		p = p->next;
+	}
 }
