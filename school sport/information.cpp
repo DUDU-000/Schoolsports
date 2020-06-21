@@ -181,7 +181,8 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 
 		switch (x) {
 		case 1: revisePlayer(player); break;//修改
-		case 2: {
+		case 2: delete_player(); break;//删除
+			/*{
 			PlayerListNode* pHead = readPlayerlist();
 			p = pHead;
 			while (p->player.name.id != player.name.id) {//找到所选择的节点,这个代码你可以在修改那里用;
@@ -191,7 +192,7 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 			savePlayerlist(pHead);
 			printf("\n\n删除完成\n");
 			system("pause");
-		}break;//删除
+		}break;//删除*/
 		case 3: {
 			if (player.game_number < 3) {
 				printf("\n\n请输入比赛ID:");

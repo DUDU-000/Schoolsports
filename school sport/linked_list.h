@@ -171,3 +171,6 @@ BriefGame_2ListNode* deleteNode(BriefGame_2ListNode* pHead, BriefGame_2ListNode*
 
 void RankPlayerList();
 void RankGroupList();
+
+void delete_game();
+void delete_player();
