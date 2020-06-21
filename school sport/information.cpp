@@ -119,7 +119,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 
 		switch (x) {
 		case 1: game_score_entry(game); information_game(pnewHead, situation); break;//³É¼¨Â¼Èë
-		case 2: game_socre_print(game); information_game(pnewHead, situation); break;//·µ»Ø
+		case 2: game_socre_print(game); system("pause"); information_game(pnewHead, situation); break;//·µ»Ø
 		case 3:single_player_scorerevise(game); information_game(pnewHead, situation); break;//·µ»Ø
 		case 4: break;//·µ»Ø
 		}
@@ -132,7 +132,7 @@ void information_game(GameListNode* pnewHead,int situation) {//ÊäÈëÍ·½ÚµãºÍ¶ÔÓ¦µ
 		int x = entrycheckandreinput(1, 2);
 
 		switch (x) {
-		case 1: game_socre_print(game); information_game(pnewHead, situation); break;//³É¼¨²éÑ¯
+		case 1: game_socre_print(game); system("pause"); information_game(pnewHead, situation); break;//³É¼¨²éÑ¯
 		case 2: break;//·µ»Ø
 		}
 	}
@@ -164,10 +164,10 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	if (player.game_number == 0) printf("ÎŞ\n");
 	else 
 	for (int j = 0; j < player.game_number; j++) {
-		printf("ÏîÄ¿Ãû³Æ:%s ", player.score->name.name);//ÏîÄ¿Ãû³Æ
+		printf("ÏîÄ¿Ãû³Æ:%s ", player.score[j].name.name);//ÏîÄ¿Ãû³Æ
 		if (sit > 0) {
-			printf("ÏîÄ¿³É¼¨:%0.2f ", player.score->score);//ÏîÄ¿³É¼¨
-			printf("ÏîÄ¿µÃ·Ö:%d \n", player.score->point);//ÏîÄ¿³É¼¨
+			printf("ÏîÄ¿³É¼¨:%0.2f ", player.score[j].score);//ÏîÄ¿³É¼¨
+			printf("ÏîÄ¿µÃ·Ö:%d \n", player.score[j].point);//ÏîÄ¿³É¼¨
 		}
 	}
 	printf("\n\n\n");
@@ -273,15 +273,21 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 				scanf_s("%d", &id);
 				for (int j = 0; j < player.game_number; j++) {
 					if (player.score[j].name.id == id) {
-						printf("%sÏîÄ¿È¡µÃµÄ³É¼¨Îª%f\nÊäÈëĞŞ¸Ä³É¼¨:", player.score[j].name.name, player.score[j].score);
-						scanf_s("%f", &chengji);
+						printf("%sÏîÄ¿È¡µÃµÄ³É¼¨Îª%0.2f\nÊäÈëĞŞ¸Ä³É¼¨:", player.score[j].name.name, player.score[j].score);
+						scanf_s("%lf", &chengji);
 						player.score[j].score = chengji;
 						i = 1;
+						p->player = player;
+						savePlayerlist(pnewHead);
+						printf("ĞŞ¸Ä³É¹¦\n");
 					}
 				}
 				if (i == 0)printf("ÔÚ¸ÃÏîÄ¿ÖĞÃ»ÓĞ³É¼¨¼ÇÂ¼");
 				game_score_rank(id);
+				
 			}
+			system("pause");
+			information_player(pnewHead, situation);
 		}break;
 		case 2:break;
 		}
@@ -290,13 +296,12 @@ void information_player(PlayerListNode* pnewHead, int situation) {
 	}
 	else if (sit == 2) {//³É¼¨²éÑ¯½×¶Î
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.³É¼¨²éÑ¯\n2.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.·µ»Ø\n");//Ñ¡Ïî
 
-		int x = entrycheckandreinput(1, 2);
+		int x = entrycheckandreinput(1, 1);
 
 		switch (x) {
 		case 1:break;
-		case 2:break;
 		}
 	}
 }
@@ -363,16 +368,20 @@ void information_group(GroupListNode* pnewHead, int situation) {
 	}
 	else if (sit == 2) {
 		printf("²Ù×÷:\n");//²Ù×÷
-		printf("1.×éÄÚÔË¶¯Ô±µÃ·ÖÅÅÃû\n2.·µ»Ø\n");//Ñ¡Ïî
+		printf("1.µ¥Î»³ÉÔ±\n2.×éÄÚÔË¶¯Ô±µÃ·ÖÅÅÃû\n3.·µ»Ø\n");//Ñ¡Ïî
 
-		int x = entrycheckandreinput(1, 2);
+		int x = entrycheckandreinput(1, 3);
 
 		switch (x) {
 		case 1: {
+			searchGroup_palyer(p, 0);
+			information_group(pnewHead, situation);
+		} break;//µ¥Î»³ÉÔ±
+		case 2: {
 			searchGroup_palyer(p, 1);
 			information_group(pnewHead, situation);
 		}break;
-		case 2:break;
+		case 3:break;
 		}
 	}
 }

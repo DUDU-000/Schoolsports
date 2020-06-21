@@ -63,18 +63,18 @@ void query_player_menu() {
 	printf("1.名称查询\n");
 	printf("2.小组查询\n");
 	printf("3.所有运动员\n");
-	printf("4.删除运动员\n");
-	printf("5.返回\n");
+//	printf("4.删除运动员\n");
+	printf("4.返回\n");
 	
-	int swi = swi = entrycheckandreinput(1, 5);
+	int swi = swi = entrycheckandreinput(1, 4);
 	
 	switch (swi) {
 	case -1: query_player_menu(); break;
 	case 1: searchPlayerlist_name(); break;
 	case 2: searchPlayerlist_group(); break;
 	case 3: searchPlayer_all(); break;
-	case 4:delete_player(); break;
-	case 5: break;
+//	case 4:delete_player(); break;
+	case 4: break;
 	}
 }
 void add_menu() {
@@ -108,7 +108,7 @@ void rank_menu() {
 	switch (swi) {
 	case -1: rank_menu(); break;
 	case 1: RankGroupList(); rank_menu(); break;
-	case 2: RankPlayerList();  rank_menu(); break;
+	case 2: RankPlayerList(); rank_menu(); break;
 	case 3: break;
 	}
 }

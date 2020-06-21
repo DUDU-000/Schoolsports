@@ -313,11 +313,13 @@ void RankPlayerList() {
 		}
 	}
 	system("CLS");
+	int j = 1;
 	while (p != NULL) {
-		printf("%d. %s 得分为:%d\n", p->player.name.id, p->player.name.name, p->player.fullscore);
+		printf("%-2d. ID:%-3d  姓名:%-6s 得分:%d\n",j, p->player.name.id, p->player.name.name, p->player.fullscore);
+		p = p->next;
+		j++;
 	}
 	system("pause");
-	savePlayerlist(p);
 }
 
 //组的链表函数
@@ -442,6 +444,7 @@ void printGrouplist(GroupListNode* pHead) {
 }
 
 void RankGroupList() {
+	
 	GroupListNode *p = readGrouplist();
 	GroupListNode* q;
 	GroupListNode* t;
@@ -456,11 +459,13 @@ void RankGroupList() {
 		}
 	}
 	system("CLS");
+	int j = 1;
 	while (p != NULL) {
-		printf("%d. %s 得分为:%d\n", p->group.name.id, p->group.name.name, p->group.fullscore);
+		printf("%-2d.ID:%-3d  名称 : %-6s 得分 : %d\n",j, p->group.name.id, p->group.name.name, p->group.fullscore);
+		p = p->next;
+		j++;
 	}
 	system("pause");
-	saveGrouplist(p);
 }
 
 //新建简易比赛的链表函数

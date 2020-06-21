@@ -50,7 +50,7 @@ int main()
 	
 	if (situation == 0) swi = entrycheckandreinput(1, 6);
 	else if (situation == 1) swi = entrycheckandreinput(1, 5);
-	else if (situation == 2) swi = entrycheckandreinput(1, 4);
+	else if (situation == 2) swi = entrycheckandreinput(1, 5);
 
 	switch (swi) {
 	case -1: main();  break;
@@ -63,13 +63,13 @@ int main()
 			main();
 		}
 		else if (situation == 1) {//进入下一阶段
-			savesituation(2);
 			enter_sit_2();
+			savesituation(2);
 			main();
 		}
 		else if (situation == 2) {//排名
-			
-			system("pause");
+			rank_menu();
+			main();
 		}
 	} break;
 	case 5: {

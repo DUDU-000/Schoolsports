@@ -73,7 +73,7 @@ BriefGame_2 game_score_rank(int GameID) {
 	briefgame.number = game.number;
 
 	for (int j = 0; j < game.number; j++) {
-		
+
 		PlayerListNode *p_player = pHead_player;
 		while (p_player->player.name.id != game.playerid[j].id) {//找到该运动员
 			p_player = p_player->next;
@@ -86,31 +86,59 @@ BriefGame_2 game_score_rank(int GameID) {
 		briefgame.score[j] = p_player->player.score[i].score;
 	}
 	briefgame = sortBriefGame(briefgame);
-	for (int j = 0; j < game.number; j++) {
-		PlayerListNode *p_player = pHead_player;
-		while (p_player->player.name.id != game.playerid[j].id) {//找到该运动员
-			p_player = p_player->next;
-		}
-		int i = 0;
-		while (p_player->player.score[i].name.id != game.name.id) {
-			i++;
-		}
 
-		if (game.type == "田赛") {
-			briefgame.rank[j] = game.number - j;
-			p_player->player.score[i].rank= game.number - j;
-
-			if (game.number - j <= 10) briefgame.point[j] = 10 - (game.number - j) + 1;
-			else briefgame.point[j] = 0;
+	if (strcmp(game.type, "田赛") == 0) {
+		for (int j = game.number-1; j >=0; j--) {
+			PlayerListNode *p_player = pHead_player;
+			while (p_player->player.name.id != game.playerid[j].id) {//找到该运动员
+				p_player = p_player->next;
+			}
+			int i = 0;
+			while (p_player->player.score[i].name.id != game.name.id) {
+				i++;
+			}
+			if (briefgame.score[j] == 0) {
+				briefgame.rank[j] = 0;
+				briefgame.point[j] = 0;
+			}
+			else if (briefgame.score[j] == briefgame.score[j + 1] && j != game.number - 1) {
+				briefgame.rank[j] = briefgame.rank[j+1];
+				briefgame.point[j] = briefgame.point[j+1];
+			}
+			else {
+				briefgame.rank[j] = game.number - j;
+				if (game.number - j <= 10) briefgame.point[j] = 10 - (game.number - j) + 1;
+				else briefgame.point[j] = 0;
+			}
+			p_player->player.score[i].rank = briefgame.rank[j];
 			p_player->player.score[i].point = briefgame.point[j];
 			count_player_fullsocre(p_player);
 		}
-		else{
-			briefgame.rank[j] = j+1;
-			p_player->player.score[i].rank = j + 1;
-
-			if (j + 1 <= 10) briefgame.point[j] = 10 - (j + 1)+1;
-			else briefgame.point[j] = 0;
+	}
+	else {
+		for (int j = 0; j < game.number; j++) {
+			PlayerListNode *p_player = pHead_player;
+			while (p_player->player.name.id != game.playerid[j].id) {//找到该运动员
+				p_player = p_player->next;
+			}
+			int i = 0;
+			while (p_player->player.score[i].name.id != game.name.id) {
+				i++;
+			}
+			if (briefgame.score[j] == 0) {
+				briefgame.rank[j] = 0;
+				briefgame.point[j] = 0;
+			}
+			else if (briefgame.score[j] == briefgame.score[j - 1] && j != 0) {
+				briefgame.rank[j] = briefgame.rank[j - 1];
+				briefgame.point[j] = briefgame.point[j - 1];
+			}
+			else {
+				briefgame.rank[j] = j + 1;
+				if (j + 1 <= 10) briefgame.point[j] = 10 - (j + 1) + 1;
+				else briefgame.point[j] = 0;
+			}
+			p_player->player.score[i].rank = briefgame.rank[j];
 			p_player->player.score[i].point = briefgame.point[j];
 			count_player_fullsocre(p_player);
 		}
@@ -123,8 +151,8 @@ BriefGame_2 game_score_rank(int GameID) {
 void game_socre_print(Game game) {
 	BriefGame_2 game_score = game_score_rank(game.name.id);
 	printf("\n\n\n");
-	printf("比赛成绩:");
-	if (game.type == "田赛") {
+	printf("比赛成绩:\n");
+	if (strcmp(game.type,"田赛")==0) {
 		for (int i = game_score.number - 1; i >= 0; i--) {
 			printf("ID:%-10d ", game_score.playername[i].id);
 			printf("姓名:%-10s ", game_score.playername[i].name);
@@ -142,23 +170,28 @@ void game_socre_print(Game game) {
 			printf("得分:%-5d \n", game_score.point[i]);
 		}
 	}
-	system("pause");
 }
 
 void single_player_scorerevise(Game game) {
 	system("CLS");
-	printf("%s项目运动员ID:\n",game.name.name);
-	for (int i = 0; i < game.number; i++)
-	{
-		printf("%d\n", game.playerid[i]);
-	}
+
+
+	game_socre_print(game);
+	//printf("%s项目运动员ID:\n",game.name.name);
+
+	//for (int i = 0; i < game.number; i++)
+	//{
+	//	printf("%d\n", game.playerid[i].id);
+	//}
+
 	char entry_playerid[99];
 	printf("个人成绩修改\n");
 	printf("请输入运动员ID:");
 	gets_s(entry_playerid, 99);
 	rewind(stdin);
 	int id = entrycheck(entry_playerid, 0, 999);
-	PlayerListNode* p = readPlayerlist();
+	PlayerListNode* pHead = readPlayerlist();
+	PlayerListNode* p = pHead;
 	while (p->player.name.id != id) {
 		if (p->next == NULL)break;
 
@@ -185,22 +218,14 @@ void single_player_scorerevise(Game game) {
 			printf("没有该项比赛记录");
 		}
 		else {
-
-
-			printf("要修改的成绩为%d\n",player.score[j].score);
+			printf("要修改的成绩为%0.2f\n",player.score[j].score);
 			printf("请输入修改后的项目成绩:\n");
-			char score_entry[1];
-			gets_s(score_entry, 1);
-			int score_e = entrycheck(score_entry, 0, 999);
-			player.score[j].score = score_e;
-
-
-			printf("修改成功！修改后的成绩为\n", player.score[j].score);
-
+			scanf("%lf", &player.score[j].score);
+			printf("修改成功！修改后的成绩为%0.2f\n", player.score[j].score);
 			p->player = player;
-
-			savePlayerlist(p);
+			savePlayerlist(pHead);
 			game_score_rank(game.name.id);
+			
 		}
 	}
 	system("pause");
@@ -218,10 +243,12 @@ void sortGroup() {//对单位内运动员成绩进行排名
 		p = PHead;
 		g->group.fullscore = 0;
 		for (int i = 0; i < group.member_number; i++) {
+			p = PHead;
 			while (p->player.name.id != group.memberid[i].id) {
-				group.point[i] = p->player.fullscore;
-				g->group.fullscore = g->group.fullscore + p->player.fullscore;
+				p = p->next;
 			}
+			group.point[i] = p->player.fullscore;
+			group.fullscore += group.point[i];
 		}
 
 		for (int i = 0; i < group.member_number - 1; i++) {//排序
